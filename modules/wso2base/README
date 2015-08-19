@@ -5,7 +5,7 @@ This is the wso2base module which will do basic configurations to the system.
 License
 -------
 
-Copyright 2014 Thilina Piyasundara
+Copyright 2015 Suhan Dharmasuriya
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ limitations under the License.
 Contact
 -------
 
-Thilina Piyasundara
+Suhan Dharmasuriya
 
 
 Support
@@ -47,22 +47,21 @@ Add following to the top of your site.pp or nodes.pp.
 
 And write node definitions as this.
 
-    node 'node01.example.com' inherits base {
-
-        class { elb:
-            services         => [['appserver','*','mgt','4010','appserver.wso2.com:4100'],
-                                 ['esb','*','mgt','4010','appserver.wso2.com:4100']
-                                ],
-            version          => '2.1.0',
-            maintenance_mode => 'zero',
-            auto_scaler      => 'false',
-            auto_failover    => false,
-            cloud            => true,
-            owner            => 'root',
-            group            => 'root',
-            target           => '/mnt',
-            stage            => deploy,
-            members          => {'elb2.wso2.com' =>4010 };
-        }
+node 'am190-publisher' inherits base {
+    class { "apimanager::publisher":
+        version            => "1.9.0",
+        offset             => 0,
+        depsync            => false,
+        local_member_port  => '4000',
+        clustering         => true,
+        cloud              => true,
+        sub_cluster_domain => false,
+        maintenance_mode   => 'refresh',
+        owner              => 'admin',
+        group              => 'admin',
+        members            => {'apistore' => '4000'},
+        port_mapping       => false,
+        stage              => deploy,
     }
+}
 
