@@ -1,0 +1,32 @@
+{
+  "name": "thilina-wso2base",
+  "version": "1.2.0",
+  "source": "",
+  "author": "Thilina Piyasundara",
+  "license": "Apache License, Version 2.0",
+  "summary": "This module is to use as a base for any WSO2 modules",
+  "description": "",
+  "project_page": "",
+  "dependencies": [
+
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "Modulefile": "e7ea703a9c525337921b3e18ff6ae22f",
+    "README": "c37a50f50ea58bcd97b556e4bd79b1ba",
+    "manifests/environment.pp": "d844e3bb1f3f91dc4f4246a372d110c7",
+    "manifests/hosts.pp": "b0c845cf8927d28e968dba557d2b9149",
+    "manifests/init.pp": "458db907ade2894387736869397232b3",
+    "manifests/java.pp": "2b2103333f8e650cb693a7061bc7440f",
+    "manifests/maven.pp": "f218cc8454927b1e53791f1f28a1d39e",
+    "manifests/packages.pp": "7ea19331c4187fcd135a865f9c86d82a",
+    "manifests/params.pp": "c40ea4f9674aef3f5ff591b7fa62e166",
+    "manifests/users.pp": "d6c796dde97c9df3e41014a42784d31f",
+    "spec/spec_helper.rb": "a55d1e6483344f8ec6963fcb2c220372",
+    "templates/environment.erb": "4615e442dc5e814c28802aeb49f3b8d8",
+    "templates/hosts.erb": "76c9ea151ea7cfb8278cb71462132fc4",
+    "tests/init.pp": "9c3fcd8e3f3e7051697b99ba3884c257"
+  }
+}

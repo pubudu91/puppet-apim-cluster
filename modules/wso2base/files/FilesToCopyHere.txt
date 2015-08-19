@@ -1,0 +1,4 @@
+Copy wso2base module required files here
+
+apache-maven-3.0.5-bin.tar.gz
+jdk-7u79-linux-x64.gz
