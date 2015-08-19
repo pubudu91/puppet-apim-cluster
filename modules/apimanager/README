@@ -1,15 +1,15 @@
 Requirements:
   Java, unzip, wget, mysql-connector jar (If connecting to a mysql database)
 
-wso2apimanager
+apimanager
 
-This is the wso2apimanager module which can use to deploy an API manager destributed 
+This is the WSO2 API Manager module which can be used to deploy an API manager destributed 
 setup.
 
 License
 -------
 
-Copyright 2014 Thilina Piyasundara
+Copyright 2015 Suhan Dharmasuriya
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ limitations under the License.
 Contact
 -------
 
-Thilina Piyasundara
+Suhan Dharmasuriya
 
 
 Support
@@ -40,27 +40,19 @@ How-To
 
 Setup databases
 
-mysql> create database registry;
-mysql> use registry;
-mysql> source <APIM_HOME>/dbscripts/mysql.sql;
-mysql> grant all on registry.* TO 'registry'@'%' identified by "ycJaCboyUo";
-
-mysql> create database userstore;
-mysql> use userstore;
-mysql> source <APIM_HOME>/dbscripts/mysql.sql;
-mysql> grant all on userstore.* TO 'userstore'@'%' identified by "sUAKn09o5J";
-
-mysql> create database config;
-mysql> use config;
-mysql> source <APIM_HOME>/dbscripts/mysql.sql;
-mysql> grant all on config.* TO 'config'@'%' identified by "Kn09aCboH";
-
-mysql> create database apimgt;
-mysql> use apimgt;
+mysql> create database apimgtdb;
+mysql> use apimgtdb;
 mysql> source <APIM_HOME>/dbscripts/apimgt/mysql.sql;
-mysql> grant all on apimgt.* TO 'apim'@'%' identified by "KeoNeDAe";
 
-mysql> create database amstats;
-mysql> use amstats;
-mysql> grant all on amstats.* TO 'amstats'@'%' identified by "keDweNjseR";
-# No need to create tables on amstats database.
+mysql> create database userdb;
+mysql> use userdb;
+mysql> source <APIM_HOME>/dbscripts/mysql.sql;
+
+mysql> create database regdb;
+mysql> use regdb;
+mysql> source <APIM_HOME>/dbscripts/mysql.sql;
+
+mysql> CREATE USER 'regadmin' IDENTIFIED BY 'regadmin';
+mysql> grant all on *.* TO 'regadmin'@'%' identified by 'regadmin';
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'regadmin'@'%';
+
