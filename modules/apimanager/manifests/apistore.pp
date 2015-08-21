@@ -65,6 +65,8 @@ class apimanager::apistore (
   $carbon_version  = $version
   $service_code    = 'am'
   $carbon_home     = "${target}/wso2${service_code}-${carbon_version}"
+  $is_lb_fronted   = 'true'
+  $membershipScheme = 'wka'
 
   $service_templates = [
     'conf/api-manager.xml',
@@ -73,7 +75,7 @@ class apimanager::apistore (
     'conf/datasources/master-datasources.xml',
     'conf/registry.xml',
     'conf/user-mgt.xml',
-#    'conf/tomcat/catalina-server.xml',
+    'conf/tomcat/catalina-server.xml',
 #    'deployment/server/jaggeryapps/publisher/site/conf/site.json',
     'deployment/server/jaggeryapps/store/site/conf/site.json',
     ]

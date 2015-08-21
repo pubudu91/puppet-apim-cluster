@@ -10,7 +10,7 @@ class wso2base::params {
                         "192.168.57.237,puppetmaster puppet",
                         #"10.33.14.56,downloads.example.com",
                         #"192.168.19.37,mysql.example.com",
-                        "192.168.19.37,qaamysql",
+                        "192.168.57.233,qaamysql",
                         "192.168.19.33,keymanager",
                         "192.168.19.34,gateway",
                         "192.168.19.35,publisher",

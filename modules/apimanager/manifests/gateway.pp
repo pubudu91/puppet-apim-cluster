@@ -65,6 +65,7 @@ class apimanager::gateway (
   $carbon_version  = $version
   $service_code    = 'am'
   $carbon_home     = "${target}/wso2${service_code}-${carbon_version}"
+  $is_lb_fronted   = 'true'
 
   $service_templates = [
     'conf/api-manager.xml',

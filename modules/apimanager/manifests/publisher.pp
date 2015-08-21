@@ -65,6 +65,8 @@ class apimanager::publisher (
   $carbon_version  = $version
   $service_code    = 'am'
   $carbon_home     = "${target}/wso2${service_code}-${carbon_version}"
+  $is_lb_fronted   = 'true'
+  $membershipScheme = 'wka'
 
   $service_templates = [
     'conf/api-manager.xml',
@@ -74,7 +76,7 @@ class apimanager::publisher (
     'conf/registry.xml',
     'conf/user-mgt.xml',
     'deployment/server/jaggeryapps/publisher/site/conf/site.json',
-#    'conf/tomcat/catalina-server.xml',
+    'conf/tomcat/catalina-server.xml',
 #    'deployment/server/jaggeryapps/store/site/conf/site.json',
     ]
 

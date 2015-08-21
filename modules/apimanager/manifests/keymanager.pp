@@ -65,6 +65,9 @@ class apimanager::keymanager (
   $carbon_version  = $version
   $service_code    = 'am'
   $carbon_home     = "${target}/wso2${service_code}-${carbon_version}"
+  $is_lb_fronted   = 'true'
+  $is_clustered_enable = 'true'
+  $membershipScheme = 'wka'
 
   $service_templates = [
     'conf/api-manager.xml',

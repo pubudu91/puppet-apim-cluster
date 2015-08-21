@@ -649,11 +649,7 @@
                     is deemed to have left the cluster, it will be detected by the Group Membership
                     Service (GMS) using a TCP ping mechanism.
         -->
-	<%- if @amtype == 'publisher' or @amtype == 'apistore' -%>
-	<parameter name="membershipScheme">wka</parameter>
-	<%- else -%>
-        <parameter name="membershipScheme">multicast</parameter>
-	<%- end -%>
+	<parameter name="membershipScheme"><%= @membershipScheme %></parameter>
 
         <!--<parameter name="licenseKey">xxx</parameter>-->
         <!--<parameter name="mgtCenterURL">http://localhost:8081/mancenter/</parameter>-->
