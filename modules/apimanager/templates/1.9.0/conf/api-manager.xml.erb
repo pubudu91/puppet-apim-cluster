@@ -51,7 +51,7 @@
         -->
 	<%- if @amtype == 'publisher' or @amtype == 'apistore' -%>
         <!--ServerURL>https://192.168.57.227:9443/services/</ServerURL-->
-	<ServerURL>https://192.168.19.33:9443/services/</ServerURL>
+	<ServerURL>https://keymanager.am.wso2.com/services/</ServerURL>
         <%- else -%>
         <ServerURL>https://${carbon.local.ip}:${mgt.transport.https.port}${carbon.context}/services/</ServerURL>
 	<%- end -%>
@@ -153,7 +153,7 @@
         		-->
                         <%- if @amtype == 'keymanager' or @amtype == 'publisher' or @amtype == 'apistore' -%>
 			<!--ServerURL>https://192.168.57.232:9443/services/</ServerURL-->
-			<ServerURL>https://192.168.19.34:9443/services/</ServerURL>
+			<ServerURL>https://192.168.57.232:9443/services/</ServerURL>
                         <%- else -%>
                         <ServerURL>https://${carbon.local.ip}:${mgt.transport.https.port}${carbon.context}/services/</ServerURL>
 			<%- end -%>
@@ -177,8 +177,8 @@
             			Endpoint URLs for the APIs hosted in this API gateway.
         		-->
 			<%- if @amtype == 'keymanager' or @amtype == 'publisher' or @amtype == 'apistore' -%>
-			<!--GatewayEndpoint>http://192.168.57.232:8280,https://192.168.57.232:8243</GatewayEndpoint-->
-			<GatewayEndpoint>http://192.168.19.34:8280,https://192.168.19.34:8243</GatewayEndpoint>
+			<GatewayEndpoint>http://192.168.57.232:8280,https://192.168.57.232:8243</GatewayEndpoint>
+			<!--<GatewayEndpoint>http://192.168.19.34:8280,https://192.168.19.34:8243</GatewayEndpoint>-->
 			<%- else -%>
                         <GatewayEndpoint>http://${carbon.local.ip}:${http.nio.port},https://${carbon.local.ip}:${https.nio.port}</GatewayEndpoint>
 			<%- end -%>
@@ -273,7 +273,7 @@
         -->
 	<%- if @amtype == 'gateway' or @amtype == 'publisher' or @amtype == 'apistore' -%>
 	<!--ServerURL>https://192.168.57.227:9443/services/</ServerURL-->
-	<ServerURL>https://192.168.19.33:9443/services/</ServerURL>
+	<ServerURL>https://keymanager.am.wso2.com/services/</ServerURL>
 	<%- else -%>
         <ServerURL>https://${carbon.local.ip}:${mgt.transport.https.port}${carbon.context}/services/</ServerURL>
 	<%- end -%>

@@ -27,9 +27,6 @@
     -->
     <Connector  protocol="org.apache.coyote.http11.Http11NioProtocol"
                 port="9763"
-                <%- if @is_lb_fronted == 'true' -%>
-                proxyPort="80"
-                <%- end  -%>
                 redirectPort="9443" 
                 bindOnInit="false"
                 maxHttpHeaderSize="8192"
@@ -54,9 +51,6 @@
     -->
     <Connector  protocol="org.apache.coyote.http11.Http11NioProtocol"
                 port="9443"
-                <%- if @is_lb_fronted == 'true' -%>
-                proxyPort="443"
-                <%- end  -%>
                 bindOnInit="false"
                 sslProtocol="TLS"
                 maxHttpHeaderSize="8192"

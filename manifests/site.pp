@@ -26,10 +26,18 @@ node 'puppetagent' {
                 ensure  => file,
                 content => template('apimanager/1.9.0/conf/axis2/axis2.xml.erb'),
         }
-}
 
-node 'suhan-mysql-server.openstacklocal' {
-	
+	file { "/etc/nginx/conf.d":
+                source => "puppet:///modules/nginx/conf.d",
+                recurse => true,
+        }
+
+	host { 
+		'pub.wso2.am.com': ip => '192.168.57.239';
+		'store.wso2.am.com': ip => '192.168.57.239';
+		'gateway.wso2.am.com': ip => '192.168.57.239';
+		'keymanger.wso2.am.com': ip => '192.168.57.239';
+        }
 }
 
 #publisher_node1
@@ -189,11 +197,11 @@ node 'qaa-puppet-nginx' {
 		recurse => true,
 	}
 
-	file { "/etc/nginx/conf.d/publisher.conf":
-		source => "puppet:///modules/nginx/conf.d/publisher.conf",
+	file { 
+		"/etc/nginx/conf.d/publisher.conf": source => "puppet:///modules/nginx/conf.d/publisher.conf";
+		"/etc/nginx/conf.d/apistore.conf": source => "puppet:///modules/nginx/conf.d/apistore.conf";
+		"/etc/nginx/conf.d/gateway.conf": source => "puppet:///modules/nginx/conf.d/gateway.conf";
+		"/etc/nginx/conf.d/keymanager.conf": source => "puppet:///modules/nginx/conf.d/keymanager.conf";
 	}
 
-        host { 'pub.wso2.am.com':
- 	   ip => '192.168.57.239',
-	}
 }
