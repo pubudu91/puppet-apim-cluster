@@ -58,6 +58,7 @@ class apimanager::publisher (
   $owner              = 'root',
   $group              = 'root',
   $target             = "/mnt/${ipaddress}/publisher",
+  $membershipScheme   = 'multicast',
 ) inherits params {
 
   $amtype          = 'publisher'
@@ -66,7 +67,6 @@ class apimanager::publisher (
   $service_code    = 'am'
   $carbon_home     = "${target}/wso2${service_code}-${carbon_version}"
   $is_lb_fronted   = 'true'
-  $membershipScheme = 'wka'
 
   $service_templates = [
     'conf/api-manager.xml',
@@ -141,9 +141,11 @@ class apimanager::publisher (
         require => Apimanager::Deploy["${deployment_code}_${amtype}"],
     }
  
-  apimanager::start { "${deployment_code}_${amtype}":
+  apimanager::startservice { "${deployment_code}_${amtype}":
     owner   => $owner,
+    group   => $group,
     target  => $carbon_home,
+    directory => "${deployment_code}/${version}",
     require => [
       Apimanager::Initialize["${deployment_code}_${amtype}"],
       Apimanager::Deploy["${deployment_code}_${amtype}"],

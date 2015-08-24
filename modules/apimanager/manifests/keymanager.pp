@@ -58,6 +58,7 @@ class apimanager::keymanager (
   $owner              = 'root',
   $group              = 'root',
   $target             = "/mnt/${ipaddress}/keymanager",
+  $membershipScheme   = 'multicast',
 ) inherits params {
 
   $amtype          = 'keymanager'
@@ -67,7 +68,6 @@ class apimanager::keymanager (
   $carbon_home     = "${target}/wso2${service_code}-${carbon_version}"
   $is_lb_fronted   = 'true'
   $is_clustered_enable = 'true'
-  $membershipScheme = 'wka'
 
   $service_templates = [
     'conf/api-manager.xml',
@@ -147,15 +147,17 @@ class apimanager::keymanager (
         command  => "rm -rf $carbon_home/repository/deployment/server/jaggeryapps/store",
         require => Apimanager::Deploy["${deployment_code}_${amtype}"]
     }
-
-  apimanager::start { "${deployment_code}_${amtype}":
-    owner   => $owner,
+  
+   apimanager::startservice { "${deployment_code}_${amtype}":
+    owner   => $owner, 
+    group   => $group, 
     target  => $carbon_home,
+    directory => "${deployment_code}/${version}",
     require => [
       Apimanager::Initialize["${deployment_code}_${amtype}"],
       Apimanager::Deploy["${deployment_code}_${amtype}"],
-      Apimanager::Push_keymanager_templates[$service_templates],
+      Apimanager::Push_publisher_templates[$service_templates],
       File["${carbon_home}/bin/wso2server.sh"],
-      ],
+      ],      
   }
 }
