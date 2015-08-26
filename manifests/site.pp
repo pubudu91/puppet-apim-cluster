@@ -17,9 +17,9 @@ node base {
 
 node 'puppetagent' {
 
-	file { "/tmp/mcollective_test.t":
-                ensure => present,
-        }
+    file { "/tmp/mcollective_test.t":
+        ensure => present,
+    }
 
 }
 
@@ -111,7 +111,9 @@ node 'gatewayagent1' inherits base {
         members            => {'192.168.57.231' => '4000'},
         port_mapping       => {"80" => "9763", "443" => "9443"},
         stage              => deploy,
-	#carbon_hostname    => 'mgt.gateway.am.wso2.com',
+        svn_url            => 'http://192.168.57.233/svn/testrepo/apim',
+        svn_username       => 'user1',
+        svn_password       => 'user1',
     }
 }
 
@@ -133,7 +135,9 @@ node 'qaa-puppet-apim-gw-2' inherits base {
         members            => {'192.168.57.232' => '4000'},
         port_mapping       => {"80" => "9763", "443" => "9443"},
         stage              => deploy,
-	#carbon_hostname    => 'gateway.am.wso2.com',
+        svn_url            => 'http://192.168.57.233/svn/testrepo/apim',
+        svn_username       => 'user1',
+        svn_password       => 'user1',
     }
 }
 
@@ -165,4 +169,7 @@ node 'qaa-puppet-nginx' {
 # TODO
 # 1. merge component instances into one definition
 # 2. puppetize a given certificate import to pack keystores
-
+# 3. puppetize mysql
+# 4. generalize nginx module
+# 5. dynamically add ssl certs to keystores of the daily build packs
+# 6. add a cluster health check script or tool, shell script maybe

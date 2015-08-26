@@ -550,9 +550,9 @@ Ports used by this server
 
     <AutoCheckout>true</AutoCheckout>
     <RepositoryType>svn</RepositoryType>
-    <SvnUrl>http://192.168.57.233/svn/testrepo/apim</SvnUrl>
-    <SvnUser>user1</SvnUser>
-    <SvnPassword>user1</SvnPassword>
+    <SvnUrl><%= @svn_url %></SvnUrl>
+    <SvnUser><%= @svn_username %></SvnUser>
+    <SvnPassword><%= @svn_password %></SvnPassword>
     <SvnUrlAppendTenantId>true</SvnUrlAppendTenantId>
     </DeploymentSynchronizer>
 

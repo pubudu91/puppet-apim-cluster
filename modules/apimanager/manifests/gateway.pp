@@ -59,6 +59,9 @@ class apimanager::gateway (
   $group              = 'root',
   $target             = "/mnt/${ipaddress}/gateway",
   $membershipScheme   = 'multicast',
+  $svn_url            = undef,
+  $svn_username       = undef,
+  $svn_password       = undef,
 ) inherits params {
 
   $amtype          = 'gateway'
