@@ -58,6 +58,7 @@ class apimanager::gateway (
   $owner              = 'root',
   $group              = 'root',
   $target             = "/mnt/${ipaddress}/gateway",
+  $membershipScheme   = 'multicast',
 ) inherits params {
 
   $amtype          = 'gateway'
@@ -74,7 +75,10 @@ class apimanager::gateway (
     'conf/datasources/master-datasources.xml',
     'conf/registry.xml',
     'conf/user-mgt.xml',
-#    'conf/tomcat/catalina-server.xml',
+    'deployment/server/synapse-configs/default/api/_TokenAPI_.xml',
+    'deployment/server/synapse-configs/default/api/_AuthorizeAPI_.xml',
+    'deployment/server/synapse-configs/default/api/_RevokeAPI_.xml',
+    'conf/tomcat/catalina-server.xml',
 #    'deployment/server/jaggeryapps/publisher/site/conf/site.json',
 #    'deployment/server/jaggeryapps/store/site/conf/site.json',
     ]
@@ -146,14 +150,16 @@ class apimanager::gateway (
         require => Apimanager::Deploy["${deployment_code}_${amtype}"],
     }
 
-  apimanager::start { "${deployment_code}_${amtype}":
-    owner   => $owner,
+  apimanager::startservice { "${deployment_code}_${amtype}":
+    owner   => $owner, 
+    group   => $group, 
     target  => $carbon_home,
+    directory => "${deployment_code}/${version}",
     require => [
       Apimanager::Initialize["${deployment_code}_${amtype}"],
       Apimanager::Deploy["${deployment_code}_${amtype}"],
       Apimanager::Push_gateway_templates[$service_templates],
       File["${carbon_home}/bin/wso2server.sh"],
-      ],
+      ],      
   }
 }

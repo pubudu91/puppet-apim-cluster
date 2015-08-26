@@ -267,7 +267,7 @@ do
   <%- if @sub_cluster_domain == 'worker' -%>
     $JAVACMD \
     -Xbootclasspath/a:"$CARBON_XBOOTCLASSPATH" \
-    -Xms256m -Xmx1024m -XX:MaxPermSize=256m \
+    -Xms512m -Xmx2048m -XX:MaxPermSize=1024m \
     -XX:+HeapDumpOnOutOfMemoryError \
     -XX:HeapDumpPath="$CARBON_HOME/repository/logs/heap-dump.hprof" \
     $JAVA_OPTS \
@@ -302,7 +302,7 @@ do
   <%- else -%>
     $JAVACMD \
     -Xbootclasspath/a:"$CARBON_XBOOTCLASSPATH" \
-    -Xms256m -Xmx1024m -XX:MaxPermSize=256m \
+    -Xms512m -Xmx2048m -XX:MaxPermSize=1024m \
     -XX:+HeapDumpOnOutOfMemoryError \
     -XX:HeapDumpPath="$CARBON_HOME/repository/logs/heap-dump.hprof" \
     $JAVA_OPTS \

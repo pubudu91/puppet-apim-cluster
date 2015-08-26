@@ -715,7 +715,9 @@
         <parameter name="properties">
             <property name="backendServerURL" value="https://${hostName}:${httpsPort}/services/"/>
             <property name="mgtConsoleURL" value="https://${hostName}:${httpsPort}/"/>
-            <property name="subDomain" value="worker"/>
+            <%- if @sub_cluster_domain -%>
+            <property name="subDomain" value="<%= @sub_cluster_domain %>"/>
+            <%- end -%>
         </parameter>
 
         <!--

@@ -58,6 +58,7 @@ class apimanager::pubstore (
   $owner              = 'root',
   $group              = 'root',
   $target             = "/mnt/${ipaddress}/pubstore",
+  $membershipScheme   = 'multicast',
 ) inherits params {
 
   $amtype          = 'pubstore'
@@ -65,7 +66,6 @@ class apimanager::pubstore (
   $carbon_version  = $version
   $service_code    = 'am'
   $carbon_home     = "${target}/wso2${service_code}-${carbon_version}"
-  $membershipScheme = 'wka'
 
   $service_templates = [
     'conf/api-manager.xml',
@@ -132,16 +132,19 @@ class apimanager::pubstore (
       mode      => '0755',
       content   => template("apimanager/${version}/wso2server.sh.erb"),
       require   => Apimanager::Deploy["${deployment_code}_${amtype}"];
-  }
+  }   
 
-  apimanager::start { "${deployment_code}_${amtype}":
-    owner   => $owner,
+ apimanager::startservice { "${deployment_code}_${amtype}":
+    owner   => $owner, 
+    group   => $group, 
     target  => $carbon_home,
+    directory => "${deployment_code}/${version}",
     require => [
       Apimanager::Initialize["${deployment_code}_${amtype}"],
       Apimanager::Deploy["${deployment_code}_${amtype}"],
-      Apimanager::Push_pubstore_templates[$service_templates],
+      Apimanager::Push_publisher_templates[$service_templates],
       File["${carbon_home}/bin/wso2server.sh"],
-      ],
+      ],      
   }
+
 }

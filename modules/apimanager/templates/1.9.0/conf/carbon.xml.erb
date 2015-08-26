@@ -42,7 +42,9 @@ e.g. www.wso2.org, 192.168.1.10
 This is will become part of the End Point Reference of the
 services deployed on this server instance.
 -->
-<!--HostName>www.wso2.org</HostName-->
+<%- if @carbon_hostname -%>
+	    <HostName><%= @carbon_hostname %></HostName>
+<%- end -%>
 
 <!--
 Host name to be used for the Carbon management console
@@ -530,16 +532,32 @@ Ports used by this server
 	In master nodes you need to set both AutoCommit and AutoCheckout to true
 	and in  worker nodes set only AutoCheckout to true.
     -->
-    <!--<DeploymentSynchronizer>
-        <Enabled>true</Enabled>
-        <AutoCommit>false</AutoCommit>
-        <AutoCheckout>true</AutoCheckout>
-        <RepositoryType>svn</RepositoryType>
-        <SvnUrl>http://svnrepo.example.com/repos/</SvnUrl>
-        <SvnUser>username</SvnUser>
-        <SvnPassword>password</SvnPassword>
-        <SvnUrlAppendTenantId>true</SvnUrlAppendTenantId>
-    </DeploymentSynchronizer>-->
+
+     <%- if @amtype == 'gateway' -%>
+
+    <DeploymentSynchronizer>
+    <Enabled>true</Enabled>
+
+    <%- if @sub_cluster_domain == 'mgt' -%>
+
+    <AutoCommit>true</AutoCommit>
+
+    <%- else -%>
+ 
+    <AutoCommit>false</AutoCommit>
+
+    <%- end -%>
+
+    <AutoCheckout>true</AutoCheckout>
+    <RepositoryType>svn</RepositoryType>
+    <SvnUrl>http://192.168.57.233/svn/testrepo/apim</SvnUrl>
+    <SvnUser>user1</SvnUser>
+    <SvnPassword>user1</SvnPassword>
+    <SvnUrlAppendTenantId>true</SvnUrlAppendTenantId>
+    </DeploymentSynchronizer>
+
+    <%- end -%>
+
 
     <!-- Deployment Synchronizer Configuration. Uncomment the following section when running with "registry based" dep sync.
         In master nodes you need to set both AutoCommit and AutoCheckout to true

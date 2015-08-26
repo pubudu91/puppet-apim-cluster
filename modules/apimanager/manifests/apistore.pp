@@ -58,6 +58,7 @@ class apimanager::apistore (
   $owner              = 'root',
   $group              = 'root',
   $target             = "/mnt/${ipaddress}/apistore",
+  $membershipScheme   = 'multicast',
 ) inherits params {
 
   $amtype          = 'apistore'
@@ -66,7 +67,6 @@ class apimanager::apistore (
   $service_code    = 'am'
   $carbon_home     = "${target}/wso2${service_code}-${carbon_version}"
   $is_lb_fronted   = 'true'
-  $membershipScheme = 'wka'
 
   $service_templates = [
     'conf/api-manager.xml',

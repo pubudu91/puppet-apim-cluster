@@ -58,6 +58,7 @@ class apimanager (
   $owner              = 'root',
   $group              = 'root',
   $target             = '/mnt',
+  $membershipScheme   = 'multicast',
 ) inherits params {
 
   $amtype          = 'standalone'

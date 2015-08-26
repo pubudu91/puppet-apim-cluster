@@ -156,7 +156,7 @@ class apimanager::keymanager (
     require => [
       Apimanager::Initialize["${deployment_code}_${amtype}"],
       Apimanager::Deploy["${deployment_code}_${amtype}"],
-      Apimanager::Push_publisher_templates[$service_templates],
+      Apimanager::Push_keymanager_templates[$service_templates],
       File["${carbon_home}/bin/wso2server.sh"],
       ],      
   }
