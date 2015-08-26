@@ -67,4 +67,10 @@ define apimanager::initialize ($repo, $version, $service, $local_dir, $target, $
       timeout   => 0,
       require   => Exec["extracting_wso2${service}-${version}.zip_for_${name}"];
   }
+  ->
+  file { "${target}/wso2${service}-${version}/repository/resources/security":
+      source => "puppet:///modules/apimanager/${version}/security",
+      recurse => true,
+      ignore => "README.md",
+  }
 }
