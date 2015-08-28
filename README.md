@@ -12,3 +12,7 @@ API Manager uses the following four main components:
 | Gateway | Responsible for securing, protecting, managing, and scaling API calls. |
 
 ![Alt text](apimcluster.png?raw=true "Basic distributed setup")
+
+Following is the current WSO2 API Manager clustering pattern implemented.
+
+![Alt text](CurrentAPIMClusterPattern.jpg?raw=true "Current clustering pattern")
