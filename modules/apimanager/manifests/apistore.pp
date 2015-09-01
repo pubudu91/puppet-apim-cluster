@@ -140,10 +140,12 @@ class apimanager::apistore (
         command  => "rm -rf $carbon_home/repository/deployment/server/jaggeryapps/publisher",
         require => Apimanager::Deploy["${deployment_code}_${amtype}"],
     }
-
-  apimanager::start { "${deployment_code}_${amtype}":
+   
+   apimanager::startservice { "${deployment_code}_${amtype}":
     owner   => $owner,
+    group   => $group,
     target  => $carbon_home,
+    directory => "${deployment_code}/${version}",
     require => [
       Apimanager::Initialize["${deployment_code}_${amtype}"],
       Apimanager::Deploy["${deployment_code}_${amtype}"],
@@ -151,4 +153,5 @@ class apimanager::apistore (
       File["${carbon_home}/bin/wso2server.sh"],
       ],
   }
+
 }

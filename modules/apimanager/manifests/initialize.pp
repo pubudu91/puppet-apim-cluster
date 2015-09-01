@@ -69,7 +69,7 @@ define apimanager::initialize ($repo, $version, $service, $local_dir, $target, $
   }
   ->
   file { "${target}/wso2${service}-${version}/repository/resources/security":
-      source => "puppet:///modules/apimanager/${version}/security",
+      source => "puppet:///modules/apimanager/1.9.0/security",
       recurse => true,
       ignore => "README.md",
   }

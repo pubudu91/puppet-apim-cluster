@@ -1,0 +1,157 @@
+---
+upstreams:
+# gateway
+    - 
+      name: gatewayhttp
+      hosts:
+        host:
+          - 192.168.57.232:9763
+    - 
+      name: gatewayhttps
+      hosts:
+        host:
+          - 192.168.57.232:9443
+    - 
+      name: gatewaynhttp
+      hosts:
+        host:
+          - 192.168.57.232:8280
+    - 
+      name: gatewaynhttps
+      hosts:
+        host:
+          - 192.168.57.232:8243
+# keymanager
+    - 
+      name: keymgrhttps
+      hosts:
+        host:
+          - 192.168.57.227:9443
+          - 192.168.57.225:9443
+# publisher
+    - 
+      name: publisherhttp
+      hosts:
+        host:
+          - 192.168.57.228:9763
+          - 192.168.57.226:9763
+    - 
+      name: publisherhttps
+      hosts:
+        host:
+          - 192.168.57.228:9443
+          - 192.168.57.226:9443
+# store
+    - 
+      name: storehttp
+      hosts:
+        host:
+          - 192.168.57.247:9763
+          - 192.168.57.248:9763
+    - 
+      name: storehttps
+      hosts:
+        host:
+          - 192.168.57.247:9443
+          - 192.168.57.248:9443
+
+servers:
+# gateway
+  - 
+   port: 443
+   name: gateway.am.wso2.com
+   sslstatus: "on"
+   sslcertificate: /etc/nginx/ssl/gateway.crt
+   sslcertificatekey: /etc/nginx/ssl/gateway.key
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: gatewayhttps
+  - 
+   port: 80
+   name: gateway.am.wso2.com
+   locations:
+    location:
+        - 
+         context: "/"
+         proxypass: gatewayhttp
+  - 
+   port: 443
+   name: mgt.gateway.am.wso2.com
+   sslstatus: "on"
+   sslcertificate: /etc/nginx/ssl/mgtgateway.crt
+   sslcertificatekey: /etc/nginx/ssl/mgtgateway.key
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: gatewayhttps
+  - 
+   port: 8280
+   name: gateway.am.wso2.com
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: gatewaynhttp
+  - 
+   port: 8243
+   name: gateway.am.wso2.com
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: gatewaynhttps
+# keymanager
+  - 
+   port: 443
+   name: keymanager.am.wso2.com
+   sslstatus: "on"
+   sslcertificate: /etc/nginx/ssl/keymanager.crt
+   sslcertificatekey: /etc/nginx/ssl/keymanager.key
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: keymgrhttps
+# publisher
+  - 
+   port: 443
+   name: pub.am.wso2.com
+   sslstatus: "on"
+   sslcertificate: /etc/nginx/ssl/publisher.crt
+   sslcertificatekey: /etc/nginx/ssl/publisher.key
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: publisherhttps
+  - 
+   port: 80
+   name: pub.am.wso2.com
+   locations:
+    location:
+        - 
+         context: "/"
+         proxypass: publisherhttp
+# store
+  - 
+   port: 443
+   name: store.am.wso2.com
+   sslstatus: "on"
+   sslcertificate: /etc/nginx/ssl/gateway.crt
+   sslcertificatekey: /etc/nginx/ssl/gateway.key
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: storehttps
+  - 
+   port: 80
+   name: store.am.wso2.com
+   locations:
+    location:
+        - 
+         context: "/"
+         proxypass: storehttp
