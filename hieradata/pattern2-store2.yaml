@@ -1,0 +1,14 @@
+---
+store:
+ version: 1.9.0
+ offset: 0
+ depsync: false
+ local_member_port: 4000
+ clustering: false
+ cloud: true
+ sub_cluster_domain: false
+ maintenance_mode: zero
+ owner: kurumba
+ group: kurumba
+ port_mapping: false
+ stage: deploy

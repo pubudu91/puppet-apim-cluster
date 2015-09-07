@@ -1,10 +1,10 @@
 {
-  "name": "thilina-wso2base",
-  "version": "1.2.0",
+  "name": "suhan-wso2base",
+  "version": "1.0.0",
   "source": "",
-  "author": "Thilina Piyasundara",
+  "author": "Suhan Dharmasuriya",
   "license": "Apache License, Version 2.0",
-  "summary": "This module is to use as a base for any WSO2 modules",
+  "summary": "This module is to use as a base for any WSO2 module",
   "description": "",
   "project_page": "",
   "dependencies": [

@@ -1,0 +1,9 @@
+mysql: 
+ rootUser: root
+ rootPassword: root 
+ user: regadmin
+ password: regadmin
+ host: qaasql
+ apimgtdb: /tmp/wso2am-1.9.0/dbscripts/apimgt/mysql.sql
+ userdb: /tmp/wso2am-1.9.0/dbscripts/mysql.sql
+ regdb:  /tmp/wso2am-1.9.0/dbscripts/mysql.sql

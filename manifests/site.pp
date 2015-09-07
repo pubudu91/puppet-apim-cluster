@@ -4,8 +4,13 @@ stage { 'configure': require => Stage['main'] }
 stage { 'deploy': require => Stage['configure'] }
 
 node default {
-	file { "/tmp/test.t":
-		ensure => present,
+ 
+	#inherits base
+  	#include wso2base::node_selector
+
+  	# for debug output on the puppet client - with full source information
+	notify {"Node definition mismatch, applying default configuration...":
+    		withpath => true,
 	}
 }
 
@@ -17,152 +22,137 @@ node base {
 
 node 'puppetagent' {
 
-    file { "/tmp/mcollective_test.t":
-        ensure => present,
-    }
-
+    #include wso2base::nginx
+    file {  "/tmp/mainenv.txt":
+                ensure  => file,
+                content => "this is main env",
+        }
 }
+
+# mysql db
 
 node 'qaamysql' {
-    
+$mysql = hiera("mysql")
+      class { "cleandb::mysql":
+          rootUser => $mysql[rootUser],
+          rootPassword => $mysql[rootPassword],
+          user => $mysql[user],
+          password => $mysql[password],
+          host => $mysql[host],
+          apimgtdb => $mysql[apimgtdb],
+	  userdb => $mysql[userdb],
+          regdb => $mysql[regdb],
+  }	
 }
 
-#publisher_node1
-#publisher_node2
-
-node 'qaa-puppet-apim-store-pub-1', 'qaa-puppet-apim-store-pub-2' inherits base {
-    class { "apimanager::publisher":
-        version            => "1.9.0",
-        offset             => 0,
-        depsync            => false,
-        local_member_port  => '4000',
-        clustering         => true,
-        membershipScheme   => 'wka',
-        cloud              => true,
-        sub_cluster_domain => false,
-        maintenance_mode   => 'zero',
-        owner              => 'kurumba',
-        group              => 'kurumba',
-        members            => {'192.168.57.226' => '4000','192.168.57.228' => '4000','192.168.57.248' => '4000','192.168.57.247' => '4000'},
-        port_mapping       => false,
-        stage              => deploy,
+node /publisher/ inherits base {
+    $publisher = hiera("publisher")
+      class { "apimanager::publisher":
+        version            => $publisher[version],
+        offset             => $publisher[offset],
+        depsync            => $publisher[depsync],
+        local_member_port  => $publisher[local_member_port],
+        clustering         => $publisher[clustering],
+        membershipScheme   => $publisher[membershipScheme],
+        cloud              => $publisher[cloud],
+        sub_cluster_domain => $publisher[sub_cluster_domain],
+        maintenance_mode   => $publisher[maintenance_mode],
+        owner              => $publisher[owner],
+        group              => $publisher[group],
+        members            => $publisher[members],
+        port_mapping       => $publisher[port_mapping],
+        stage              => $publisher[stage],
     }
 }
 
-#store_node1
-#store_node2
 
-node 'qaa-puppet-store-1', 'qaa-puppet-store-2' inherits base {
-    class { "apimanager::apistore":
-        version            => "1.9.0",
-        offset             => 0,
-        depsync            => false,
-        local_member_port  => '4000',
-        clustering         => true,
-        membershipScheme   => 'wka',
-        cloud              => true,
-        sub_cluster_domain => false,
-        maintenance_mode   => 'zero',
-        owner              => 'kurumba',
-        group              => 'kurumba',
-        members            => {'192.168.57.247' => '4000','192.168.57.248' => '4000','192.168.57.228' => '4000','192.168.57.226' => '4000'},
-        port_mapping       => false,
-        stage              => deploy,
+node /store/ inherits base {
+  $store = hiera("store")
+      class { "apimanager::apistore":
+        version            => $store[version],
+        offset             => $store[offset],
+        depsync            => $store[depsync],
+        local_member_port  => $store[local_member_port],
+        clustering         => $store[clustering],
+        membershipScheme   => $store[membershipScheme],
+        cloud              => $store[cloud],
+        sub_cluster_domain => $store[sub_cluster_domain],
+        maintenance_mode   => $store[maintenance_mode],
+        owner              => $store[owner],
+        group              => $store[group],
+        members            => $store[members],
+        port_mapping       => $store[port_mapping],
+        stage              => $store[stage],
     }
 }
 
-#KeyManager_node1
-#KeyManager_node2
 
-node 'qaa-puppet-apim-key-manager-1', 'qaa-puppet-apim-key-manager-2' inherits base {
-    class { "apimanager::keymanager":
-        version            => "1.9.0",
-        offset             => 0,
-        depsync            => false,
-        local_member_port  => '4000',
-        clustering         => true,
-        membershipScheme   => 'wka',
-        cloud              => false,
-        sub_cluster_domain => false,
-        maintenance_mode   => 'zero',
-        owner              => 'kurumba',
-        group              => 'kurumba',
-        members            => {'192.168.57.227' => '4000','192.168.57.225' => '4000'},
-        port_mapping       => false,
-        stage              => deploy,
+node /keymanager/ inherits base {
+    $keymanager = hiera("keymanager")
+      class { "apimanager::keymanager":
+        version            => $keymanager[version],
+        offset             => $keymanager[offset],
+        depsync            => $keymanager[depsync],
+        local_member_port  => $keymanager[local_member_port],
+        clustering         => $keymanager[clustering],
+        membershipScheme   => $keymanager[membershipScheme],
+        cloud              => $keymanager[cloud],
+        sub_cluster_domain => $keymanager[sub_cluster_domain],
+        maintenance_mode   => $keymanager[maintenance_mode],
+        owner              => $keymanager[owner],
+        group              => $keymanager[group],
+        members            => $keymanager[members],
+        port_mapping       => $keymanager[port_mapping],
+        stage              => $keymanager[stage],
     }
 }
 
-#Gateway manager node1
 
-node 'gatewayagent1' inherits base {
-    class { "apimanager::gateway":
-        version            => "1.9.0",
-        offset             => 0,
-        depsync            => true,
-        local_member_port  => '4000',
-        clustering         => true,
-        membershipScheme   => 'wka',
-        cloud              => true,
-        sub_cluster_domain => 'mgt',
-        maintenance_mode   => 'zero',
-        owner              => 'kurumba',
-        group              => 'kurumba',
-        members            => {'192.168.57.231' => '4000'},
-        port_mapping       => {"80" => "9763", "443" => "9443"},
-        stage              => deploy,
-        svn_url            => 'http://192.168.57.233/svn/testrepo/apim',
-        svn_username       => 'user1',
-        svn_password       => 'user1',
+node /gateway/ inherits base {
+ $gateway = hiera("gateway")
+      class { "apimanager::gateway":
+        version            => $gateway[version],
+        offset             => $gateway[offset],
+        depsync_enabled    => $gateway[depsync_enabled],
+        local_member_port  => $gateway[local_member_port],
+        clustering         => $gateway[clustering],
+        membershipScheme   => $gateway[membershipScheme],
+        cloud              => $gateway[cloud],
+        sub_cluster_domain => $gateway[sub_cluster_domain],
+        maintenance_mode   => $gateway[maintenance_mode],
+        owner              => $gateway[owner],
+        group              => $gateway[group],
+        members            => $gateway[members],
+        port_mapping       => $gateway[port_mapping],
+        stage              => $gateway[stage],
+        svn_url            => $gateway[svn_url],
+        svn_username       => $gateway[svn_username],
+        svn_password       => $gateway[svn_password]
     }
 }
 
-#Gateway worker node2
-
-node 'qaa-puppet-apim-gw-2' inherits base {
-    class { "apimanager::gateway":
-        version            => "1.9.0",
-        offset             => 0,
-        depsync            => true,
-        local_member_port  => '4000',
-        clustering         => true,
-        membershipScheme   => 'wka',
-        cloud              => true,
-        sub_cluster_domain => 'worker',
-        maintenance_mode   => 'zero',
-        owner              => 'kurumba',
-        group              => 'kurumba',
-        members            => {'192.168.57.232' => '4000'},
-        port_mapping       => {"80" => "9763", "443" => "9443"},
-        stage              => deploy,
-        svn_url            => 'http://192.168.57.233/svn/testrepo/apim',
-        svn_username       => 'user1',
-        svn_password       => 'user1',
-    }
-}
-
-node 'qaa-puppet-nginx' {
+node /loadbalancer/ {
 	
 	include 'nginx'
 	
 	$dirpath = '/etc/nginx/ssl'
-	
+
 	exec { "create_ssl_cert_dir":
 		path        => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
                 command => "mkdir -p ${dirpath}",
         }
 
-	file { "/etc/nginx/ssl":
+	file { "$dirpath":
     		source => "puppet:///modules/nginx/ssl",
 		recurse => true,
 	}
 
-	file { 
-		"/etc/nginx/conf.d/publisher.conf": source => "puppet:///modules/nginx/conf.d/publisher.conf";
-		"/etc/nginx/conf.d/apistore.conf": source => "puppet:///modules/nginx/conf.d/apistore.conf";
-		"/etc/nginx/conf.d/gateway.conf": source => "puppet:///modules/nginx/conf.d/gateway.conf";
-		"/etc/nginx/conf.d/keymanager.conf": source => "puppet:///modules/nginx/conf.d/keymanager.conf";
-	}
+        file { "/etc/nginx/conf.d/apimanger.conf":
+            owner   => root,
+            group   => root,
+            mode    => 775,
+            content => template("wso2base/nginx.erb"),
+        }
 
 }
 

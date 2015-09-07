@@ -1,0 +1,10 @@
+---
+hosts:
+ - puppetmaster: 192.168.57.237
+ - puppet: 192.168.57.237
+ - qaamysql: 192.168.57.233
+ - pub.am.wso2.com: 192.168.57.234
+ - store.am.wso2.com: 192.168.57.234
+ - keymanager.am.wso2.com: 192.168.57.234
+ - gateway.am.wso2.com: 192.168.57.234
+ - mgt.gateway.am.wso2.com: 192.168.57.234
