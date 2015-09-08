@@ -6,32 +6,48 @@ upstreams:
       name: keymgrhttps
       hosts:
         host:
-          - 192.168.57.227:9443
-          - 192.168.57.225:9443
+          - 
+           hostipport: 192.168.57.227:9443
+           hostrole:
+          - 
+           hostipport: 192.168.57.225:9443
+           hostrole: 
 # store
     - 
       name: storehttp
       hosts:
         host:
-          - 192.168.57.247:9763
-          - 192.168.57.248:9763
+          - 
+           hostipport: 192.168.57.247:9763
+           hostrole:
+          - 
+           hostipport: 192.168.57.248:9763
+           hostrole:
     - 
       name: storehttps
       hosts:
         host:
-          - 192.168.57.247:9443
-          - 192.168.57.248:9443
+          - 
+           hostipport: 192.168.57.247:9443
+           hostrole:
+          - 
+           hostipport: 192.168.57.248:9443
+           hostrole:
 # publisher
     - 
       name: publisherhttp
       hosts:
         host:
-          - 192.168.57.248:9763
+          - 
+           hostipport: 192.168.57.228:9763
+           hostrole:
     - 
       name: publisherhttps
       hosts:
         host:
-          - 192.168.57.248:9443
+          - 
+           hostipport: 192.168.57.228:9443
+           hostrole:
 
 servers:
 
@@ -73,8 +89,8 @@ servers:
    port: 443
    name: store.am.wso2.com
    sslstatus: "on"
-   sslcertificate: /etc/nginx/ssl/gateway.crt
-   sslcertificatekey: /etc/nginx/ssl/gateway.key
+   sslcertificate: /etc/nginx/ssl/apistore.crt
+   sslcertificatekey: /etc/nginx/ssl/apistore.key
    locations:
      location:
         - 

@@ -45,6 +45,7 @@
 class apimanager::publisher (
   $version            = "1.9.0",
   $env                = undef,
+  $cluster_domain     = undef,
   $sub_cluster_domain = undef,
   $local_member_port  = '5000',
   $members            = {'127.0.0.1' => '4000'},

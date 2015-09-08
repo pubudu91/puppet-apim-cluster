@@ -7,11 +7,12 @@ ff00::0 ip6-mcastprefix
 ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 ff02::3 ip6-allhosts
+
 <%= @ipaddress %>    local.<%= @domain %>
 <%= @ipaddress %>    bind.<%= @domain %>
 <%= @ipaddress %>    <%= @hostname %>
 
-<%- @hosts_mapping.each do |hosts| -%>
-<%- host = hosts.split (',') -%>
-<%= host[0]  %> <%= host[1] %>
+<%- hosts = scope.function_hiera(['hosts']) -%>
+<%- hosts.each do |host| -%>
+<%= host.values[0]%> <%= host.keys[0]%>
 <%- end -%>

@@ -4,12 +4,12 @@ class cleandb::mysql($rootUser,$rootPassword,$user,$password,$host,$apimgtdb,$us
 {
 
 staging::deploy { 'wso2am-1.9.0.zip':
-  source => 'puppet:///modules/staging/wso2am-1.9.0.zip',
+  source => 'puppet:///files/packs/wso2am-1.9.0.zip',
   target => '/tmp/',
 }
 
 exec { "delete-db":
-  command => "/usr/bin/mysql -u$rootUser -p$rootPassword -e \"DROP DATABASE apimgtdb;DROP DATABASE regdb;DROP DATABASE userdb;create user $user@localhost identified by $password;grant all on *.* to $user@localhost;\"",
+  command => "/usr/bin/mysql -u$rootUser -p$rootPassword -e \"DROP DATABASE apimgtdb;DROP DATABASE regdb;DROP DATABASE userdb;\"",
 }
 
 mysql::db { 'apimgtdb':

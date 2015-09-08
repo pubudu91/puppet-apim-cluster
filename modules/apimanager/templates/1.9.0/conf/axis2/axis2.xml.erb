@@ -658,8 +658,8 @@
          The clustering domain/group. Nodes in the same group will belong to the same multicast
          domain. There will not be interference between nodes in different groups.
         -->
-	<%- if @amtype == 'publisher' or @amtype == 'apistore' -%>
-	<parameter name="domain">wso2.pub.store.domain</parameter>
+	<%- if @cluster_domain -%>
+	<parameter name="domain"><%= @cluster_domain %></parameter>
 	<%- else -%>
         <parameter name="domain">wso2.carbon.domain</parameter>
 	<%- end -%>
@@ -726,11 +726,13 @@
         -->
 
         <members>
-        <%- if @members -%>
+        <%- if @clustering == true %>
+        <%- @members.each do |member| -%>
         <member>
-            <hostName><%= @members %></hostName>
-            <port><%= @members.class %></port>
+            <hostName><%= member["ipadd"] %></hostName>
+            <port><%= member["port"] %></port>
         </member>
+        <%- end -%>
         <%- end -%>
      </members>
 

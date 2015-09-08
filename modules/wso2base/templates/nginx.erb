@@ -4,7 +4,7 @@
 upstream <%= upstream["name"] %>{
       ip_hash;
       <%- upstream["hosts"]["host"].each do |host| -%>
-      server <%= host %>;
+      server <%= host["hostipport"] %><%= host["hostrole"] -%>;
       <%- end -%>
 }
 <%- end -%>
