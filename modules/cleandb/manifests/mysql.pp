@@ -4,7 +4,7 @@ class cleandb::mysql($rootUser,$rootPassword,$user,$password,$host,$apimgtdb,$us
 {
 
 staging::deploy { 'wso2am-1.9.0.zip':
-  source => 'puppet:///files/packs/wso2am-1.9.0.zip',
+  source => 'puppet:///files/packs/apimanager/1.9.0/wso2am-1.9.0.zip',
   target => '/tmp/',
 }
 

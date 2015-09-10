@@ -20,11 +20,11 @@ define apimanager::initialize ($repo, $version, $service, $local_dir, $target, $
 
   exec { "create_dir_path":
                 path        => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
-                command => "mkdir -p /mnt/packs",
+                command => "mkdir -p ${local_dir}",
         }
   ->
-  file { "/mnt/packs/wso2${service}-${version}.zip":
-                source => "puppet:///modules/apimanager/${version}/wso2${service}-${version}.zip",
+  file { "${local_dir}/wso2${service}-${version}.zip":
+                source => "puppet:///files/packs/apimanager/${version}/wso2${service}-${version}.zip",
                 recurse => true,
         }
   ->
