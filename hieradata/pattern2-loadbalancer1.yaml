@@ -10,7 +10,7 @@ upstreams:
            hostrole:
           - 
            hostipport: 192.168.57.231:9763
-           hostrole: backup
+           hostrole: 
     - 
       name: gatewayhttps
       hosts:
@@ -20,7 +20,7 @@ upstreams:
            hostrole:
           - 
            hostipport: 192.168.57.231:9443
-           hostrole: backup 
+           hostrole:  
     - 
       name: gatewaynhttp
       hosts:
@@ -30,7 +30,7 @@ upstreams:
            hostrole:
           - 
            hostipport: 192.168.57.231:8280
-           hostrole: backup
+           hostrole: 
     - 
       name: gatewaynhttps
       hosts:
@@ -40,7 +40,7 @@ upstreams:
            hostrole:
           - 
            hostipport: 192.168.57.231:8243
-           hostrole: backup
+           hostrole: 
 
 servers:
 # gateway
@@ -55,6 +55,7 @@ servers:
         - 
          context: "/"
          proxypass: gatewaynhttps
+         protocol: https
   - 
    port: 80
    name: gateway.am.wso2.com
@@ -63,6 +64,7 @@ servers:
         - 
          context: "/"
          proxypass: gatewayhttp
+         protocol: http
   - 
    port: 443
    name: mgt.gateway.am.wso2.com
@@ -74,6 +76,7 @@ servers:
         - 
          context: "/"
          proxypass: gatewayhttps
+         protocol: https
   - 
    port: 8280
    name: gateway.am.wso2.com
@@ -82,6 +85,7 @@ servers:
         - 
          context: "/"
          proxypass: gatewaynhttp
+         protocol: http
   - 
    port: 8243
    name: gateway.am.wso2.com
@@ -90,3 +94,4 @@ servers:
         - 
          context: "/"
          proxypass: gatewaynhttps
+         protocol: https

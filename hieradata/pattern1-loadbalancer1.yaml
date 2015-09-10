@@ -23,6 +23,12 @@ upstreams:
           - 192.168.57.232:8243
 # keymanager
     - 
+      name: keymgrhttp
+      hosts:
+        host:
+          - 192.168.57.227:9763
+          - 192.168.57.225:9763
+    - 
       name: keymgrhttps
       hosts:
         host:
@@ -68,6 +74,7 @@ servers:
         - 
          context: "/"
          proxypass: gatewayhttps
+         protocol: https
   - 
    port: 80
    name: gateway.am.wso2.com
@@ -76,6 +83,7 @@ servers:
         - 
          context: "/"
          proxypass: gatewayhttp
+         protocol: http
   - 
    port: 443
    name: mgt.gateway.am.wso2.com
@@ -87,6 +95,7 @@ servers:
         - 
          context: "/"
          proxypass: gatewayhttps
+         protocol: https
   - 
    port: 8280
    name: gateway.am.wso2.com
@@ -95,6 +104,7 @@ servers:
         - 
          context: "/"
          proxypass: gatewaynhttp
+         protocol: http
   - 
    port: 8243
    name: gateway.am.wso2.com
@@ -103,6 +113,7 @@ servers:
         - 
          context: "/"
          proxypass: gatewaynhttps
+         protocol: https
 # keymanager
   - 
    port: 443
@@ -115,6 +126,16 @@ servers:
         - 
          context: "/"
          proxypass: keymgrhttps
+         protocol: https
+  - 
+   port: 80
+   name: keymanager.am.wso2.com
+   locations:
+    location:
+        - 
+         context: "/"
+         proxypass: keymgrhttp
+         protocol: http
 # publisher
   - 
    port: 443
@@ -127,6 +148,7 @@ servers:
         - 
          context: "/"
          proxypass: publisherhttps
+         protocol: https
   - 
    port: 80
    name: pub.am.wso2.com
@@ -135,6 +157,7 @@ servers:
         - 
          context: "/"
          proxypass: publisherhttp
+         protocol: http
 # store
   - 
    port: 443
@@ -147,6 +170,7 @@ servers:
         - 
          context: "/"
          proxypass: storehttps
+         protocol: https
   - 
    port: 80
    name: store.am.wso2.com
@@ -155,3 +179,4 @@ servers:
         - 
          context: "/"
          proxypass: storehttp
+         protocol: http

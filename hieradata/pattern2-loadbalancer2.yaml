@@ -3,6 +3,16 @@ upstreams:
 
 # keymanager
     - 
+      name: keymgrhttp
+      hosts:
+        host:
+          - 
+           hostipport: 192.168.57.227:9763
+           hostrole:
+          - 
+           hostipport: 192.168.57.225:9763
+           hostrole:
+    - 
       name: keymgrhttps
       hosts:
         host:
@@ -63,10 +73,21 @@ servers:
         - 
          context: "/"
          proxypass: keymgrhttps
+         protocol: https
+  - 
+   port: 80
+   name: keymanager.am.wso2.com
+   locations:
+    location:
+        - 
+         context: "/"
+         proxypass: keymgrhttp
+         protocol: http
+
 # publisher
   - 
    port: 443
-   name: publisher.am.wso2.com
+   name: pub.am.wso2.com
    sslstatus: "on"
    sslcertificate: /etc/nginx/ssl/publisher.crt
    sslcertificatekey: /etc/nginx/ssl/publisher.key
@@ -75,14 +96,16 @@ servers:
         - 
          context: "/"
          proxypass: publisherhttps
+         protocol: https
   - 
    port: 80
-   name: publisher.am.wso2.com
+   name: pub.am.wso2.com
    locations:
     location:
         - 
          context: "/"
          proxypass: publisherhttp
+         protocol: http
 
 # store
   - 
@@ -96,6 +119,7 @@ servers:
         - 
          context: "/"
          proxypass: storehttps
+         protocol: https
   - 
    port: 80
    name: store.am.wso2.com
@@ -104,3 +128,4 @@ servers:
         - 
          context: "/"
          proxypass: storehttp
+         protocol: http
