@@ -1,0 +1,43 @@
+---
+hosts:
+ - puppetmaster: 192.168.57.237
+ - puppet: 192.168.57.237
+ - qaamysql: 192.168.57.233
+ - pub.am.wso2.com: 192.168.57.234
+ - store.am.wso2.com: 192.168.57.234
+ - keymanager.am.wso2.com: 192.168.57.234
+ - gateway.am.wso2.com: 192.168.57.234
+ - mgt.gateway.am.wso2.com: 192.168.57.234
+
+nodes:
+ - 
+  ipaddress: 192.168.57.250
+  certname: pattern2-loadbalancer1
+ - 
+  ipaddress: 192.168.57.232
+  certname: pattern2-gateway1
+ - 
+  ipaddress: 192.168.57.231
+  certname: pattern2-gateway2
+ - 
+  ipaddress: 192.168.57.239
+  certname: pattern2-loadbalancer2
+ - 
+  ipaddress: 192.168.57.227
+  certname: pattern2-keymanager1
+ - 
+  ipaddress: 192.168.57.225
+  certname: pattern2-keymanager2
+ - 
+  ipaddress: 192.168.57.228
+  certname: pattern2-publisher1
+ - 
+  ipaddress: 192.168.57.247
+  certname: pattern2-store1
+ - 
+  ipaddress: 192.168.57.248
+  certname: pattern2-store2
+ - 
+  ipaddress: 192.168.57.236
+  certname: pattern2-publisher1
+

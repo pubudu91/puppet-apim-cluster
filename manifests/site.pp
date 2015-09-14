@@ -1,37 +1,65 @@
 import 'nginx'
 
+# deployment triggering will be done by either puppet or jenkins
+# allowed values
+# 'puppet'
+# 'jenkins'
+$deployment_trig_member = 'puppet'
+
+# Clustering deployment pattern
+# ENABLE this variable ONLY IF deployment_trig_member is 'puppet'
+# allowed values
+# 'pattern1'
+# 'pattern2'
+$deployment_pattern = 'pattern2'
+
 stage { 'configure': require => Stage['main'] }
 stage { 'deploy': require => Stage['configure'] }
 
+# WHEN WILL BE EXECUTED,
+# 1. After initial cluster configuration when the puppet is running on agents for the first time
+# 2. After each clustering pattern deployment cleanup
+#
+# TASKS PERFORMED
+# 1. Export factor variable deployment_pattern to all agent nodes ONLY IF PUPPET MASTER IS controlling the cluster
+# 2. Inject certname parameter to puppet agents' /etc/puppet/puppet.conf configuration file
 node default {
  
-	#inherits base
-  	#include wso2base::node_selector
+  	# Initializing deployment
+	notify {"Configuring deployment, running the default configuration, writing certnames.....": }
 
-  	# for debug output on the puppet client - with full source information
-	notify {"Node definition mismatch, applying default configuration...":
-    		withpath => true,
+	# This block will be executed only if we are triggering the deployment from puppet master
+	# If the Jenkins is controlling the cluster deployment through mCollective, then the deployment_pattern 
+	# factor variable should be exported/pushed to all agent nodes by Jenkins using mCollective or other means
+	# > export FACTER_deployment_pattern=`pattern2`
+	if $deployment_trig_member == 'puppet' {
+			exec { "creating_facter_dep_pattern":
+                	path        => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
+                	command => "export FACTER_deployment_pattern=`${deployment_pattern}`; facter",
+        	}
 	}
+
+	# Writing certnames to prepare the puppet agent nodes
+	file {  "/etc/puppet/puppet.conf":
+                ensure  => file,
+                content => template('wso2base/puppet.agent.conf.erb'),
+        }
+
 }
 
+# This is the base node required by all WSO2 product puppet modules
+# HOW TO INCLUDE
+# e.g.: node /publisher/ inherits base {
 node base {
     class { wso2base:
 	    stage => configure,
 	}  
 }
 
-node 'puppetagent' {
-
-    #include wso2base::nginx
-    file {  "/tmp/mainenv.txt":
-                ensure  => file,
-                content => "this is main env",
-        }
-}
-
 # mysql db
-
-node 'qaamysql' {
+# This will ONLY cleanup the databases apimgtdb, userdb, regdb in mysql node
+# This has to be triggered after each test execution
+node 'database' {
 $mysql = hiera("mysql")
       class { "cleandb::mysql":
           rootUser => $mysql[rootUser],
@@ -55,6 +83,7 @@ node /publisher/ inherits base {
         clustering         => $publisher[clustering],
         membershipScheme   => $publisher[membershipScheme],
         cloud              => $publisher[cloud],
+        cluster_domain     => $publisher[cluster_domain],
         sub_cluster_domain => $publisher[sub_cluster_domain],
         maintenance_mode   => $publisher[maintenance_mode],
         owner              => $publisher[owner],
@@ -64,7 +93,6 @@ node /publisher/ inherits base {
         stage              => $publisher[stage],
     }
 }
-
 
 node /store/ inherits base {
   $store = hiera("store")
@@ -76,6 +104,7 @@ node /store/ inherits base {
         clustering         => $store[clustering],
         membershipScheme   => $store[membershipScheme],
         cloud              => $store[cloud],
+        cluster_domain     => $store[cluster_domain],
         sub_cluster_domain => $store[sub_cluster_domain],
         maintenance_mode   => $store[maintenance_mode],
         owner              => $store[owner],
@@ -156,10 +185,18 @@ node /loadbalancer/ {
 
 }
 
+node /tomcatserver/ {
+	staging::deploy { 'apache-tomcat-6.0.44.zip':
+	    source => 'puppet:///files/apache-tomcat-6.0.44.zip',
+	    target => '/opt/',
+	}
+}
+
+# To test your puppet code use this block
+node 'puppetagent' {
+	notice("applying puppetagent configuration...")
+}
+
 # TODO
-# 1. merge component instances into one definition
-# 2. puppetize a given certificate import to pack keystores
-# 3. puppetize mysql
-# 4. generalize nginx module
-# 5. dynamically add ssl certs to keystores of the daily build packs
-# 6. add a cluster health check script or tool, shell script maybe
+# 1. move common vars like version, to a common.yaml file
+# 2. templates for 1.9.1 and 1.10.0

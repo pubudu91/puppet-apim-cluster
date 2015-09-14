@@ -155,4 +155,8 @@ class apimanager::apistore (
       ],
   }
 
+  apimanager::conf_reset { "reset_puppet_agent_certname_in_conf_file" :
+    require   => Apimanager::Startservice["${deployment_code}_${amtype}"];
+  }
+
 }

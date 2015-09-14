@@ -4,6 +4,6 @@
 :yaml:
   :datadir: /etc/puppet/hieradata
 :hierarchy:
-  - hosts
+  - "%{::deployment_pattern}-hosts"
   - "%{::clientcert}"
   - common
