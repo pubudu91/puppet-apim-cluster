@@ -533,12 +533,12 @@ Ports used by this server
 	and in  worker nodes set only AutoCheckout to true.
     -->
 
-     <%- if @amtype == 'gateway' -%>
+    <%- if @depsync_enabled -%>
 
     <DeploymentSynchronizer>
     <Enabled>true</Enabled>
 
-    <%- if @sub_cluster_domain == 'mgt' -%>
+    <%- if @sub_cluster_domain == 'mgt' or !@clustering -%>
 
     <AutoCommit>true</AutoCommit>
 

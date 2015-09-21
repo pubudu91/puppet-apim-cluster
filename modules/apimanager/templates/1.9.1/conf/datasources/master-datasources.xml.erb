@@ -25,9 +25,7 @@
             </definition>
         </datasource>
 
-        <%- if @cloud == true or @clustering == true -%>
-        <%= scope.function_template(['apimanager/1.9.0/conf/datasources/master-datasources/_remote.erb']) -%>
-        <%- end -%>
+        <%= scope.function_template(['apimanager/1.9.1/conf/datasources/master-datasources/_remote.erb']) -%>
 
     </datasources>
 </datasources-configuration>

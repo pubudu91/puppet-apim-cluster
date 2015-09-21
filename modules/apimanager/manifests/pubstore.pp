@@ -45,8 +45,9 @@
 class apimanager::pubstore (
   $version            = "1.9.0",
   $env                = undef,
+  $cluster_domain     = undef,
   $sub_cluster_domain = undef,
-  $local_member_port  = '5000',
+  $local_member_port  = '4000',
   $members            = {'127.0.0.1' => '4000'},
   $port_mapping       = false,
   $offset             = 0,
@@ -59,6 +60,18 @@ class apimanager::pubstore (
   $group              = 'root',
   $target             = "/mnt/${ipaddress}/pubstore",
   $membershipScheme   = 'multicast',
+  $registry_db_connection_url      = undef,
+  $registry_db_user                = undef,
+  $registry_db_password            = undef,
+  $registry_db_driver_name         = undef,
+  $userstore_db_connection_url     = undef,
+  $userstore_db_user               = undef,
+  $userstore_db_password           = undef,
+  $userstore_db_driver_name        = undef,
+  $apim_db_connection_url          = undef,
+  $apim_db_user                    = undef,
+  $apim_db_password                = undef,
+  $apim_db_driver_name             = undef,
 ) inherits params {
 
   $amtype          = 'pubstore'
@@ -76,7 +89,7 @@ class apimanager::pubstore (
     'conf/user-mgt.xml',
     'deployment/server/jaggeryapps/publisher/site/conf/site.json',
     'deployment/server/jaggeryapps/store/site/conf/site.json',
-#    'conf/tomcat/catalina-server.xml',
+    'conf/tomcat/catalina-server.xml',
     ]
 
   tag($service_code)
@@ -142,7 +155,7 @@ class apimanager::pubstore (
     require => [
       Apimanager::Initialize["${deployment_code}_${amtype}"],
       Apimanager::Deploy["${deployment_code}_${amtype}"],
-      Apimanager::Push_publisher_templates[$service_templates],
+      Apimanager::Push_pubstore_templates[$service_templates],
       File["${carbon_home}/bin/wso2server.sh"],
       ],      
   }

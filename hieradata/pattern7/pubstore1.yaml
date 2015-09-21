@@ -1,0 +1,13 @@
+---
+pubstore:
+ version: 1.9.1
+ offset: 0
+ depsync: false
+ clustering: false
+ cloud: true
+ sub_cluster_domain: false
+ maintenance_mode: zero
+ owner: kurumba
+ group: kurumba
+ port_mapping: false
+ stage: deploy

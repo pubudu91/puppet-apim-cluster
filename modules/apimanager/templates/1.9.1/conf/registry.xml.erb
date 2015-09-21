@@ -14,7 +14,7 @@
         <dataSource>jdbc/WSO2CarbonDB</dataSource>
     </dbConfig>
 
-    <%- if @amtype == 'publisher' or @amtype == 'apistore' -%>
+    <%- if @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
     <dbConfig name="govregistry">
         <dataSource>jdbc/WSO2REG_DB</dataSource>
     </dbConfig>
@@ -237,14 +237,15 @@
         <targetPath>/_system/nodes</targetPath>
     </mount-->
 
-    <%- if @amtype == 'publisher' or @amtype == 'apistore' -%>
+    <%- if @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
     <%- if @amtype == 'publisher' -%>
     <remoteInstance url="https://publisher.apim-wso2.com">
     <%- else -%>
     <remoteInstance url="https://store.apim-wso2.com">
     <%- end -%>
         <id>gov</id>
-        <cacheId>user@jdbc:mysql://qaamysql:3306/regdb</cacheId>
+        <%- hosts = scope.function_hiera(['hosts']) -%>
+        <cacheId>user@jdbc:mysql://<%= hosts['dbserver_domain'].split(",")[0]%>:3306/regdb</cacheId>
         <dbConfig>govregistry</dbConfig>
         <readOnly>false</readOnly>
         <enableCache>true</enableCache>

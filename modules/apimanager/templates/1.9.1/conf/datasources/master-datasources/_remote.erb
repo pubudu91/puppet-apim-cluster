@@ -1,4 +1,4 @@
-<%- if @amtype == 'gateway' or @amtype == 'keymanager' or @amtype == 'publisher' or @amtype == 'apistore' -%>
+<%- if @amtype == 'gateway' or @amtype == 'keymanager' or @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
         <datasource>
             <name>WSO2AM_DB</name>
             <description>The datasource used for the API Manager database</description>
@@ -7,11 +7,11 @@
             </jndiConfig>
             <definition type="RDBMS">
                 <configuration>
-                    <url>jdbc:mysql://qaamysql:3306/apimgtdb?autoReconnect=true</url>
-                    <username>regadmin</username>
-                    <password>regadmin</password>
+                    <url><%= @apim_db_connection_url %></url>
+                    <username><%= @apim_db_user %></username>
+                    <password><%= @apim_db_password %></password>
                     <defaultAutoCommit>false</defaultAutoCommit>
-                    <driverClassName>com.mysql.jdbc.Driver</driverClassName>
+                    <driverClassName><%= @apim_db_driver_name %></driverClassName>
                     <maxActive>50</maxActive>
                     <maxWait>60000</maxWait>
                     <testOnBorrow>true</testOnBorrow>
@@ -22,7 +22,7 @@
         </datasource>
 <%- end -%>
 
-<%- if @amtype == 'gateway' or  @amtype == 'keymanager' or @amtype == 'publisher' or @amtype == 'apistore' -%>
+<%- if @amtype == 'gateway' or  @amtype == 'keymanager' or @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
 	<datasource>
             <name>WSO2UM_DB</name>
             <description>The datasource used by user manager</description>
@@ -31,10 +31,10 @@
             </jndiConfig>
             <definition type="RDBMS">
                 <configuration>
-                    <url>jdbc:mysql://qaamysql:3306/userdb?autoReconnect=true</url>
-                    <username>regadmin</username>
-                    <password>regadmin</password>
-                    <driverClassName>com.mysql.jdbc.Driver</driverClassName>
+                    <url><%= @userstore_db_connection_url %></url>
+                    <username><%= @userstore_db_user %></username>
+                    <password><%= @userstore_db_password %></password>
+                    <driverClassName><%= @userstore_db_driver_name %></driverClassName>
                     <maxActive>50</maxActive>
                     <maxWait>60000</maxWait>
                     <testOnBorrow>true</testOnBorrow>
@@ -45,7 +45,7 @@
         </datasource>
 <%- end -%>
 
-<%- if @amtype == 'publisher' or @amtype == 'apistore' -%>
+<%- if @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
         <datasource>
             <name>WSO2REG_DB</name>
             <description>The datasource used by the registry</description>
@@ -54,10 +54,10 @@
             </jndiConfig>
             <definition type="RDBMS">
                 <configuration>
-                    <url>jdbc:mysql://qaamysql:3306/regdb?autoReconnect=true</url>
-                    <username>regadmin</username>
-                    <password>regadmin</password>
-                    <driverClassName>com.mysql.jdbc.Driver</driverClassName>
+                    <url><%= @registry_db_connection_url %></url>
+                    <username><%= @registry_db_user %></username>
+                    <password><%= @registry_db_password %></password>
+                    <driverClassName><%= @registry_db_driver_name %></driverClassName>
                     <maxActive>50</maxActive>
                     <maxWait>60000</maxWait>
                     <testOnBorrow>true</testOnBorrow>

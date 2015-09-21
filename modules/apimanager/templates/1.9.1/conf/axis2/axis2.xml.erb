@@ -539,7 +539,7 @@
                 <Password>wso2carbon</Password>
             </TrustStore>
         </parameter>
-	<%- if @amtype == 'apistore' -%>
+	<%- if @amtype == 'apistore' or @amtype == 'pubstore' -%>
 	<parameter name="HostnameVerifier">AllowAll</parameter>
 	<%- end -%>
         <!--<parameter name="HostnameVerifier">DefaultAndLocalhost</parameter>-->
@@ -725,13 +725,14 @@
            "membershipScheme" above is set to "wka"
         -->
         <members>
-        <%- if @members -%>
-        <%- @members.each_pair do |hostname,port| -%>
+        <%- if @clustering == true %>
+        <%- @members.each do |member| -%>
         <member>
-            <hostName><%= hostname %></hostName>
-            <port><%= port %></port>
+            <hostName><%= member["ipadd"] %></hostName>
+            <port><%= member["port"] %></port>
         </member>
-        <%- end -%><%- end -%>
+        <%- end -%>
+        <%- end -%>
         </members>
 
 

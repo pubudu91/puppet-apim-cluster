@@ -47,7 +47,7 @@ class apimanager::publisher (
   $env                = undef,
   $cluster_domain     = undef,
   $sub_cluster_domain = undef,
-  $local_member_port  = '5000',
+  $local_member_port  = '4000',
   $members            = {'127.0.0.1' => '4000'},
   $port_mapping       = false,
   $offset             = 0,
@@ -60,6 +60,18 @@ class apimanager::publisher (
   $group              = 'root',
   $target             = "/mnt/${ipaddress}/publisher",
   $membershipScheme   = 'multicast',
+  $registry_db_connection_url      = undef,
+  $registry_db_user                = undef,
+  $registry_db_password            = undef,
+  $registry_db_driver_name         = undef,
+  $userstore_db_connection_url     = undef,
+  $userstore_db_user               = undef,
+  $userstore_db_password           = undef,
+  $userstore_db_driver_name        = undef,
+  $apim_db_connection_url          = undef,
+  $apim_db_user                    = undef,
+  $apim_db_password                = undef,
+  $apim_db_driver_name             = undef,
 ) inherits params {
 
   $amtype          = 'publisher'
@@ -76,8 +88,8 @@ class apimanager::publisher (
     'conf/datasources/master-datasources.xml',
     'conf/registry.xml',
     'conf/user-mgt.xml',
-    'deployment/server/jaggeryapps/publisher/site/conf/site.json',
     'conf/tomcat/catalina-server.xml',
+    'deployment/server/jaggeryapps/publisher/site/conf/site.json',
 #    'deployment/server/jaggeryapps/store/site/conf/site.json',
     ]
 

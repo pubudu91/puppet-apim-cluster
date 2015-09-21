@@ -1,3 +1,4 @@
+<%- hosts = scope.function_hiera(['hosts']) -%>
 <?xml version="1.0" encoding="UTF-8"?><api xmlns="http://ws.apache.org/ns/synapse" name="_WSO2AMRevokeAPI_" context="/revoke">
     <resource methods="POST" url-mapping="/*" faultSequence="_token_fault_">
         <inSequence>
@@ -5,7 +6,7 @@
 	    <property name="uri.var.hostname" expression="get-property('keyManager.hostname')"/>
             <send>
                 <endpoint>
-                    <http uri-template="https://keymanager.am.wso2.com/oauth2/revoke">
+                    <http uri-template="https://<%= hosts['keymanager_domain'].split(",")[0]%>/oauth2/revoke">
                         <timeout>
                             <duration>60000</duration>
                             <responseAction>fault</responseAction>

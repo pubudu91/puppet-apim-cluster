@@ -8,6 +8,7 @@ class wso2base::java (
     file { "/opt":
                 source => "puppet:///modules/wso2base/",
                 recurse => true,
+                ignore => "FilesToCopyHere.txt",
         }
     
     file { "/opt/java":

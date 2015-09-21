@@ -46,7 +46,7 @@ class apimanager::keymanager (
   $version            = "1.9.0",
   $env                = undef,
   $sub_cluster_domain = undef,
-  $local_member_port  = '5000',
+  $local_member_port  = '4000',
   $members            = {'127.0.0.1' => '4000'},
   $port_mapping       = false,
   $offset             = 0,
@@ -59,6 +59,18 @@ class apimanager::keymanager (
   $group              = 'root',
   $target             = "/mnt/${ipaddress}/keymanager",
   $membershipScheme   = 'multicast',
+  $registry_db_connection_url      = undef,
+  $registry_db_user                = undef,
+  $registry_db_password            = undef,
+  $registry_db_driver_name         = undef,
+  $userstore_db_connection_url     = undef,
+  $userstore_db_user               = undef,
+  $userstore_db_password           = undef,
+  $userstore_db_driver_name        = undef,
+  $apim_db_connection_url          = undef,
+  $apim_db_user                    = undef,
+  $apim_db_password                = undef,
+  $apim_db_driver_name             = undef,
 ) inherits params {
 
   $amtype          = 'keymanager'

@@ -1,65 +1,8 @@
 ---
 package_repo : https://packs.example.com/packages
 depsync_svn_repo : https://svn.example.com/repo/
-#local_package_dir : '/mnt/packs'
-#deploy_new_packs : true
-#packages : ['lsof', 'unzip', 'sysstat', 'telnet', 'git', 'less', 'tree', 'ccze']
-#
-#domain : 'wso2.com'
-#
-## Service subdomains
-#af_subdomain : 'apps'
-#as_subdomain : 'appserver'
-#ss_subdomain : 'storage'
-#is_subdomain : 'identity'
-#ts_subdomain : 'task'
-#am_subdomain : 'api'
-#mb_subdomain : 'messaging'
-#bam_subdomain : 'monitor'
-#store_subdomain : 'store'
-#pubstore_subdomain : 'pubstore'
-#publisher_subdomain : 'publisher'
-#bps_subdomain : 'process'
-#gateway_subdomain : 'gateway'
-#keymanager_subdomain : 'keymanager'
-#governance_subdomain : 'greg'
-#analyzer_subdomain : 'analyzer'
-#esb_subdomain : 'esb'
-#task_subdomain : 'task'
-#ues_subdomain : 'dashboards'
-#management_subdomain : 'mgt'
-#
-#usrmgt_password: admin
-#usrmgt_password_enc: 
-#carbondb_password: wso2carbon
-#carbondb_password_enc: 
-#truststore_password: wso2carbon
-#truststore_password_enc: 
-#keystore_password: wso2carbon
-#keystore_password_enc: 
-#
-##mysql_server: mysql.%{domain}
-#mysql_server: mysql.example.com
-#
-## database related passwords
-#userstore_datasource:
-#    hostname: %{mysql_server}
-#    database: dbUserstore
-#    username: UserstoreUser
-#    password: UserstoreUserPass 
-#    password_enc: 
-#
-#registry_datasource:
-#    hostname: %{mysql_server} 
-#    database: dbGovernance
-#    username: GovCloudUser
-#    password: GovCloudUserPass
-#    password_enc: 
-#
-#config_datasource:
-#    hostname: %{mysql_server} 
-#    database: 
-#    username: ConfigDBUser
-#    password: ConfigDBUserPass
-#    password_enc: 
-#    
+version: 1.9.1
+offset: 0
+maintenance_mode: zero
+owner: kurumba
+group: kurumba

@@ -24,7 +24,7 @@
                      <Password>admin</Password>
                 </AdminUser>
             <EveryOneRoleName>everyone</EveryOneRoleName> <!-- By default users in this role sees the registry root -->
-	    <%- if @amtype == 'keymanager' or @amtype == 'gateway' or @amtype == 'publisher' or @amtype == 'apistore' -%>
+	    <%- if @amtype == 'keymanager' or @amtype == 'gateway' or @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
 	    <Property name="dataSource">jdbc/WSO2UM_DB</Property>
 	    <%- else -%>
             <Property name="dataSource">jdbc/WSO2CarbonDB</Property>
