@@ -13,8 +13,24 @@ API Manager uses the following four main components:
 
 ![Alt text](apimcluster.png?raw=true "Basic distributed setup")
 
-Following is the current WSO2 API Manager clustering pattern implemented.
+Following are the current WSO2 API Manager clustering patterns implemented.
 
-![Alt text](ClusterOutline.jpg?raw=true "Current clustering pattern")
+Pattern 2
 
-![Alt text](CurrentAPIMClusterPattern.jpg?raw=true "Current clustering pattern")
+![Alt text](files/images/patterns/Pattern2.png?raw=true "Current clustering pattern")
+
+Pattern 3
+
+![Alt text](files/images/patterns/Pattern3.png?raw=true "Current clustering pattern")
+
+Pattern 5
+
+![Alt text](files/images/patterns/Pattern5.png?raw=true "Current clustering pattern")
+
+Pattern 7
+
+![Alt text](files/images/patterns/Pattern7.png?raw=true "Current clustering pattern")
+
+Pattern 8
+
+![Alt text](files/images/patterns/Pattern8.png?raw=true "Current clustering pattern")
