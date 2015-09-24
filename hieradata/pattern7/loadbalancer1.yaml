@@ -91,7 +91,7 @@ upstreams:
           - 
            hostname: pubstore1
            hostrole:
-           porttype: HTTPservlet
+           porttype: HTTPSservlet
 
 # publisher
     - 
