@@ -1,3 +1,4 @@
+<%- nodeinfo = scope.function_hiera(['nodes']) -%>
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
   ~  Copyright (c) 2005-2010, WSO2 Inc. (http://wso2.com) All Rights Reserved.
@@ -724,11 +725,12 @@
            The list of static or well-known members. These entries will only be valid if the
            "membershipScheme" above is set to "wka"
         -->
-        <members>
+         <members>
         <%- if @clustering == true %>
         <%- @members.each do |member| -%>
+        <%- membername= member["name"] -%>
         <member>
-            <hostName><%= member["ipadd"] %></hostName>
+            <hostName><%= nodeinfo[membername] %></hostName>
             <port><%= member["port"] %></port>
         </member>
         <%- end -%>

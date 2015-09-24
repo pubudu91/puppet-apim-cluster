@@ -5,12 +5,10 @@ ssldir=/var/lib/puppet/ssl
 rundir=/var/run/puppet
 factpath=$vardir/lib/facter
 server = puppet
+environment=production
 <%- ipaddress = @ipaddress -%>
 <%- nodes = scope.function_hiera(['nodes']) -%>
-<%- nodes.each do |node| -%>
-<%- if node["ipaddress"] == ipaddress -%>
-certname = <%= node["certname"] -%>
-<%- end -%><%- end -%>
+certname = <%=nodes.key(ipaddress)-%>
 
 [master]
 # These are needed when the puppetmaster is run by passenger

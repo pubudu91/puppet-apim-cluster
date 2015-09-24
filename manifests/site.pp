@@ -13,6 +13,9 @@ $deployment_trig_member = 'jenkins'
 # 'pattern2'
 #$deployment_pattern = 'pattern3'
 
+$common     = hiera("nodeinfo")
+$datasource = hiera("datasources")
+
 stage { 'configure': require => Stage['main'] }
 stage { 'deploy': require => Stage['configure'] }
 
@@ -63,6 +66,7 @@ node 'database' {
         $datasource = hiera("datasources")
 	$datasourcesql = hiera("datasourcesql")
       	class { "cleandb::mysql":
+          apim_version  => $common[version],
           user 		=> $datasource[db_root_user],
           password 	=> $datasource[db_root_user_password],
           host 		=> $datasource[host],
@@ -91,10 +95,9 @@ notify {"Running with >>>>>>>>>>>>>>>>>":}
 
 node /publisher/ inherits base {
     $publisher = hiera("publisher")
-    $datasource = hiera("datasources")
       class { "apimanager::publisher":
-        version            		=> $publisher[version],
-        offset             		=> $publisher[offset],
+        version            		=> $common[version],
+        offset             		=> $common[offset],
         depsync            		=> $publisher[depsync],
         local_member_port  		=> $publisher[local_member_port],
         clustering         		=> $publisher[clustering],
@@ -102,9 +105,9 @@ node /publisher/ inherits base {
         cloud              		=> $publisher[cloud],
         cluster_domain     		=> $publisher[cluster_domain],
         sub_cluster_domain 		=> $publisher[sub_cluster_domain],
-        maintenance_mode   		=> $publisher[maintenance_mode],
-        owner              		=> $publisher[owner],
-        group              		=> $publisher[group],
+        maintenance_mode   		=> $common[maintenance_mode],
+        owner              		=> $common[owner],
+        group              		=> $common[group],
         members            		=> $publisher[members],
         port_mapping       		=> $publisher[port_mapping],
         stage              		=> $publisher[stage],
@@ -125,18 +128,17 @@ node /publisher/ inherits base {
 
 node /pubstore/ inherits base {
  $pubstore = hiera("pubstore")
- $datasource = hiera("datasources")
       class { "apimanager::pubstore":
-        version                         => $pubstore[version],
-        offset                          => $pubstore[offset],
+        version                         => $common[version],
+        offset                          => $common[offset],
         local_member_port               => $pubstore[local_member_port],
         clustering                      => $pubstore[clustering],
         membershipScheme                => $pubstore[membershipScheme],
         cloud                           => $pubstore[cloud],
         sub_cluster_domain              => $pubstore[sub_cluster_domain],
-        maintenance_mode                => $pubstore[maintenance_mode],
-        owner                           => $pubstore[owner],
-        group                           => $pubstore[group],
+        maintenance_mode                => $common[maintenance_mode],
+        owner                           => $common[owner],
+        group                           => $common[group],
         members                         => $pubstore[members],
         port_mapping                    => $pubstore[port_mapping],
         stage                           => $pubstore[stage],
@@ -157,10 +159,9 @@ node /pubstore/ inherits base {
 
 node /store/ inherits base {
   $store = hiera("store")
-  $datasource = hiera("datasources")
       class { "apimanager::apistore":
-        version            		=> $store[version],
-        offset             		=> $store[offset],
+        version            		=> $common[version],
+        offset             		=> $common[offset],
         depsync            		=> $store[depsync],
         local_member_port  		=> $store[local_member_port],
         clustering         		=> $store[clustering],
@@ -168,9 +169,9 @@ node /store/ inherits base {
         cloud              		=> $store[cloud],
         cluster_domain     		=> $store[cluster_domain],
         sub_cluster_domain 		=> $store[sub_cluster_domain],
-        maintenance_mode   		=> $store[maintenance_mode],
-        owner              		=> $store[owner],
-        group              		=> $store[group],
+        maintenance_mode   		=> $common[maintenance_mode],
+        owner              		=> $common[owner],
+        group              		=> $common[group],
         members            		=> $store[members],
         port_mapping       		=> $store[port_mapping],
         stage              		=> $store[stage],
@@ -192,19 +193,18 @@ node /store/ inherits base {
 
 node /keymanager/ inherits base {
     $keymanager = hiera("keymanager")
-    $datasource = hiera("datasources")
       class { "apimanager::keymanager":
-        version            		=> $keymanager[version],
-        offset             		=> $keymanager[offset],
+        version            		=> $common[version],
+        offset             		=> $common[offset],
         depsync            		=> $keymanager[depsync],
         local_member_port  		=> $keymanager[local_member_port],
         clustering         		=> $keymanager[clustering],
         membershipScheme   		=> $keymanager[membershipScheme],
         cloud              		=> $keymanager[cloud],
         sub_cluster_domain 		=> $keymanager[sub_cluster_domain],
-        maintenance_mode   		=> $keymanager[maintenance_mode],
-        owner              		=> $keymanager[owner],
-        group              		=> $keymanager[group],
+        maintenance_mode   		=> $common[maintenance_mode],
+        owner              		=> $common[owner],
+        group              		=> $common[group],
         members            		=> $keymanager[members],
         port_mapping       		=> $keymanager[port_mapping],
         stage              		=> $keymanager[stage],
@@ -226,25 +226,24 @@ node /keymanager/ inherits base {
 
 node /gateway/ inherits base {
  $gateway = hiera("gateway")
- $datasource = hiera("datasources")
       class { "apimanager::gateway":
-        version            		=> $gateway[version],
-        offset             		=> $gateway[offset],
+        version            		=> $common[version],
+        offset             		=> $common[offset],
         depsync_enabled    		=> $gateway[depsync_enabled],
         local_member_port  		=> $gateway[local_member_port],
         clustering         		=> $gateway[clustering],
         membershipScheme   		=> $gateway[membershipScheme],
         cloud              		=> $gateway[cloud],
         sub_cluster_domain 		=> $gateway[sub_cluster_domain],
-        maintenance_mode   		=> $gateway[maintenance_mode],
-        owner              		=> $gateway[owner],
-        group              		=> $gateway[group],
+        maintenance_mode   		=> $common[maintenance_mode],
+        owner              		=> $common[owner],
+        group              		=> $common[group],
         members            		=> $gateway[members],
         port_mapping       		=> $gateway[port_mapping],
         stage              		=> $gateway[stage],
-        svn_url            		=> $gateway[svn_url],
-        svn_username       		=> $gateway[svn_username],
-        svn_password       		=> $gateway[svn_password],
+        svn_url            		=> $common[svn_url],
+        svn_username       		=> $common[svn_username],
+        svn_password       		=> $common[svn_password],
         registry_db_connection_url      => $datasource[registry_db_connection_url],
         registry_db_user                => $datasource[registry_db_user],
         registry_db_password            => $datasource[registry_db_password],
@@ -295,7 +294,12 @@ node /tomcatserver/ {
 
 # To test your puppet code use this block
 node 'puppetagent' {
-	notice("applying puppetagent configuration...")
+	notify {"Applying puppet agent configuration...":}
+	$common = hiera("nodeinfo")
+	file {  "/tmp/hi.txt":
+                ensure  => file,
+                content => $common[version],
+        }
 }
 
 # TODO

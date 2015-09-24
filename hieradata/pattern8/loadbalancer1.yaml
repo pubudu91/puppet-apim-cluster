@@ -6,35 +6,41 @@ upstreams:
       hosts:
         host:
           - 
-           hostipport: 192.168.57.232:9763
+           hostname: gateway1
            hostrole:
+           porttype: HTTPservlet
           - 
-           hostipport: 192.168.57.231:9763
+           hostname: gateway2
            hostrole: 
+           porttype: HTTPservlet
     - 
       name: gatewayhttps
       hosts:
         host:
           - 
-           hostipport: 192.168.57.232:9443
+           hostname: gateway1
            hostrole:
+           porttype: HTTPSservlet
           - 
-           hostipport: 192.168.57.231:9443
+           hostname: gateway2
            hostrole:  
+           porttype: HTTPSservlet
     - 
       name: gatewaynhttp
       hosts:
         host:
           - 
-           hostipport: 192.168.57.231:8280
+           hostname: gateway2
            hostrole: 
+           porttype: NHTTP
     - 
       name: gatewaynhttps
       hosts:
         host:
           - 
-           hostipport: 192.168.57.231:8243
+           hostname: gateway2
            hostrole: 
+           porttype: NHTTPS
 
 # keymanager
     - 
@@ -42,36 +48,42 @@ upstreams:
       hosts:
         host:
           - 
-           hostipport: 192.168.57.227:9763
+           hostname: keymanager1
            hostrole:
+           porttype: HTTPservlet
           - 
-           hostipport: 192.168.57.225:9763
+           hostname: keymanager2
            hostrole:
+           porttype: HTTPservlet
     - 
       name: keymgrhttps
       hosts:
         host:
           - 
-           hostipport: 192.168.57.227:9443
+           hostname: keymanager1
            hostrole:
+           porttype: HTTPSservlet
           - 
-           hostipport: 192.168.57.225:9443
+           hostname: keymanager2
            hostrole:
+           porttype: HTTPSservlet
 # store
     - 
       name: storehttp
       hosts:
         host:
           - 
-           hostipport: 192.168.57.228:9763
+           hostname: pubstore1
            hostrole:
+           porttype: HTTPservlet
     - 
       name: storehttps
       hosts:
         host:
           - 
-           hostipport: 192.168.57.228:9443
+           hostname: pubstore1
            hostrole:
+           porttype: HTTPSservlet
 
 # publisher
     - 
@@ -79,15 +91,17 @@ upstreams:
       hosts:
         host:
           - 
-           hostipport: 192.168.57.228:9763
+           hostname: pubstore1
            hostrole:
+           porttype: HTTPservlet
     - 
       name: publisherhttps
       hosts:
         host:
           - 
-           hostipport: 192.168.57.228:9443
+           hostname: pubstore1
            hostrole:
+           porttype: HTTPSservlet
 
 servers:
 # gateway

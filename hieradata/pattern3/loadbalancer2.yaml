@@ -7,36 +7,42 @@ upstreams:
       hosts:
         host:
           - 
-           hostipport: 192.168.57.227:9763
+           hostname: keymanager1
            hostrole:
+           porttype: HTTPservlet
           - 
-           hostipport: 192.168.57.225:9763
+           hostname: keymanager2
            hostrole:
+           porttype: HTTPservlet
     - 
       name: keymgrhttps
       hosts:
         host:
           - 
-           hostipport: 192.168.57.227:9443
+           hostname: keymanager1
            hostrole:
+           porttype: HTTPSservlet
           - 
-           hostipport: 192.168.57.225:9443
+           hostname: keymanager2
            hostrole: 
+           porttype: HTTPSservlet
 # publisher
     - 
       name: publisherhttp
       hosts:
         host:
           - 
-           hostipport: 192.168.57.228:9763
+           hostname: publisher1
            hostrole:
+           porttype: HTTPservlet
     - 
       name: publisherhttps
       hosts:
         host:
           - 
-           hostipport: 192.168.57.228:9443
+           hostname: publisher1
            hostrole:
+           porttype: HTTPSservlet
 
 servers:
 

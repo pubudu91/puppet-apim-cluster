@@ -9,21 +9,9 @@ hosts:
   gatewaymgt_domain: mgt.gateway.am.wso2.com,192.168.57.250
 
 nodes:
- - 
-  ipaddress: 192.168.57.250
-  certname: loadbalancer1
- - 
-  ipaddress: 192.168.57.232
-  certname: gateway1
- - 
-  ipaddress: 192.168.57.231
-  certname: gateway2
- - 
-  ipaddress: 192.168.57.227
-  certname: keymanager1
- - 
-  ipaddress: 192.168.57.225
-  certname: keymanager2
- - 
-  ipaddress: 192.168.57.228
-  certname: pubstore1
+  loadbalancer1: 192.168.57.250
+  gateway1: 192.168.57.232
+  gateway2: 192.168.57.231
+  keymanager1: 192.168.57.227
+  keymanager2: 192.168.57.225
+  pubstore1: 192.168.57.228

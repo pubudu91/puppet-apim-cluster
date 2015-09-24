@@ -1,10 +1,13 @@
 <%- upstreams = scope.function_hiera(['upstreams']) -%>
+<%- nodeinfo = scope.function_hiera(['nodes']) -%>
+<%- portinfo = scope.function_hiera(['portinfo']) -%>
+
 
 <%- upstreams.each do |upstream| -%>
 upstream <%= upstream["name"] %>{
       ip_hash;
       <%- upstream["hosts"]["host"].each do |host| -%>
-      server <%= host["hostipport"] %><%= host["hostrole"] -%>;
+      server <%=nodeinfo[host["hostname"]]%>:<%=portinfo[host["porttype"]]-%>;
       <%- end -%>
 }
 <%- end -%>

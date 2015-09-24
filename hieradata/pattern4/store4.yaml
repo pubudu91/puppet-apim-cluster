@@ -1,33 +1,28 @@
 ---
 store:
- version: 1.9.1
- offset: 0
  depsync: false
  local_member_port: 4000
  clustering: true
  cloud: true
  cluster_domain: wso2.pub.store.domain
  sub_cluster_domain: false
- maintenance_mode: zero
- owner: kurumba
- group: kurumba
  port_mapping: false
  stage: deploy
  local_member_port: 4000
  membershipScheme: wka
  members:
     - 
-     ipadd: 192.168.57.228
+     name: publisher1
      port: 4000
     - 
-     ipadd: 192.168.57.247
+     name: store1
      port:  4000
     - 
-     ipadd: 192.168.57.248
+     name: store2
      port: 4000
     - 
-     ipadd: 192.168.57.234
-     port: 4000
+     name: store3
+     port:  4000
     - 
-     ipadd: 192.168.57.226
+     name: store4
      port: 4000

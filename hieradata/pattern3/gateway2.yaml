@@ -1,27 +1,19 @@
 ---
 gateway:
- version: 1.9.1
- offset: 0
  depsync: true
  local_member_port: 4000
  clustering: true
  cloud: false
  cluster_domain: wso2.gateway.domain
  sub_cluster_domain: worker
- maintenance_mode: zero
- owner: kurumba
- group: kurumba
  port_mapping: false
  stage: deploy
  depsync_enabled: true
- svn_url: http://192.168.57.233/svn/testrepo/apim/
- svn_username: user1
- svn_password: user1
  membershipScheme: wka
  members:
-    -
-     ipadd: 192.168.57.232
+    - 
+     name: gateway1
      port: 4000
-    -
-     ipadd: 192.168.57.231
+    - 
+     name: gateway2
      port:  4000

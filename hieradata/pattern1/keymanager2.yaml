@@ -1,22 +1,17 @@
 ---
 keymanager:
- version: 1.9.1
- offset: 0
  depsync: false
  local_member_port: 4000
  clustering: true
  membershipScheme: wka
  cloud: false
  sub_cluster_domain: false
- maintenance_mode: zero
- owner: kurumba
- group: kurumba
  members:
     -
-     ipadd: 192.168.57.225 
+     name: keymanager2 
      port:  4000
     -
-     ipadd: 192.168.57.227
+     name: keymanager1
      port: 4000
  port_mapping: false
  stage: deploy

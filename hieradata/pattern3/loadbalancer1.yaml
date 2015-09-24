@@ -6,35 +6,41 @@ upstreams:
       hosts:
         host:
           - 
-           hostipport: 192.168.57.232:9763
+           hostname: gateway1
            hostrole:
+           porttype: HTTPservlet
           - 
-           hostipport: 192.168.57.231:9763
+           hostname: gateway2
            hostrole: 
+           porttype: HTTPservlet
     - 
       name: gatewayhttps
       hosts:
         host:
           - 
-           hostipport: 192.168.57.232:9443
+           hostname: gateway1
            hostrole:
+           porttype: HTTPSservlet
           - 
-           hostipport: 192.168.57.231:9443
-           hostrole:  
+           hostname: gateway2
+           hostrole:
+           porttype: HTTPSservlet
     - 
       name: gatewaynhttp
       hosts:
         host:
           - 
-           hostipport: 192.168.57.231:8280
-           hostrole: 
+           hostname: gateway2
+           hostrole:
+           porttype: NHTTP 
     - 
       name: gatewaynhttps
       hosts:
         host:
           - 
-           hostipport: 192.168.57.231:8243
+           hostname: gateway2
            hostrole: 
+           porttype: NHTTPS
 
 # store
     - 
@@ -42,21 +48,25 @@ upstreams:
       hosts:
         host:
           - 
-           hostipport: 192.168.57.247:9763
+           hostname: store1
            hostrole:
+           porttype: HTTPservlet
           - 
-           hostipport: 192.168.57.248:9763
+           hostname: store2
            hostrole:
+           porttype: HTTPservlet
     - 
       name: storehttps
       hosts:
         host:
           - 
-           hostipport: 192.168.57.247:9443
+           hostname: store1
            hostrole:
+           porttype: HTTPSservlet
           - 
-           hostipport: 192.168.57.248:9443
+           hostname: store2
            hostrole:
+           porttype: HTTPSservlet
 
 servers:
 # gateway

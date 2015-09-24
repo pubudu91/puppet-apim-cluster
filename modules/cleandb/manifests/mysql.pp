@@ -1,11 +1,11 @@
 include '::mysql::server'
 
-class cleandb::mysql($user, $password, $host, $apimgt_db_sql, $user_db_sql, $reg_db_sql) 
+class cleandb::mysql($apim_version, $user, $password, $host, $apimgt_db_sql, $user_db_sql, $reg_db_sql)
 {
 
-staging::deploy { 'wso2am-1.9.1.zip':
-  source	=> 'puppet:///files/packs/apimanager/1.9.1/wso2am-1.9.1.zip',
-  target	=> '/tmp/',
+staging::deploy { "wso2am-${apim_version}.zip":
+  source        => "puppet:///files/packs/apimanager/${apim_version}/wso2am-${apim_version}.zip",
+  target        => '/tmp/',
 }
 
 exec { "delete-db":

@@ -1,19 +1,17 @@
 ---
 keymanager:
- version: 1.9.1
- offset: 0
  depsync: false
  clustering: true
  cloud: false
  local_member_port: 4000
  cluster_domain: wso2.keymanager.domain
  sub_cluster_domain: mgt
- maintenance_mode: zero
- owner: kurumba
- group: kurumba
  port_mapping: false
  stage: deploy
  members:
-   -
-    ipadd: 192.168.57.225
-    port:  4000
+    - 
+     name: keymanager1
+     port: 4000
+    - 
+     name: keymanager2
+     port:  4000 
