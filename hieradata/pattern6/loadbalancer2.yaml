@@ -122,8 +122,8 @@ servers:
    port: 443
    name: internalstore.am.wso2.com
    sslstatus: "on"
-   sslcertificate: /etc/nginx/ssl/apistore.crt
-   sslcertificatekey: /etc/nginx/ssl/apistore.key
+   sslcertificate: /etc/nginx/ssl/internalstore.crt
+   sslcertificatekey: /etc/nginx/ssl/internalstore.key
    locations:
      location:
         - 

@@ -133,6 +133,29 @@ servers:
    port: 443
    name: externalstore.am.wso2.com
    sslstatus: "on"
+   sslcertificate: /etc/nginx/ssl/externalstore.crt
+   sslcertificatekey: /etc/nginx/ssl/externalstore.key
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: storehttps
+         protocol: https
+  - 
+   port: 80
+   name: externalstore.am.wso2.com
+   locations:
+    location:
+        - 
+         context: "/"
+         proxypass: storehttp
+         protocol: http
+
+# store - for test automation suite
+  - 
+   port: 443
+   name: store.am.wso2.com
+   sslstatus: "on"
    sslcertificate: /etc/nginx/ssl/apistore.crt
    sslcertificatekey: /etc/nginx/ssl/apistore.key
    locations:
@@ -143,7 +166,7 @@ servers:
          protocol: https
   - 
    port: 80
-   name: externalstore.am.wso2.com
+   name: store.am.wso2.com
    locations:
     location:
         - 
