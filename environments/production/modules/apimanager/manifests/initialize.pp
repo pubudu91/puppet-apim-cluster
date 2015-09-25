@@ -28,6 +28,13 @@ define apimanager::initialize ($repo, $version, $service, $local_dir, $target, $
                 recurse => true,
         }
   ->
+  file { "/opt/cleanup.sh":
+    mode   => 755,
+    owner  => root,
+    group  => root,
+    source => "puppet:///modules/apimanager/cleanup.sh"
+  }
+  ->
   exec {
     "creating_target_for_${name}":
       path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',

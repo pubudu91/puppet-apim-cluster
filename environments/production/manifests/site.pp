@@ -292,6 +292,11 @@ node /tomcatserver/ {
 	}
 }
 
+node /jenkins/ {
+    class { wso2base::hosts:} 
+}
+
+
 # To test your puppet code use this block
 node 'puppetagent' {
 	notify {"Applying puppet agent configuration...":}

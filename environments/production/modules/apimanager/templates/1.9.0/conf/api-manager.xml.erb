@@ -1,3 +1,5 @@
+<%- hosts = scope.function_hiera(['hosts']) -%>
+
 <APIManager>
     <!--
         JNDI name of the data source to be used by the API publisher, API store and API
@@ -50,8 +52,10 @@
             Server URL of the Authentication service
         -->
 	<%- if @amtype == 'publisher' or @amtype == 'apistore' -%>
-        <!--ServerURL>https://192.168.57.227:9443/services/</ServerURL-->
-	<ServerURL>https://keymanager.am.wso2.com/services/</ServerURL>
+        
+         <%- hosts = scope.function_hiera(['hosts']) -%>
+
+	<ServerURL>https://<%= hosts['keymanager_domain'].split(",")[0]%>/services/</ServerURL>
         <%- else -%>
         <ServerURL>https://${carbon.local.ip}:${mgt.transport.https.port}${carbon.context}/services/</ServerURL>
 	<%- end -%>
@@ -153,7 +157,7 @@
         		-->
                         <%- if @amtype == 'keymanager' or @amtype == 'publisher' or @amtype == 'apistore' -%>
 			<!-- <ServerURL>https://192.168.57.232:9443/services/</ServerURL> -->
-			<ServerURL>https://mgt.gateway.am.wso2.com/services/</ServerURL>
+			<ServerURL>https://<%= hosts['gatewaymgt_domain'].split(",")[0]%>/services/</ServerURL>
                         <%- else -%>
                         <ServerURL>https://${carbon.local.ip}:${mgt.transport.https.port}${carbon.context}/services/</ServerURL>
 			<%- end -%>
@@ -178,7 +182,7 @@
         		-->
 			<%- if @amtype == 'keymanager' or @amtype == 'publisher' or @amtype == 'apistore' -%>
 			<!-- <GatewayEndpoint>http://192.168.57.231:8280,https://192.168.57.231:8243</GatewayEndpoint> -->
-			<GatewayEndpoint>http://gateway.am.wso2.com,https://gateway.am.wso2.com</GatewayEndpoint>
+			<GatewayEndpoint>http://<%= hosts['gateway_domain'].split(",")[0]%>,https://<%= hosts['gateway_domain'].split(",")[0]%></GatewayEndpoint>
 			<%- else -%>
                         <GatewayEndpoint>http://${carbon.local.ip}:${http.nio.port},https://${carbon.local.ip}:${https.nio.port}</GatewayEndpoint>
 			<%- end -%>
@@ -273,7 +277,7 @@
         -->
 	<%- if @amtype == 'gateway' or @amtype == 'publisher' or @amtype == 'apistore' -%>
 	<!--ServerURL>https://192.168.57.227:9443/services/</ServerURL-->
-	<ServerURL>https://keymanager.am.wso2.com/services/</ServerURL>
+	<ServerURL>https://<%= hosts['keymanager_domain'].split(",")[0]%>/services/</ServerURL>
 	<%- else -%>
         <ServerURL>https://${carbon.local.ip}:${mgt.transport.https.port}${carbon.context}/services/</ServerURL>
 	<%- end -%>
