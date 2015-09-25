@@ -1,0 +1,5 @@
+Copy the API Manager 1.9.1 pack here
+
+e.g.: 
+/etc/puppet/files/packs/apimanager/1.9.1 
+                                     `-- wso2am-1.9.1.zip	

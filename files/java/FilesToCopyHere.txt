@@ -1,0 +1,10 @@
+You can copy any jdk version tarball here 
+which you are planning to use across the 
+API Manager deployment cluster 
+
+e.g.: 
+/etc/puppet/files/java 	
+   |-- jdk-7u51-linux-x64.tar.gz
+   |-- jdk-7u67-linux-x64.tar.gz
+   |-- jdk-7u79-linux-x64.gz
+   `-- jdk-7u80-linux-x64.gz
