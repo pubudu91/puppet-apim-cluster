@@ -1,6 +1,6 @@
 #
 class wso2base::users {
-    $users = ["kurumba"]
+    $users = ["wso2user"]
 
     user { $users:
         ensure  => present,
