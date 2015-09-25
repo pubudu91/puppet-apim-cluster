@@ -1,7 +1,7 @@
 ---
 publisher:
- offset: 1
  depsync: false
+ offset: 0
  local_member_port: 4000
  clustering: true
  membershipScheme: wka

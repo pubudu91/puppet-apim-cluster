@@ -1,6 +1,7 @@
 ---
 publisher:
  depsync: false
+ offset: 0
  clustering: true
  cloud: true
  cluster_domain: wso2.pub.store.domain

@@ -1,6 +1,7 @@
 ---
 keymanager:
  depsync: false
+ offset: 0
  clustering: true
  local_member_port: 4000
  cluster_domain: wso2.keymanager.domain

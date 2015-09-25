@@ -1,7 +1,6 @@
 ---
 nodeinfo: 
  version: 1.9.1
- offset: 0
  maintenance_mode: zero
  owner: kurumba
  group: kurumba

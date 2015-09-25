@@ -97,7 +97,7 @@ node /publisher/ inherits base {
     $publisher = hiera("publisher")
       class { "apimanager::publisher":
         version            		=> $common[version],
-        offset             		=> $common[offset],
+        offset             		=> $publisher[offset],
         depsync            		=> $publisher[depsync],
         local_member_port  		=> $publisher[local_member_port],
         clustering         		=> $publisher[clustering],
@@ -130,7 +130,7 @@ node /pubstore/ inherits base {
  $pubstore = hiera("pubstore")
       class { "apimanager::pubstore":
         version                         => $common[version],
-        offset                          => $common[offset],
+        offset                          => $pubstore[offset],
         local_member_port               => $pubstore[local_member_port],
         clustering                      => $pubstore[clustering],
         membershipScheme                => $pubstore[membershipScheme],
@@ -161,7 +161,7 @@ node /store/ inherits base {
   $store = hiera("store")
       class { "apimanager::apistore":
         version            		=> $common[version],
-        offset             		=> $common[offset],
+        offset             		=> $store[offset],
         depsync            		=> $store[depsync],
         local_member_port  		=> $store[local_member_port],
         clustering         		=> $store[clustering],
@@ -195,7 +195,7 @@ node /keymanager/ inherits base {
     $keymanager = hiera("keymanager")
       class { "apimanager::keymanager":
         version            		=> $common[version],
-        offset             		=> $common[offset],
+        offset             		=> $keymanager[offset],
         depsync            		=> $keymanager[depsync],
         local_member_port  		=> $keymanager[local_member_port],
         clustering         		=> $keymanager[clustering],
@@ -228,7 +228,7 @@ node /gateway/ inherits base {
  $gateway = hiera("gateway")
       class { "apimanager::gateway":
         version            		=> $common[version],
-        offset             		=> $common[offset],
+        offset             		=> $gateway[offset],
         depsync_enabled    		=> $gateway[depsync_enabled],
         local_member_port  		=> $gateway[local_member_port],
         clustering         		=> $gateway[clustering],

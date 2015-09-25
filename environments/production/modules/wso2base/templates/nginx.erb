@@ -1,13 +1,15 @@
+<%- require 'yaml' -%>
 <%- upstreams = scope.function_hiera(['upstreams']) -%>
 <%- nodeinfo = scope.function_hiera(['nodes']) -%>
 <%- portinfo = scope.function_hiera(['portinfo']) -%>
-
+<%- dataLocation = '/etc/puppet/environments/production/hieradata/' -%>
 
 <%- upstreams.each do |upstream| -%>
 upstream <%= upstream["name"] %>{
       ip_hash;
       <%- upstream["hosts"]["host"].each do |host| -%>
-      server <%=nodeinfo[host["hostname"]]%>:<%=portinfo[host["porttype"]]-%>;
+      <% portOffset = YAML.load_file(dataLocation + @deployment_pattern  +'/'+ host["hostname"]  +'.yaml').values[0]["offset"] -%>
+      server <%=nodeinfo[host["hostname"]]%>:<%=portinfo[host["porttype"]] + portOffset -%>;
       <%- end -%>
 }
 <%- end -%>

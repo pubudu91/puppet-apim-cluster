@@ -1,6 +1,7 @@
 ---
 gateway:
  depsync: true
+ offset: 0
  clustering: false
  cloud: false
  sub_cluster_domain: mgt

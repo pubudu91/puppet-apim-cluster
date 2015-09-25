@@ -9,7 +9,7 @@ setup.
 License
 -------
 
-Copyright 2014 Thilina Piyasundara
+Copyright 2015 WSO2, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -26,6 +26,8 @@ limitations under the License.
 Contact
 -------
 
+Suhan Dharmasuriya
+Malintha Adikari
 Thilina Piyasundara
 
 
@@ -35,32 +37,3 @@ Support
 Please log tickets and issues at our [Projects site](http://projects.example.com)
 
 
-How-To
-------
-
-Setup databases
-
-mysql> create database registry;
-mysql> use registry;
-mysql> source <APIM_HOME>/dbscripts/mysql.sql;
-mysql> grant all on registry.* TO 'registry'@'%' identified by "ycJaCboyUo";
-
-mysql> create database userstore;
-mysql> use userstore;
-mysql> source <APIM_HOME>/dbscripts/mysql.sql;
-mysql> grant all on userstore.* TO 'userstore'@'%' identified by "sUAKn09o5J";
-
-mysql> create database config;
-mysql> use config;
-mysql> source <APIM_HOME>/dbscripts/mysql.sql;
-mysql> grant all on config.* TO 'config'@'%' identified by "Kn09aCboH";
-
-mysql> create database apimgt;
-mysql> use apimgt;
-mysql> source <APIM_HOME>/dbscripts/apimgt/mysql.sql;
-mysql> grant all on apimgt.* TO 'apim'@'%' identified by "KeoNeDAe";
-
-mysql> create database amstats;
-mysql> use amstats;
-mysql> grant all on amstats.* TO 'amstats'@'%' identified by "keDweNjseR";
-# No need to create tables on amstats database.

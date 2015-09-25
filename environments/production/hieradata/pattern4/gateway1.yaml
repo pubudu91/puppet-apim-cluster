@@ -1,6 +1,7 @@
 ---
 gateway:
  depsync: true
+ offset: 0
  clustering: true
  local_member_port: 4000
  cloud: true
