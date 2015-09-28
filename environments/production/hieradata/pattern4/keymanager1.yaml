@@ -1,7 +1,7 @@
 ---
 keymanager:
  depsync: false
- offset: 0
+ # offset: 0
  clustering: true
  cloud: false
  local_member_port: 4000

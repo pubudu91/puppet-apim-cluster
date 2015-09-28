@@ -1,7 +1,7 @@
 ---
 gateway:
  depsync: true
- offset: 0
+ # offset: 0
  clustering: false
  cloud: false
  port_mapping: false

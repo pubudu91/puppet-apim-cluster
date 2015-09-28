@@ -1,7 +1,7 @@
 ---
 pubstore:
  depsync: false
- offset: 0
+ # offset: 0
  clustering: false
  cloud: true
  sub_cluster_domain: false

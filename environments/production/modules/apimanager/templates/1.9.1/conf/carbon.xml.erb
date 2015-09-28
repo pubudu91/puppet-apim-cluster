@@ -114,6 +114,9 @@ Ports used by this server
 <!--%- if @amtype == 'publisher' -%-->
 	<!--Offset>1</Offset-->
 	<!--%- else -%-->
+        <%- if @offset == nil -%>
+        <%- @offset = 0-%>
+        <%- end -%>
         <Offset><%= @offset %></Offset>
 	<!--%- end -%-->
 
