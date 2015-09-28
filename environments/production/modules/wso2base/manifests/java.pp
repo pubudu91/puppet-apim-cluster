@@ -5,18 +5,11 @@ class wso2base::java (
     $java_dir   = $wso2base::params::java_dir,
     )  inherits wso2base::params {
 
-    file { "/opt":
-                source => "puppet:///modules/wso2base/",
+    file { "${java_dir}/${package}":
+                source => "puppet:///files/java/${package}",
                 recurse => true,
-                ignore => "FilesToCopyHere.txt",
         }
-    
-    file { "/opt/java":
-        ensure 	=> link,
-        target	=> "/opt/${java_home}",
-        require	=> Exec["install_java"],
-    }
-    
+    -> 
     exec { 
 
         #"downloading_java":
@@ -27,20 +20,26 @@ class wso2base::java (
 
         "install_java":
         path      => ["/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"],
-        cwd	  => "/opt",
+        cwd	  => "${java_dir}",
         command   => "tar -xzf ${java_dir}/${package}",
-        unless    => "test -d /opt/${java_home}",
-        creates   => "/opt/${java_home}/COPYRIGHT";
+        unless    => "test -d ${java_dir}/${java_home}",
+        creates   => "${java_dir}/${java_home}/COPYRIGHT";
 
         #creates   => "/opt/${java_home}/COPYRIGHT",
         #require   => Exec["downloading_java"];
 
         "changing_permissions":
         path      => ["/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"],
-        cwd	  => "/opt",
+        cwd	  => "${java_dir}",
         command   => "chown -R root:root ${java_dir}/${java_home}; chmod -R 755 ${java_dir}/${java_home}",
         require   => Exec["install_java"];
     } 
+
+    file { "${java_dir}/java":
+        ensure  => link,
+        target  => "${java_dir}/${java_home}",
+        require => Exec["install_java"],
+    }
 
 }
  

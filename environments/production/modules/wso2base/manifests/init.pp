@@ -24,6 +24,6 @@ class wso2base (
     class { packages :}
     ->
     class { java :}
-    ->
-    class { maven :}
+#    ->
+#    class { maven :}
 }
