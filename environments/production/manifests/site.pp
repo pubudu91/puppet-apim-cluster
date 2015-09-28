@@ -64,15 +64,11 @@ node base {
 # This has to be triggered after each test execution
 node 'database' {
         $datasource = hiera("datasources")
-	$datasourcesql = hiera("datasourcesql")
       	class { "cleandb::mysql":
           apim_version  => $common[version],
           user 		=> $datasource[db_root_user],
           password 	=> $datasource[db_root_user_password],
           host 		=> $datasource[host],
-          apimgt_db_sql	=> $datasourcesql[apimgt_db_sql],
-	  user_db_sql	=> $datasourcesql[user_db_sql],
-          reg_db_sql	=> $datasourcesql[reg_db_sql],
   }	
 }
 

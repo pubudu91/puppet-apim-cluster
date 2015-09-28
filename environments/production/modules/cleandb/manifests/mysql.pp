@@ -1,6 +1,6 @@
 include '::mysql::server'
 
-class cleandb::mysql($apim_version, $user, $password, $host, $apimgt_db_sql, $user_db_sql, $reg_db_sql)
+class cleandb::mysql($apim_version, $user, $password, $host)
 {
 
 staging::deploy { "wso2am-${apim_version}.zip":
@@ -18,21 +18,21 @@ mysql::db { 'apimgtdb':
     user	=> $user,
     password 	=> $password,
     host     	=> $host,
-    sql 	=> $apimgt_db_sql,
+    sql 	=> "/tmp/wso2am-${apim_version}/dbscripts/apimgt/mysql.sql",
  }
 
 mysql::db { 'userdb':
     user  	=> $user,
     password 	=> $password,
     host     	=> $host,
-    sql 	=> $user_db_sql,
+    sql 	=> "/tmp/wso2am-${apim_version}/dbscripts/mysql.sql",
  }
 
 mysql::db { 'regdb':
     user  	=> $user,
     password 	=> $password,
     host     	=> $host,
-    sql 	=> $reg_db_sql,
+    sql 	=> "/tmp/wso2am-${apim_version}/dbscripts/mysql.sql",
  }
 
 }

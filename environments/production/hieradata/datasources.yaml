@@ -14,8 +14,3 @@ datasources:
  apim_db_driver_name : com.mysql.jdbc.Driver
  db_root_user : root
  db_root_user_password : root
-
-datasourcesql:
- apimgt_db_sql : /tmp/wso2am-1.9.1/dbscripts/apimgt/mysql.sql
- user_db_sql : /tmp/wso2am-1.9.1/dbscripts/mysql.sql
- reg_db_sql :  /tmp/wso2am-1.9.1/dbscripts/mysql.sql
