@@ -22,7 +22,11 @@ upstreams:
       hosts:
         host:
           - 
-           hostname: gatewaymgr1
+           hostname: gatewaywkr1
+           hostrole:
+           porttype: NHTTP
+          - 
+           hostname: gatewaywkr2
            hostrole:
            porttype: NHTTP
     - 
@@ -30,7 +34,11 @@ upstreams:
       hosts:
         host:
           - 
-           hostname: gatewaymgr1
+           hostname: gatewaywkr1
+           hostrole:
+           porttype: NHTTPS
+          - 
+           hostname: gatewaywkr2
            hostrole:
            porttype: NHTTPS
 # keymanager
