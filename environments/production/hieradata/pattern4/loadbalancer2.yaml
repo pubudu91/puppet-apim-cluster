@@ -4,6 +4,7 @@ upstreams:
 # keymanager
     - 
       name: keymgrhttp
+      lb_mechanism: ip_hash
       hosts:
         host:
           - 
@@ -16,6 +17,7 @@ upstreams:
            porttype: HTTPservlet
     - 
       name: keymgrhttps
+      lb_mechanism: ip_hash
       hosts:
         host:
           - 
@@ -29,6 +31,7 @@ upstreams:
 # store
     - 
       name: storehttp
+      lb_mechanism: ip_hash
       hosts:
         host:
           - 
@@ -41,6 +44,7 @@ upstreams:
            porttype: HTTPservlet
     - 
       name: storehttps
+      lb_mechanism: ip_hash
       hosts:
         host:
           - 
@@ -54,6 +58,7 @@ upstreams:
 # publisher
     - 
       name: publisherhttp
+      lb_mechanism: ip_hash
       hosts:
         host:
           - 
@@ -62,6 +67,7 @@ upstreams:
            porttype: HTTPservlet
     - 
       name: publisherhttps
+      lb_mechanism: ip_hash
       hosts:
         host:
           - 

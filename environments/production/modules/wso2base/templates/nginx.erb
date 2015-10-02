@@ -6,13 +6,19 @@
 
 <%- upstreams.each do |upstream| -%>
 upstream <%= upstream["name"] %>{
-      ip_hash;
+      <%- if upstream["lb_mechanism"]  -%>
+      <%= upstream["lb_mechanism"] -%>;
+      <%- end -%> 
       <%- upstream["hosts"]["host"].each do |host| -%>
-      <% portOffset = YAML.load_file(dataLocation + @deployment_pattern  +'/'+ host["hostname"]  +'.yaml').values[0]["offset"] -%>
-       <%- if portOffset== nil -%>
-       <%- portOffset = 0-%>
-       <%- end -%>
+      <%- portOffset = YAML.load_file(dataLocation + @deployment_pattern  +'/'+ host["hostname"]  +'.yaml').values[0]["offset"] -%>
+      <%- if portOffset== nil -%>
+      <%- portOffset = 0 -%>
+      <%- end -%>
+      <%- if host["hostrole"] == 'passive' -%>
+      server <%=nodeinfo[host["hostname"]]%>:<%=defaultportinfo[host["porttype"]] + portOffset -%> backup;
+      <%- else -%>
       server <%=nodeinfo[host["hostname"]]%>:<%=defaultportinfo[host["porttype"]] + portOffset -%>;
+      <%- end -%>
       <%- end -%>
 }
 <%- end -%>
