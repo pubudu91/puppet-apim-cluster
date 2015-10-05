@@ -1,7 +1,7 @@
 #myql db
 # This will ONLY cleanup the databases apimgtdb, userdb, regdb in mysql node
 # This has to be triggered after each test execution
-node 'database' {
+node /database/ {
         $datasource = hiera("datasources")
         class { "cleandb::mysql":
           apim_version  => $common[version],

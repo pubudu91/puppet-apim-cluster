@@ -9,7 +9,7 @@ staging::deploy { "wso2am-${apim_version}.zip":
 }
 
 exec { "delete-db":
-  command 	=> "/usr/bin/mysql -u$user -p$password  -e \"DROP DATABASE apimgtdb;DROP DATABASE regdb;DROP DATABASE userdb;\"",
+  command 	=> "/usr/bin/mysql -u$user -p$password  -e \"DROP DATABASE IF EXISTS apimgtdb;DROP DATABASE IF EXISTS regdb;DROP DATABASE IF EXISTS userdb;\"",
 }
 
 mysql::db { 'apimgtdb':
