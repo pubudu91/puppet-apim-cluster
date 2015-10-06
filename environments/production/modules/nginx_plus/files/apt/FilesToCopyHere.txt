@@ -1,0 +1,11 @@
+Copy the following file here.
+1. 90nginx
+
+* You can download the file from:
+https://cs.nginx.com/static/files/90nginx
+
+Give it 755 privileges
+
+During the puppet run, this file will be copied to the directory:
+/etc/apt/apt.conf.d
+at nginx plus instance

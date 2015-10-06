@@ -1,0 +1,15 @@
+Copy the following files here.
+1. CA.crt
+2. nginx-repo.key
+3. nginx-repo.crt
+
+Give them all 755 privileges
+
+* You can download the CA.crt file from:
+https://cs.nginx.com/static/files/CA.crt
+
+* nginx-repo .key, .crt files are your nginx-plus license files
+
+During the puppet run, these files will be copied to the directory:
+/etc/ssl/nginx/ 
+at nginx plus instance
