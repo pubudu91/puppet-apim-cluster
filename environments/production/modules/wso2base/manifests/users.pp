@@ -1,8 +1,8 @@
 #
 class wso2base::users {
-    $users = ["wso2user"]
+    $users = hiera("nodeinfo")
 
-    user { $users:
+    user { $users[owner]:
         ensure  => present,
         shell      => '/bin/bash',
         managehome => true,
