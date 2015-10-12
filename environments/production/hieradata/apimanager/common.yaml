@@ -1,0 +1,15 @@
+---
+nodeinfo: 
+ version: 1.9.1
+ maintenance_mode: zero
+ owner: wso2user
+ group: wso2user
+ svn_url: http://192.168.57.233/svn/testrepo/apim
+ svn_username: user1
+ svn_password: user1
+
+defaultportinfo:
+ HTTPservlet: 9763
+ HTTPSservlet: 9443 
+ NHTTP: 8280
+ NHTTPS: 8243

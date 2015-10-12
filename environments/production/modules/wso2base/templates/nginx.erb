@@ -2,7 +2,7 @@
 <%- upstreams = scope.function_hiera(['upstreams']) -%>
 <%- nodeinfo = scope.function_hiera(['nodes']) -%>
 <%- defaultportinfo = scope.function_hiera(['defaultportinfo']) -%>
-<%- dataLocation = '/etc/puppet/environments/production/hieradata/' -%>
+<%- dataLocation = '/etc/puppet/environments/production/hieradata/' + @deployment + '/' -%>
 
 <%- upstreams.each do |upstream| -%>
 upstream <%= upstream["name"] %>{

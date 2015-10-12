@@ -3,33 +3,25 @@ upstreams:
 # gateway
     - 
       name: gatewayhttp
-      lb_mechanism: ip_hash
+      lb_mechanism:
       hosts:
         host:
           - 
            hostname: gateway1
            hostrole:
-           porttype: HTTPservlet
-          - 
-           hostname: gateway2
-           hostrole: 
            porttype: HTTPservlet
     - 
       name: gatewayhttps
-      lb_mechanism: ip_hash
+      lb_mechanism:
       hosts:
         host:
           - 
            hostname: gateway1
-           hostrole:
-           porttype: HTTPSservlet
-          - 
-           hostname: gateway2
            hostrole:
            porttype: HTTPSservlet
     - 
       name: gatewaynhttp
-      lb_mechanism: ip_hash
+      lb_mechanism: 
       hosts:
         host:
           - 
@@ -38,7 +30,7 @@ upstreams:
            porttype: NHTTP 
     - 
       name: gatewaynhttps
-      lb_mechanism: ip_hash
+      lb_mechanism: 
       hosts:
         host:
           - 
@@ -49,29 +41,29 @@ upstreams:
 # store
     - 
       name: storehttp
-      lb_mechanism: ip_hash
+      lb_mechanism:
       hosts:
         host:
           - 
            hostname: store1
-           hostrole:
+           hostrole: active
            porttype: HTTPservlet
           - 
            hostname: store2
-           hostrole:
+           hostrole: passive
            porttype: HTTPservlet
     - 
       name: storehttps
-      lb_mechanism: ip_hash
+      lb_mechanism: 
       hosts:
         host:
           - 
            hostname: store1
-           hostrole:
+           hostrole: active
            porttype: HTTPSservlet
           - 
            hostname: store2
-           hostrole:
+           hostrole: passive
            porttype: HTTPSservlet
 
 servers:
