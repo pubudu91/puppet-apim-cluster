@@ -9,6 +9,8 @@ nodeinfo:
  svn_password: user1
 
 defaultportinfo:
+ HTTP: 80 
+ HTTPS: 443
  HTTPservlet: 9763
  HTTPSservlet: 9443 
  NHTTP: 8280

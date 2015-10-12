@@ -52,8 +52,8 @@ servers:
 
 # keymanager
   - 
-   port: 443
-   name: keymanager.am.wso2.com
+   port: HTTPS
+   name: keymanager_domain
    sslstatus: "on"
    sslcertificate: /etc/nginx/ssl/keymanager.crt
    sslcertificatekey: /etc/nginx/ssl/keymanager.key
@@ -64,8 +64,8 @@ servers:
          proxypass: keymgrhttps
          protocol: https
   - 
-   port: 80
-   name: keymanager.am.wso2.com
+   port: HTTP
+   name: keymanager_domain
    locations:
     location:
         - 
@@ -75,8 +75,8 @@ servers:
 
 # publisher
   - 
-   port: 443
-   name: pub.am.wso2.com
+   port: HTTPS
+   name: publisher_domain
    sslstatus: "on"
    sslcertificate: /etc/nginx/ssl/publisher.crt
    sslcertificatekey: /etc/nginx/ssl/publisher.key
@@ -87,8 +87,8 @@ servers:
          proxypass: publisherhttps
          protocol: https
   - 
-   port: 80
-   name: pub.am.wso2.com
+   port: HTTP
+   name: publisher_domain
    locations:
     location:
         - 

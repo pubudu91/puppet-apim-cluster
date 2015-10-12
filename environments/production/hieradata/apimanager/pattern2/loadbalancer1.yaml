@@ -57,8 +57,8 @@ upstreams:
 servers:
 # gateway
   - 
-   port: 443
-   name: gateway.am.wso2.com
+   port: HTTPS
+   name: gateway_domain
    sslstatus: "on"
    sslcertificate: /etc/nginx/ssl/gateway.crt
    sslcertificatekey: /etc/nginx/ssl/gateway.key
@@ -69,8 +69,8 @@ servers:
          proxypass: gatewaynhttps
          protocol: https
   - 
-   port: 80
-   name: gateway.am.wso2.com
+   port: HTTP
+   name: gateway_domain
    locations:
     location:
         - 
@@ -78,8 +78,8 @@ servers:
          proxypass: gatewayhttp
          protocol: http
   - 
-   port: 443
-   name: mgt.gateway.am.wso2.com
+   port: HTTPS
+   name: gatewaymgt_domain
    sslstatus: "on"
    sslcertificate: /etc/nginx/ssl/mgtgateway.crt
    sslcertificatekey: /etc/nginx/ssl/mgtgateway.key
@@ -90,8 +90,8 @@ servers:
          proxypass: gatewayhttps
          protocol: https
   - 
-   port: 8280
-   name: gateway.am.wso2.com
+   port: NHTTP
+   name: gateway_domain
    locations:
      location:
         - 
@@ -99,8 +99,8 @@ servers:
          proxypass: gatewaynhttp
          protocol: http
   - 
-   port: 8243
-   name: gateway.am.wso2.com
+   port: NHTTPS
+   name: gateway_domain
    locations:
      location:
         - 

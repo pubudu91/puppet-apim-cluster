@@ -130,8 +130,8 @@ upstreams:
 servers:
 # gateway
   - 
-   port: 443
-   name: gateway.am.wso2.com
+   port: HTTPS
+   name: gateway_domain
    sslstatus: "on"
    sslcertificate: /etc/nginx/ssl/gateway.crt
    sslcertificatekey: /etc/nginx/ssl/gateway.key
@@ -142,8 +142,8 @@ servers:
          proxypass: gatewayhttps
          protocol: https
   - 
-   port: 80
-   name: gateway.am.wso2.com
+   port: HTTP
+   name: gateway_domain
    locations:
     location:
         - 
@@ -151,8 +151,8 @@ servers:
          proxypass: gatewayhttp
          protocol: http
   - 
-   port: 443
-   name: mgt.gateway.am.wso2.com
+   port: HTTPS
+   name: gatewaymgt_domain
    sslstatus: "on"
    sslcertificate: /etc/nginx/ssl/mgtgateway.crt
    sslcertificatekey: /etc/nginx/ssl/mgtgateway.key
@@ -163,8 +163,8 @@ servers:
          proxypass: gatewayhttps
          protocol: https
   - 
-   port: 8280
-   name: gateway.am.wso2.com
+   port: NHTTP
+   name: gateway_domain
    locations:
      location:
         - 
@@ -172,8 +172,8 @@ servers:
          proxypass: gatewaynhttp
          protocol: http
   - 
-   port: 8243
-   name: gateway.am.wso2.com
+   port: NHTTPS
+   name: gateway_domain
    locations:
      location:
         - 
@@ -182,8 +182,8 @@ servers:
          protocol: https
 # keymanager
   - 
-   port: 443
-   name: keymanager.am.wso2.com
+   port: HTTPS
+   name: keymanager_domain
    sslstatus: "on"
    sslcertificate: /etc/nginx/ssl/keymanager.crt
    sslcertificatekey: /etc/nginx/ssl/keymanager.key
@@ -194,8 +194,8 @@ servers:
          proxypass: keymgrhttps
          protocol: https
   - 
-   port: 80
-   name: keymanager.am.wso2.com
+   port: HTTP
+   name: keymanager_domain
    locations:
     location:
         - 
@@ -204,8 +204,8 @@ servers:
          protocol: http
 # publisher
   - 
-   port: 443
-   name: pub.am.wso2.com
+   port: HTTPS
+   name: publisher_domain
    sslstatus: "on"
    sslcertificate: /etc/nginx/ssl/publisher.crt
    sslcertificatekey: /etc/nginx/ssl/publisher.key
@@ -216,8 +216,8 @@ servers:
          proxypass: publisherhttps
          protocol: https
   - 
-   port: 80
-   name: pub.am.wso2.com
+   port: HTTP
+   name: publisher_domain
    locations:
     location:
         - 
@@ -226,8 +226,8 @@ servers:
          protocol: http
 # store
   - 
-   port: 443
-   name: store.am.wso2.com
+   port: HTTPS
+   name: store_domain
    sslstatus: "on"
    sslcertificate: /etc/nginx/ssl/gateway.crt
    sslcertificatekey: /etc/nginx/ssl/gateway.key
@@ -238,8 +238,8 @@ servers:
          proxypass: storehttps
          protocol: https
   - 
-   port: 80
-   name: store.am.wso2.com
+   port: HTTP
+   name: store_domain
    locations:
     location:
         - 

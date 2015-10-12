@@ -1,6 +1,7 @@
 <%- require 'yaml' -%>
 <%- upstreams = scope.function_hiera(['upstreams']) -%>
 <%- nodeinfo = scope.function_hiera(['nodes']) -%>
+<%- hostinfo = scope.function_hiera(['hosts']) -%>
 <%- defaultportinfo = scope.function_hiera(['defaultportinfo']) -%>
 <%- dataLocation = '/etc/puppet/environments/production/hieradata/' + @deployment + '/' -%>
 
@@ -27,8 +28,8 @@ upstream <%= upstream["name"] %>{
 
 <%- servers.each do |server| -%>
 server {
-      listen <%= server["port"] %>;
-      server_name <%= server["name"] %>;
+      listen <%= defaultportinfo[server["port"]] %>;
+      server_name <%= hostinfo[server["name"]].split(",")[0] %>;
 
       <%- server["locations"]["location"].each do |location| -%>
       location <%= location["context"] %> {

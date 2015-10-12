@@ -45,6 +45,6 @@ class nginx_plus inherits ::nginx_plus::params {
 	->
 	exec { "install_nginx_plus_package":
                 path        => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
-                command => 'apt-get install nginx-plus',
+                command => 'echo "Y" | apt-get install nginx-plus',
         }
 }
