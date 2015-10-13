@@ -418,7 +418,11 @@
 	<!--GroupingExtractor>org.wso2.carbon.apimgt.impl.DefaultGroupIDExtractorImpl</GroupingExtractor-->
 	<CompareCaseInsensitively>true</CompareCaseInsensitively>
         <DisplayURL>false</DisplayURL>
+        <%- if @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
+        <URL>https://<%= hosts['store_domain'].split(",")[0]%>/store</URL>
+        <%- else -%>
         <URL>https://${carbon.local.ip}:${mgt.transport.https.port}/store</URL>
+        <%- end -%>
         <!--
             This parameter specifies whether to display multiple versions of same
             API or only showing the latest version of an API.
