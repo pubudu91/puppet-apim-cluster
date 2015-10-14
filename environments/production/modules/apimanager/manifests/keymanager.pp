@@ -88,6 +88,7 @@ class apimanager::keymanager (
     'conf/datasources/master-datasources.xml',
     'conf/registry.xml',
     'conf/user-mgt.xml',
+    'conf/log4j.properties',
 #    'conf/tomcat/catalina-server.xml',
 #    'deployment/server/jaggeryapps/publisher/site/conf/site.json',
 #    'deployment/server/jaggeryapps/store/site/conf/site.json',

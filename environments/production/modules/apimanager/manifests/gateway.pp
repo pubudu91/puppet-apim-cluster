@@ -91,6 +91,7 @@ class apimanager::gateway (
     'conf/datasources/master-datasources.xml',
     'conf/registry.xml',
     'conf/user-mgt.xml',
+    'conf/log4j.properties',
     'deployment/server/synapse-configs/default/api/_TokenAPI_.xml',
     'deployment/server/synapse-configs/default/api/_AuthorizeAPI_.xml',
     'deployment/server/synapse-configs/default/api/_RevokeAPI_.xml',

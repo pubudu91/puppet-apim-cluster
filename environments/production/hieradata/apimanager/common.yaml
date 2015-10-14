@@ -15,3 +15,6 @@ defaultportinfo:
  HTTPSservlet: 9443 
  NHTTP: 8280
  NHTTPS: 8243
+
+testconfig:
+ enableEncryptPersistedTokens: false

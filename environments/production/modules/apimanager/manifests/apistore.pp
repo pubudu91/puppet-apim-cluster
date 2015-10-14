@@ -89,6 +89,7 @@ class apimanager::apistore (
     'conf/registry.xml',
     'conf/user-mgt.xml',
     'conf/tomcat/catalina-server.xml',
+    'conf/log4j.properties',
 #    'deployment/server/jaggeryapps/publisher/site/conf/site.json',
     'deployment/server/jaggeryapps/store/site/conf/site.json',
     ]

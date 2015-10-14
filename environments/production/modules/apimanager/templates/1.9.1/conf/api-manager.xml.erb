@@ -1,4 +1,5 @@
 <%- hosts = scope.function_hiera(['hosts']) -%>
+<%- testconfig = scope.function_hiera(['testconfig']) -%>
 
 <APIManager>
     <!--
@@ -377,7 +378,13 @@
 	<!-- Whether to encrypt tokens when storing in the Database
 	Note: If changing this value to true, change the value of <TokenPersistenceProcessor> to
 	org.wso2.carbon.identity.oauth.tokenprocessor.EncryptionDecryptionPersistenceProcessor in the identity.xml -->
-	<EncryptPersistedTokens>false</EncryptPersistedTokens>
+
+       
+    <%# if persistedTag['enableEncryptPersistedTokens'] == nil -%>
+        <%# @enableEncryptPersistedTokens = false -%>
+        <%# end -%>
+  
+	<EncryptPersistedTokens><%= testconfig['enableEncryptPersistedTokens'] %></EncryptPersistedTokens>
 
     </APIKeyValidator>
 
