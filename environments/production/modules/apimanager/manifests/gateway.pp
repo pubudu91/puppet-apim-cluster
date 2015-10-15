@@ -51,7 +51,7 @@ class apimanager::gateway (
   $port_mapping       = false,
   $offset             = 0,
   $config_database    = 'config',
-  $maintenance_mode   = true,
+  $maintenance_mode   = 'zero',
   $depsync            = false,
   $clustering         = false,
   $cloud              = false,

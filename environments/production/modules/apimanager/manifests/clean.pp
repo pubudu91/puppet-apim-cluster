@@ -39,7 +39,8 @@ define apimanager::clean ($mode, $target) {
   elsif $mode == 'zero' {
     exec { "Stop_process_remove_CARBON_HOME_and_pack_${name}":
         path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/java/bin/',
-        command => "kill -9 `cat ${target}/wso2carbon.pid` ; rm -rf ${target} ; rm -f ${::local_package_dir}/wso2${apimanager::service_code}-${apimanager::version}.zip";
+        #command => "kill -9 `cat ${target}/wso2carbon.pid` ; rm -rf ${target} ; rm -f ${::local_package_dir}/wso2${apimanager::service_code}-${apimanager::version}.zip";
+        command => "ps aux | grep -i wso2 | awk {'print $2'} | xargs kill -9 ; rm -rf /mnt/* ; rm -f ${::local_package_dir}/wso2${apimanager::service_code}-${apimanager::version}.zip";
     }
   }
 }
