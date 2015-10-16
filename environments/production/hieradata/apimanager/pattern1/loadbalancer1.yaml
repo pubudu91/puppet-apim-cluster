@@ -1,25 +1,32 @@
 ---
-upstreams:
-# gateway
-    - 
+upstreams: 
+  - 
       name: gatewayhttp
       lb_mechanism: ip_hash
       hosts:
         host:
          - 
-          hostname: gatewaymgr1
-          hostrole: 
+          hostname: gatewaywkr1
+          hostrole:
           porttype: HTTPservlet
-    - 
+         - 
+          hostname: gatewaywkr2
+          hostrole:
+          porttype: HTTPservlet
+  - 
       name: gatewayhttps
       lb_mechanism: ip_hash
       hosts:
         host:
          - 
-          hostname: gatewaymgr1
+          hostname: gatewaywkr1
           hostrole:
           porttype: HTTPSservlet
-    - 
+         - 
+          hostname: gatewaywkr2
+          hostrole:
+          porttype: HTTPSservlet
+  -   
       name: gatewaynhttp
       lb_mechanism: ip_hash
       hosts:
@@ -32,7 +39,25 @@ upstreams:
            hostname: gatewaywkr2
            hostrole:
            porttype: NHTTP
-    - 
+  - 
+      name: mgtgatewayhttp
+      lb_mechanism: ip_hash
+      hosts:
+        host:
+         - 
+          hostname: gatewaymgr1
+          hostrole:
+          porttype: HTTPservlet
+  - 
+      name: mgtgatewayhttps
+      lb_mechanism: ip_hash
+      hosts:
+        host:
+         - 
+          hostname: gatewaymgr1
+          hostrole:
+          porttype: HTTPSservlet
+  - 
       name: gatewaynhttps
       lb_mechanism: ip_hash
       hosts:
@@ -46,7 +71,7 @@ upstreams:
            hostrole:
            porttype: NHTTPS
 # keymanager
-    - 
+  - 
       name: keymgrhttp
       lb_mechanism: ip_hash
       hosts:
@@ -59,7 +84,7 @@ upstreams:
            hostname: keymanager2
            hostrole:
            porttype: HTTPservlet
-    - 
+  - 
       name: keymgrhttps
       lb_mechanism: ip_hash
       hosts:
@@ -73,7 +98,7 @@ upstreams:
            hostrole:
            porttype: HTTPSservlet
 # publisher
-    - 
+  - 
       name: publisherhttp
       lb_mechanism: ip_hash
       hosts:
@@ -86,7 +111,7 @@ upstreams:
            hostname: publisher2
            hostrole:
            porttype: HTTPservlet
-    - 
+  - 
       name: publisherhttps
       lb_mechanism: ip_hash
       hosts:
@@ -100,7 +125,7 @@ upstreams:
            hostrole:
            porttype: HTTPSservlet
 # store
-    - 
+  - 
       name: storehttp
       lb_mechanism: ip_hash
       hosts:
@@ -113,7 +138,7 @@ upstreams:
            hostname: store2
            hostrole:
            porttype: HTTPservlet
-    - 
+  - 
       name: storehttps
       lb_mechanism: ip_hash
       hosts:
@@ -160,7 +185,7 @@ servers:
      location:
         - 
          context: "/"
-         proxypass: gatewayhttps
+         proxypass: mgtgatewayhttps
          protocol: https
   - 
    port: NHTTP
