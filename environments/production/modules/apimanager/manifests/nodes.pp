@@ -159,6 +159,8 @@ node /gateway/ inherits base {
         apim_db_user                    => $datasource[apim_db_user],
         apim_db_password                => $datasource[apim_db_password],
         apim_db_driver_name             => $datasource[apim_db_driver_name],
+        tokenPersistenceProcessor       => $gateway[TokenPersistenceProcessor],
+        removeOpenIDConnect             => $gateway[removeOpenIDConnect],
     }
 }
 

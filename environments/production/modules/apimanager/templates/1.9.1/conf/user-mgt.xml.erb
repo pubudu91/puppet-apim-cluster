@@ -13,6 +13,9 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
+
+<%- testconfig = scope.function_hiera(['testconfig']) -%>
+
         
 <UserManager>
     <Realm>
@@ -79,7 +82,10 @@
             <Property name="TenantManager">org.wso2.carbon.user.core.tenant.JDBCTenantManager</Property>
 	    <Property name="ReadOnly">false</Property>
             <Property name="MaxUserNameListLength">100</Property>
-            <Property name="IsEmailUserName">false</Property>
+            <Property name="IsEmailUserName"><%= testconfig['enableIsEmailUserName'] %></Property>
+            <%- if testconfig['usernameWithEmailJavaScriptRegEx'] == true -%>
+            <Property name="UsernameWithEmailJavaScriptRegEx">[a-zA-Z0-9@._-|//]{3,30}$</Property>
+            <%- end -%>
             <Property name="DomainCalculation">default</Property>
             <Property name="PasswordDigest">SHA-256</Property>
             <Property name="StoreSaltedPassword">true</Property>
@@ -96,8 +102,9 @@
             <Property name="MaxRoleNameListLength">100</Property>
             <Property name="MaxUserNameListLength">100</Property>
 	    <Property name="SharedGroupEnabled">false</Property>
-            <Property name="SCIMEnabled">false</Property>
+            <Property name="SCIMEnabled">false</Property>            
         </UserStoreManager>
+
 	
 	<!-- If product is using an external LDAP as the user store in READ ONLY mode, use following user manager.
 		In case if user core cache domain is needed to identify uniquely set property <Property name="UserCoreCacheIdentifier">domain</Property>

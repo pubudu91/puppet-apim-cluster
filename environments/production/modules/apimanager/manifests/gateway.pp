@@ -75,6 +75,8 @@ class apimanager::gateway (
   $apim_db_user                    = undef,
   $apim_db_password                = undef,
   $apim_db_driver_name             = undef,
+  $tokenPersistenceProcessor       = undef,
+  $removeOpenIDConnect             = false,
 ) inherits params {
 
   $amtype          = 'gateway'
@@ -96,6 +98,7 @@ class apimanager::gateway (
     'deployment/server/synapse-configs/default/api/_AuthorizeAPI_.xml',
     'deployment/server/synapse-configs/default/api/_RevokeAPI_.xml',
     'conf/tomcat/catalina-server.xml',
+    'conf/identity.xml'
 #    'deployment/server/jaggeryapps/publisher/site/conf/site.json',
 #    'deployment/server/jaggeryapps/store/site/conf/site.json',
     ]

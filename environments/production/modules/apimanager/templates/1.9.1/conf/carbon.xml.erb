@@ -22,6 +22,9 @@ This is the main server configuration file
 ${carbon.home} represents the carbon.home system property.
 Other system properties can be specified in a similar manner.
 -->
+
+<%- testconfig = scope.function_hiera(['testconfig']) -%>
+
 <Server xmlns="http://wso2.org/projects/carbon/carbon.xml">
 
 <!--
@@ -307,7 +310,10 @@ Ports used by this server
 	<!--
       Enable following config to allow Emails as usernames.
     -->
-    <!--EnableEmailUserName>true</EnableEmailUserName-->
+
+   <%- if testconfig['enableEmailUserName'] == true -%>
+    <EnableEmailUserName>true</EnableEmailUserName>
+   <%- end -%>
 
     <!--
       Security configurations

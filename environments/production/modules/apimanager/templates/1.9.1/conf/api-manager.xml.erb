@@ -66,25 +66,34 @@
 		jwt token, he needs to enable this parameter.
 		The DefaultClaimsRetriever class adds user claims from the default carbon user store.
 	-->
-	<!--ClaimsRetrieverImplClass>org.wso2.carbon.apimgt.impl.token.DefaultClaimsRetriever</ClaimsRetrieverImplClass-->
 
+     <%- if testconfig['addClaimsRetrieverImplClass'] == true -%>	
+      <ClaimsRetrieverImplClass>org.wso2.carbon.apimgt.impl.token.DefaultClaimsRetriever</ClaimsRetrieverImplClass>
+     <%- end -%>
 	<!--
 		The dialectURI under which the claimURIs that need to be appended to the
 		JWT are defined. Not used with custom ClaimsRetriever implementations. The
 		same value is used in the keys for appending the default properties to the
 		JWT.
 	-->
-    	<!--ConsumerDialectURI>http://wso2.org/claims</ConsumerDialectURI-->
-
+     <%- if testconfig['addConsumerDialectURI'] == true -%>
+    	<ConsumerDialectURI>http://wso2.org/claims</ConsumerDialectURI>
+      <%- end -%>
     	<!--
 		Signature algorithm. Accepts "SHA256withRSA" or "NONE". To disable signing explicitly specify "NONE".
 	-->
-	<!--SignatureAlgorithm>SHA256withRSA</SignatureAlgorithm-->
 
+     <%- if testconfig['addSignatureAlgorithm'] == true -%>
+	<SignatureAlgorithm>SHA256withRSA</SignatureAlgorithm>
+     <%- end -%>
+    
     <!--
 		Enable/Disable JWT generation. Default is false.
 	-->
-	<!--EnableTokenGeneration>false</EnableTokenGeneration-->
+
+     <%- if testconfig['enableTokenGeneration'] == true -%>
+	<EnableTokenGeneration>true</EnableTokenGeneration>
+     <%- end -%>
 
         <!--
             This parameter specifies which implementation should be used for generating the Token. JWTGenerator is the
@@ -95,7 +104,12 @@
 	<!--
 		Remove OAuth headers from outgoing message or keep with it.
 	-->
-	<!--RemoveOAuthHeadersFromOutMessage>true</RemoveOAuthHeadersFromOutMessage-->
+        
+        <%- if testconfig['enableRemoveOAuthHeadersFromOutMessage'] == true -%>
+    	<RemoveOAuthHeadersFromOutMessage>true</RemoveOAuthHeadersFromOutMessage>
+        <%- end -%>
+
+
     </APIConsumerAuthentication>
 
     <!-- Primary/secondary login configuration for APIstore. If user likes to keep two login attributes in a distributed setup, to login the APIstore,
@@ -182,7 +196,7 @@
      <!--
 	    Enable/Disable Usage metering and billing for api usage
      -->
-     <EnableBillingAndUsage>false</EnableBillingAndUsage>
+     <EnableBillingAndUsage><%= testconfig['enableBillingAndUsage'] %></EnableBillingAndUsage>
 
     <!--
         API usage tracker configuration used by the BAM data publisher and
@@ -310,13 +324,13 @@
         <!--
             Enable/Disable JWT caching.
         -->
-        <EnableJWTCache>false</EnableJWTCache>
+        <EnableJWTCache><%= testconfig['enableJWTCache'] %></EnableJWTCache>
 
         <!--
             Enable/Disable API key validation information caching at key-management server
         -->
 
-        <EnableKeyMgtValidationInfoCache>false</EnableKeyMgtValidationInfoCache>
+        <EnableKeyMgtValidationInfoCache><%= testconfig['enableKeyMgtValidationInfoCache'] %></EnableKeyMgtValidationInfoCache>
 
         <!--
         Configurations related to enable thrift support for key-management related communication.
@@ -378,11 +392,6 @@
 	<!-- Whether to encrypt tokens when storing in the Database
 	Note: If changing this value to true, change the value of <TokenPersistenceProcessor> to
 	org.wso2.carbon.identity.oauth.tokenprocessor.EncryptionDecryptionPersistenceProcessor in the identity.xml -->
-
-       
-    <%# if persistedTag['enableEncryptPersistedTokens'] == nil -%>
-        <%# @enableEncryptPersistedTokens = false -%>
-        <%# end -%>
   
 	<EncryptPersistedTokens><%= testconfig['enableEncryptPersistedTokens'] %></EncryptPersistedTokens>
 
@@ -435,14 +444,18 @@
             API or only showing the latest version of an API.
 
         -->
-        <DisplayMultipleVersions>false</DisplayMultipleVersions>
+
+        <DisplayMultipleVersions><%= testconfig['enableDisplayMultipleVersions'] %></DisplayMultipleVersions>
+
         <!--
             This parameter specifies whether to display all the APIs
             [which are having DEPRECATED/PUBLISHED status] or only display the APIs
             with having their status is as 'PUBLISHED'
 
         -->
-        <DisplayAllAPIs>false</DisplayAllAPIs>
+
+        <DisplayAllAPIs><%= testconfig['enableDisplayAllAPIs'] %></DisplayAllAPIs>
+
         <!--
               Uncomment this to limit the number of APIs in api the API Store
           -->
@@ -474,6 +487,11 @@
     If there are multiple API modification during a short time period, better to disable cache.
     -->
         <EnableRecentlyAddedAPICache>false</EnableRecentlyAddedAPICache>
+
+        
+       <%- if testconfig['enableReuseAppName'] == false -%>
+        <ReuseAppName>false</ReuseAppName>
+       <%- end -%>
 
     </APIStore>
 

@@ -1,3 +1,18 @@
 ---
 testconfig: 
  enableEncryptPersistedTokens: true
+ enableDisplayMultipleVersions: true
+ enableDisplayAllAPIs: true
+ enableReuseAppName: false
+ enableIsEmailUserName: true
+ usernameWithEmailJavaScriptRegEx: true
+ enableEmailUserName: true
+ enableAuditLogFile: true
+ addClaimsRetrieverImplClass: true
+ addConsumerDialectURI: true
+ addSignatureAlgorithm: true
+ enableTokenGeneration: true
+ enableRemoveOAuthHeadersFromOutMessage: true
+ enableBillingAndUsage: true
+ enableJWTCache: true
+ enableKeyMgtValidationInfoCache: true

@@ -3,29 +3,29 @@ upstreams:
 # gateway
     - 
       name: gatewayhttp
-      lb_mechanism: ip_hash
+      lb_mechanism: 
       hosts:
         host:
           - 
            hostname: gateway1
-           hostrole:
+           hostrole: active
            porttype: HTTPservlet
           - 
            hostname: gateway2
-           hostrole:
+           hostrole: passive
            porttype: HTTPservlet 
     - 
       name: gatewayhttps
-      lb_mechanism: ip_hash
+      lb_mechanism: 
       hosts:
         host:
           - 
            hostname: gateway1
-           hostrole:
+           hostrole: active
            porttype: HTTPSservlet
           - 
            hostname: gateway2
-           hostrole: 
+           hostrole: passive
            porttype: HTTPSservlet 
     - 
       name: gatewaynhttp

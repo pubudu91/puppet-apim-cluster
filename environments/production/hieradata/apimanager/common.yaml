@@ -18,9 +18,17 @@ nodeinfo:
  owner: wso2user
  group: wso2user
  # SVN repo information used for depsync setup
- svn_url: http://192.168.57.233/svn/testrepo/apim
+ svn_url: http://192.168.57.233/svn/testrepo/apim2
  svn_username: user1
  svn_password: user1
+
+# java version information
+# if you want to have separate java versions for each deployment, maintain this
+# java: section in pattern.yaml file inside the required deployments.
+java: 
+ home: jdk1.7.0_79
+ package: jdk-7u79-linux-x64.gz
+ dir: /opt
 
 # These are the default port information
 # Used by nginx templates to configure listen ports and other ports
@@ -35,3 +43,18 @@ defaultportinfo:
 
 testconfig:
  enableEncryptPersistedTokens: false
+ enableDisplayMultipleVersions: false
+ enableDisplayAllAPIs: false
+ enableReuseAppName: true
+ enableIsEmailUserName: false
+ usernameWithEmailJavaScriptRegEx: false
+ enableEmailUserName: false
+ enableAuditLogFile: false
+ addClaimsRetrieverImplClass: false
+ addConsumerDialectURI: false
+ addSignatureAlgorithm: false
+ enableTokenGeneration: false
+ enableRemoveOAuthHeadersFromOutMessage: false
+ enableBillingAndUsage: false
+ enableJWTCache: false
+ enableKeyMgtValidationInfoCache: false
