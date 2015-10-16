@@ -237,29 +237,33 @@
         <targetPath>/_system/nodes</targetPath>
     </mount-->
 
-    <%- if @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
-    <%- if @amtype == 'publisher' -%>
-    <remoteInstance url="https://publisher.apim-wso2.com">
-    <%- else -%>
-    <remoteInstance url="https://store.apim-wso2.com">
+   <%- if @amtype != 'keymanager' -%>
+   <%- if @amtype == 'publisher' -%>
+   <remoteInstance url="https://publisher.apim-wso2.com">
+   <%- end -%>
+   <%- if @amtype == 'apistore' or @amtype == 'pubstore' -%>
+   <remoteInstance url="https://store.apim-wso2.com">
+   <%- end -%>
+   <%- if @amtype == 'gateway'-%>
+   <remoteInstance url="https://gateway.apim-wso2.com">
+   <%- end -%>
+       <id>gov</id>
+       <%- hosts = scope.function_hiera(['hosts']) -%>
+       <cacheId>user@jdbc:mysql://<%= hosts['dbserver_domain'].split(",")[0]%>:3306/regdb</cacheId>
+       <dbConfig>govregistry</dbConfig>
+       <readOnly>false</readOnly>
+       <enableCache>true</enableCache>
+       <registryRoot>/</registryRoot>
+    </remoteInstance>
+    <mount path="/_system/governance" overwrite="true">
+        <instanceId>gov</instanceId>
+        <targetPath>/_system/governance</targetPath>
+    </mount>
+    <mount path="/_system/config" overwrite="true">
+        <instanceId>gov</instanceId>
+        <targetPath>/_system/config</targetPath>
+    </mount>
     <%- end -%>
-        <id>gov</id>
-        <%- hosts = scope.function_hiera(['hosts']) -%>
-        <cacheId>user@jdbc:mysql://<%= hosts['dbserver_domain'].split(",")[0]%>:3306/regdb</cacheId>
-        <dbConfig>govregistry</dbConfig>
-        <readOnly>false</readOnly>
-        <enableCache>true</enableCache>
-        <registryRoot>/</registryRoot>
-     </remoteInstance>
-     <mount path="/_system/governance" overwrite="true">
-         <instanceId>gov</instanceId>
-         <targetPath>/_system/governance</targetPath>
-     </mount>
-     <mount path="/_system/config" overwrite="true">
-         <instanceId>gov</instanceId>
-         <targetPath>/_system/config</targetPath>
-     </mount>
-     <%- end -%>
 
     <!-- This defines index configuration which is used in meta data search feature of the registry -->
     <indexingConfiguration>
