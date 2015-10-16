@@ -14,7 +14,7 @@
         <dataSource>jdbc/WSO2CarbonDB</dataSource>
     </dbConfig>
 
-    <%- if @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
+    <%- if @amtype != 'keymanager' -%>
     <dbConfig name="govregistry">
         <dataSource>jdbc/WSO2REG_DB</dataSource>
     </dbConfig>
@@ -237,11 +237,15 @@
         <targetPath>/_system/nodes</targetPath>
     </mount-->
 
-    <%- if @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
+    <%- if @amtype != 'keymanager' -%>
     <%- if @amtype == 'publisher' -%>
     <remoteInstance url="https://publisher.apim-wso2.com">
-    <%- else -%>
+    <%- end -%>
+    <%- if @amtype == 'apistore' or @amtype == 'pubstore' -%>
     <remoteInstance url="https://store.apim-wso2.com">
+    <%- end -%>
+    <%- if @amtype == 'gateway'-%>
+    <remoteInstance url="https://gateway.apim-wso2.com">
     <%- end -%>
         <id>gov</id>
         <%- hosts = scope.function_hiera(['hosts']) -%>
