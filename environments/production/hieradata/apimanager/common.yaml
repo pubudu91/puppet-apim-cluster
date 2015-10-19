@@ -26,9 +26,9 @@ nodeinfo:
 # if you want to have separate java versions for each deployment, maintain this
 # java: section in pattern.yaml file inside the required deployments.
 java: 
- home: jdk1.7.0_79
- package: jdk-7u79-linux-x64.gz
- dir: /opt
+ java_home: jdk1.7.0_80
+ java_package: jdk-7u80-linux-x64.gz
+ java_dir: /opt
 
 # These are the default port information
 # Used by nginx templates to configure listen ports and other ports
