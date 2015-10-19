@@ -14,7 +14,7 @@
         <dataSource>jdbc/WSO2CarbonDB</dataSource>
     </dbConfig>
 
-    <%- if @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
+    <%- if @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' or @amtype == 'gateway'-%>
     <dbConfig name="govregistry">
         <dataSource>jdbc/WSO2REG_DB</dataSource>
     </dbConfig>
