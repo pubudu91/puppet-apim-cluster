@@ -43,7 +43,6 @@
 #
 
 class apimanager::pubstore (
-  $version            = "1.9.0",
   $env                = undef,
   $cluster_domain     = undef,
   $sub_cluster_domain = undef,
@@ -51,13 +50,10 @@ class apimanager::pubstore (
   $members            = {'127.0.0.1' => '4000'},
   $port_mapping       = false,
   $offset             = 0,
-  $config_database          = 'config',
-  $maintenance_mode   = 'zero',
+  $config_database    = 'config',
   $depsync            = false,
   $clustering         = false,
   $cloud              = false,
-  $owner              = 'root',
-  $group              = 'root',
   $target             = "/mnt/${ipaddress}/pubstore",
   $membershipScheme   = 'multicast',
 ) inherits params {
