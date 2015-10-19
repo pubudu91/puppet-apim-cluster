@@ -106,4 +106,21 @@ class apimanager::params {
   $user_search_base         = 'ou=system'
   $group_search_base        = 'ou=system'
   $sharedgroup_search_base  = 'ou=SharedGroups,dc=wso2,dc=org'
+
+  # Master data source information
+  # used in all API Manager classes, i.e., gateway, publisher, pubstore, keymanager, apistore
+  $datasource                   = hiera("datasources")
+  $registry_db_connection_url   = $datasource[registry_db_connection_url]
+  $registry_db_user             = $datasource[registry_db_user]
+  $registry_db_password         = $datasource[registry_db_password]
+  $registry_db_driver_name      = $datasource[registry_db_driver_name]
+  $userstore_db_connection_url  = $datasource[userstore_db_connection_url]
+  $userstore_db_user            = $datasource[userstore_db_user]
+  $userstore_db_password        = $datasource[userstore_db_password]
+  $userstore_db_driver_name     = $datasource[userstore_db_driver_name]
+  $apim_db_connection_url       = $datasource[apim_db_connection_url]
+  $apim_db_user                 = $datasource[apim_db_user]
+  $apim_db_password             = $datasource[apim_db_password]
+  $apim_db_driver_name          = $datasource[apim_db_driver_name]
+
 }

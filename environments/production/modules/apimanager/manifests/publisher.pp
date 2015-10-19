@@ -60,18 +60,6 @@ class apimanager::publisher (
   $group              = 'root',
   $target             = "/mnt/${ipaddress}/publisher",
   $membershipScheme   = 'multicast',
-  $registry_db_connection_url      = undef,
-  $registry_db_user                = undef,
-  $registry_db_password            = undef,
-  $registry_db_driver_name         = undef,
-  $userstore_db_connection_url     = undef,
-  $userstore_db_user               = undef,
-  $userstore_db_password           = undef,
-  $userstore_db_driver_name        = undef,
-  $apim_db_connection_url          = undef,
-  $apim_db_user                    = undef,
-  $apim_db_password                = undef,
-  $apim_db_driver_name             = undef,
 ) inherits params {
 
   $amtype          = 'publisher'
