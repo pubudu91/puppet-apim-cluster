@@ -45,7 +45,7 @@
         </datasource>
 <%- end -%>
 
-<%- if @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
+<%- if @amtype != 'keymanager' -%>
         <datasource>
             <name>WSO2REG_DB</name>
             <description>The datasource used by the registry</description>
