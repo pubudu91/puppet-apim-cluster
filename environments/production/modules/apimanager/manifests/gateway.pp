@@ -56,8 +56,6 @@ class apimanager::gateway (
   $target             = "/mnt/${ipaddress}/gateway",
   $membershipScheme   = 'multicast',
   $depsync_enabled    = false,
-  $tokenPersistenceProcessor       = undef,
-  $removeOpenIDConnect             = false,
 ) inherits params {
 
   $amtype          = 'gateway'
@@ -79,7 +77,7 @@ class apimanager::gateway (
     'deployment/server/synapse-configs/default/api/_AuthorizeAPI_.xml',
     'deployment/server/synapse-configs/default/api/_RevokeAPI_.xml',
     'conf/tomcat/catalina-server.xml',
-    'conf/identity.xml'
+    'conf/identity.xml',
 #    'deployment/server/jaggeryapps/publisher/site/conf/site.json',
 #    'deployment/server/jaggeryapps/store/site/conf/site.json',
     ]

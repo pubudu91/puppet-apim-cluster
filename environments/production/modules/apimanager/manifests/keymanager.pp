@@ -73,6 +73,7 @@ class apimanager::keymanager (
     'conf/registry.xml',
     'conf/user-mgt.xml',
     'conf/log4j.properties',
+    'conf/identity.xml',
 #    'conf/tomcat/catalina-server.xml',
 #    'deployment/server/jaggeryapps/publisher/site/conf/site.json',
 #    'deployment/server/jaggeryapps/store/site/conf/site.json',

@@ -75,6 +75,7 @@ class apimanager::publisher (
     'conf/tomcat/catalina-server.xml',
     'conf/log4j.properties',
     'deployment/server/jaggeryapps/publisher/site/conf/site.json',
+    'conf/identity.xml',
 #    'deployment/server/jaggeryapps/store/site/conf/site.json',
     ]
 

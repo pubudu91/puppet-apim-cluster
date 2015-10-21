@@ -63,6 +63,7 @@ class apimanager::pubstore (
   $carbon_version  = $version
   $service_code    = 'am'
   $carbon_home     = "${target}/wso2${service_code}-${carbon_version}"
+  $is_lb_fronted   = 'true'
 
   $service_templates = [
     'conf/api-manager.xml',
@@ -74,6 +75,7 @@ class apimanager::pubstore (
     'deployment/server/jaggeryapps/publisher/site/conf/site.json',
     'deployment/server/jaggeryapps/store/site/conf/site.json',
     'conf/tomcat/catalina-server.xml',
+    'conf/identity.xml',
     ]
 
   tag($service_code)

@@ -9,7 +9,6 @@ node /publisher/ inherits base {
         cloud                           => $publisher[cloud],
         cluster_domain                  => $publisher[cluster_domain],
         sub_cluster_domain              => $publisher[sub_cluster_domain],
-        maintenance_mode                => $common[maintenance_mode],
         members                         => $publisher[members],
         port_mapping                    => $publisher[port_mapping],
         stage                           => $publisher[stage],
@@ -25,7 +24,6 @@ node /pubstore/ inherits base {
         membershipScheme                => $pubstore[membershipScheme],
         cloud                           => $pubstore[cloud],
         sub_cluster_domain              => $pubstore[sub_cluster_domain],
-        maintenance_mode                => $common[maintenance_mode],
         members                         => $pubstore[members],
         port_mapping                    => $pubstore[port_mapping],
         stage                           => $pubstore[stage],
@@ -43,7 +41,6 @@ node /store/ inherits base {
         cloud                           => $store[cloud],
         cluster_domain                  => $store[cluster_domain],
         sub_cluster_domain              => $store[sub_cluster_domain],
-        maintenance_mode                => $common[maintenance_mode],
         members                         => $store[members],
         port_mapping                    => $store[port_mapping],
         stage                           => $store[stage],
@@ -60,7 +57,6 @@ node /keymanager/ inherits base {
         membershipScheme                => $keymanager[membershipScheme],
         cloud                           => $keymanager[cloud],
         sub_cluster_domain              => $keymanager[sub_cluster_domain],
-        maintenance_mode                => $common[maintenance_mode],
         members                         => $keymanager[members],
         port_mapping                    => $keymanager[port_mapping],
         stage                           => $keymanager[stage],
@@ -80,8 +76,6 @@ node /gateway/ inherits base {
         members                         => $gateway[members],
         port_mapping                    => $gateway[port_mapping],
         stage                           => $gateway[stage],
-        tokenPersistenceProcessor       => $gateway[TokenPersistenceProcessor],
-        removeOpenIDConnect             => $gateway[removeOpenIDConnect],
     }
 }
 
