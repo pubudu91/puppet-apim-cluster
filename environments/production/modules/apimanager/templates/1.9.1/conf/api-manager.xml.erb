@@ -67,7 +67,7 @@
 		The DefaultClaimsRetriever class adds user claims from the default carbon user store.
 	-->
 
-     <%- if testconfig['addClaimsRetrieverImplClass'] == true -%>
+     <%- if testconfig['addClaimsRetrieverImplClass'] == true -%>	
       <ClaimsRetrieverImplClass>org.wso2.carbon.apimgt.impl.token.DefaultClaimsRetriever</ClaimsRetrieverImplClass>
      <%- end -%>
 	<!--
@@ -92,7 +92,7 @@
 	-->
 
      <%- if testconfig['enableTokenGeneration'] == true -%>
-        <EnableTokenGeneration>true</EnableTokenGeneration>
+	<EnableTokenGeneration>true</EnableTokenGeneration>
      <%- end -%>
 
         <!--
@@ -325,11 +325,13 @@
             Enable/Disable JWT caching.
         -->
         <EnableJWTCache><%= testconfig['enableJWTCache'] %></EnableJWTCache>
+
         <!--
             Enable/Disable API key validation information caching at key-management server
         -->
 
         <EnableKeyMgtValidationInfoCache><%= testconfig['enableKeyMgtValidationInfoCache'] %></EnableKeyMgtValidationInfoCache>
+
         <!--
         Configurations related to enable thrift support for key-management related communication.
         If you want to switch back to Web Service Client, change the value of "KeyValidatorClientType" to "WSClient".

@@ -2,17 +2,9 @@
 gateway:
  depsync: true
 # offset: 0
- clustering: true
+ clustering: false
  cloud: false
  sub_cluster_domain: mgt
  port_mapping: false
  stage: deploy
- depsync_enabled: true 
- membershipScheme: wka
- members:
-    - 
-     name: gateway1
-     port:  4000
-    - 
-     name: gateway2
-     port: 4000
+ depsync_enabled: true

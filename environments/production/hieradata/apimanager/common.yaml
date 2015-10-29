@@ -64,3 +64,4 @@ testconfig:
  enableBillingAndUsage: false
  enableJWTCache: false
  enableKeyMgtValidationInfoCache: false
+ removeOpenIDConnect: false
