@@ -31,29 +31,29 @@ upstreams:
 # store
     - 
       name: storehttp
-      lb_mechanism: ip_hash
+      lb_mechanism:
       hosts:
         host:
           - 
            hostname: store3
-           hostrole:
+           hostrole: active
            porttype: HTTPservlet
           - 
            hostname: store4
-           hostrole:
+           hostrole: passive
            porttype: HTTPservlet
     - 
       name: storehttps
-      lb_mechanism: ip_hash
+      lb_mechanism:
       hosts:
         host:
           - 
            hostname: store3
-           hostrole:
+           hostrole: active
            porttype: HTTPSservlet
           - 
            hostname: store4
-           hostrole:
+           hostrole: passive
            porttype: HTTPSservlet
 # publisher
     - 
