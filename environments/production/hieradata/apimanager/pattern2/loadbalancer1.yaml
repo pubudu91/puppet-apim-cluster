@@ -1,59 +1,75 @@
 ---
-upstreams:
-# gateway
-    - 
+upstreams: 
+  - 
       name: gatewayhttp
-      lb_mechanism: ip_hash
+      lb_mechanism:
       hosts:
         host:
-          - 
-           hostname: gateway1
-           hostrole:
-           porttype: HTTPservlet
-          - 
-           hostname: gateway2
-           hostrole:
-           porttype: HTTPservlet 
-    - 
+         - 
+          hostname: gatewaywkr1
+          hostrole: active
+          porttype: HTTPservlet
+         - 
+          hostname: gatewaywkr2
+          hostrole: passive
+          porttype: HTTPservlet
+  - 
       name: gatewayhttps
-      lb_mechanism: ip_hash
+      lb_mechanism:
       hosts:
         host:
-          - 
-           hostname: gateway1
-           hostrole:
-           porttype: HTTPSservlet
-          - 
-           hostname: gateway2
-           hostrole: 
-           porttype: HTTPSservlet 
-    - 
+         - 
+          hostname: gatewaywkr1
+          hostrole: active
+          porttype: HTTPSservlet
+         - 
+          hostname: gatewaywkr2
+          hostrole: passive
+          porttype: HTTPSservlet
+  -   
       name: gatewaynhttp
-      lb_mechanism: 
+      lb_mechanism:
       hosts:
         host:
           - 
-           hostname: gateway1
-           hostrole: active 
+           hostname: gatewaywkr1
+           hostrole: active
            porttype: NHTTP
           - 
-           hostname: gateway2
+           hostname: gatewaywkr2
            hostrole: passive
            porttype: NHTTP
-    - 
+  - 
+      name: mgtgatewayhttp
+      lb_mechanism: ip_hash
+      hosts:
+        host:
+         - 
+          hostname: gatewaymgr1
+          hostrole:
+          porttype: HTTPservlet
+  - 
+      name: mgtgatewayhttps
+      lb_mechanism: ip_hash
+      hosts:
+        host:
+         - 
+          hostname: gatewaymgr1
+          hostrole:
+          porttype: HTTPSservlet
+  - 
       name: gatewaynhttps
-      lb_mechanism: 
+      lb_mechanism:
       hosts:
         host:
           - 
-           hostname: gateway1
+           hostname: gatewaywkr1
            hostrole: active
            porttype: NHTTPS
           - 
-           hostname: gateway2
+           hostname: gatewaywkr2
            hostrole: passive
            porttype: NHTTPS
-
 servers:
 # gateway
   - 
@@ -66,7 +82,7 @@ servers:
      location:
         - 
          context: "/"
-         proxypass: gatewaynhttps
+         proxypass: gatewayhttps
          protocol: https
   - 
    port: HTTP
@@ -87,7 +103,7 @@ servers:
      location:
         - 
          context: "/"
-         proxypass: gatewayhttps
+         proxypass: mgtgatewayhttps
          protocol: https
   - 
    port: NHTTP
