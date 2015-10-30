@@ -21,7 +21,7 @@ nodeinfo:
  group: wso2user
  # SVN repo information used for depsync setup
  # this is used in gateway nodes when depsync enabled
- svn_url: http://192.168.57.233/svn/testrepo/apim2
+ svn_url: http://192.168.57.233/svn/testrepo/apim
  svn_username: user1
  svn_password: user1
 
