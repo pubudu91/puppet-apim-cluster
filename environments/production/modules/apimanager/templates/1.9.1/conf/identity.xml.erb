@@ -86,11 +86,12 @@
         <EnableOAuthCache>true</EnableOAuthCache>
         <!-- Configure the security measures needs to be done prior to store the token in the database,
           such as hashing, encrypting, etc.-->
+        <%- tokenPersistenceProcessor = scope.function_hiera(['testconfig'])['TokenPersistenceProcessor'] -%>
         <TokenPersistenceProcessor>
-        <%- if @tokenPersistenceProcessor==nil -%>
+        <%- if tokenPersistenceProcessor==nil -%>
         org.wso2.carbon.identity.oauth.tokenprocessor.PlainTextPersistenceProcessor
         <%- else -%>
-        <%= @tokenPersistenceProcessor %>
+        <%= tokenPersistenceProcessor %>
         <%- end -%>
         </TokenPersistenceProcessor>
         <ClientAuthHandlers>
@@ -111,7 +112,7 @@
             </SupportedResponseType>
         </SupportedResponseTypes>
         <!-- Supported Grant Types -->
-        <%- grantTypes = scope.function_hiera(['gateway'])['supportedGrantTypes'] -%>
+        <%- grantTypes = scope.function_hiera(['testconfig'])['supportedGrantTypes'] -%>
         <SupportedGrantTypes>
             <SupportedGrantType>
                 <GrantTypeName>authorization_code</GrantTypeName>
@@ -153,17 +154,17 @@
                 <%- if grantTypes!=nil -%>
                 <%- grantTypes.each do |type| -%>
                 <%- if type["type"] == 'iwa:ntlm' and type["removeGrantTypeValidatorImplClass"]-%>
-                <%- removeValidatorImplClas = true -%>
+                <%- removeValidatorImplClass = true -%>
                 <%- end -%>
                 <%- end -%>
                 <%- end -%>
-                <%- if !grantTypeHandlerImplClass -%>
+                <%- if !removeValidatorImplClass -%>
                 <GrantTypeValidatorImplClass>org.wso2.carbon.identity.oauth.common.NTLMAuthenticationValidator</GrantTypeValidatorImplClass>
                 <%- end -%>
             </SupportedGrantType>
         </SupportedGrantTypes>
         <OAuthCallbackHandlers>
-            <OAuthCallbackHandler class="org.wso2.carbon.apimgt.keymgt.util.APIManagerOAuthCallbackHandler"/>
+            <OAuthCallbackHandler Class="org.wso2.carbon.apimgt.keymgt.util.APIManagerOAuthCallbackHandler"/>
         </OAuthCallbackHandlers>
 	<OAuthScopeValidator class="org.wso2.carbon.identity.oauth2.validators.JDBCScopeValidator"/>
 
@@ -204,7 +205,8 @@
     	<SAML2Grant>
 		<!--SAML2TokenHandler></SAML2TokenHandler-->
 	</SAML2Grant>
-        <%- if @removeOpenIDConnect==false -%>
+        <%- removeOpenIDConnect = scope.function_hiera(['testconfig'])['removeOpenIDConnect'] -%>
+        <%- if removeOpenIDConnect==false -%>
 	<OpenIDConnect>
               <IDTokenBuilder>org.wso2.carbon.identity.openidconnect.DefaultIDTokenBuilder</IDTokenBuilder>
               <IDTokenIssuerID>https://localhost:9443/oauth2endpoints/token</IDTokenIssuerID>

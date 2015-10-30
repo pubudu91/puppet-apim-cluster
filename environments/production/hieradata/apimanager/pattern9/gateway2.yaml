@@ -2,27 +2,9 @@
 gateway:
  depsync: true
 # offset: 0
- clustering: true
+ clustering: false
  cloud: false
  sub_cluster_domain: mgt
  port_mapping: false
  stage: deploy
- depsync_enabled: true 
- membershipScheme: wka
- members:
-    - 
-     name: gateway1
-     port:  4000
-    - 
-     name: gateway2
-     port: 4000
- TokenPersistenceProcessor: org.wso2.carbon.identity.oauth.tokenprocessor.EncryptionDecryptionPersistenceProcessor
- removeGrantTypeValidatorImplClass: false
- #removeOpenIDConnect: true
- supportedGrantTypes:
-  - 
-   type: iwa:ntlm
-   removeGrantTypeValidatorImplClass: false
-  - 
-   type: urn:ietf:params:oauth:grant-type:saml2-bearer
-  # GrantTypeHandlerImplClass: org.wso2.carbon.identity.oauth2.token.handlers.grant.saml.SAML2BearerGrantHandler
+ depsync_enabled: true

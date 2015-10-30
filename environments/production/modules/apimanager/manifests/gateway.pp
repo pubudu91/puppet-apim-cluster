@@ -43,7 +43,6 @@
 #
 
 class apimanager::gateway (
-  $version            = "1.9.0",
   $env                = undef,
   $sub_cluster_domain = undef,
   $local_member_port  = '4000',
@@ -51,20 +50,12 @@ class apimanager::gateway (
   $port_mapping       = false,
   $offset             = 0,
   $config_database    = 'config',
-  $maintenance_mode   = 'zero',
   $depsync            = false,
   $clustering         = false,
   $cloud              = false,
-  $owner              = 'root',
-  $group              = 'root',
   $target             = "/mnt/${ipaddress}/gateway",
   $membershipScheme   = 'multicast',
   $depsync_enabled    = false,
-  $svn_url            = undef,
-  $svn_username       = undef,
-  $svn_password       = undef,
-  $tokenPersistenceProcessor       = undef,
-  $removeOpenIDConnect             = false,
 ) inherits params {
 
   $amtype          = 'gateway'
@@ -86,7 +77,7 @@ class apimanager::gateway (
     'deployment/server/synapse-configs/default/api/_AuthorizeAPI_.xml',
     'deployment/server/synapse-configs/default/api/_RevokeAPI_.xml',
     'conf/tomcat/catalina-server.xml',
-    'conf/identity.xml'
+    'conf/identity.xml',
 #    'deployment/server/jaggeryapps/publisher/site/conf/site.json',
 #    'deployment/server/jaggeryapps/store/site/conf/site.json',
     ]

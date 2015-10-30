@@ -1,16 +1,18 @@
 # This file contains common data for a given deployment.
 ---
+# This will contain API Manager component/instance specific information
 nodeinfo: 
  # Product version
  version: 1.9.1
  # Cluster maintenance mode
  # Allowed values
- # 1. zero - Stop carbon server process, remove carbon home and remove the locally
- #           stored product pack zip file. New product pack file will be downloaded from 
- #           puppet master file server.
- # 2. new - Stop carbon server process, remove carbon home.
- # 3. refresh - Remove lock file, stop carbon server process.
- # Currently set to zero mode
+ # 1. zero - i) Stop carbon server process
+ #           ii) Remove carbon home
+ #           iii) Remove the locally stored product pack zip file. 
+ # 2. new - i) Stop carbon server process
+ #          ii) Remove carbon home
+ # 3. refresh - i) Stop carbon server process and remove lock file
+ # Current config -> zero mode
  # i.e., each deployment will be setup from a fresh product pack 
  # downloaded from puppet master and configured using product templates
  maintenance_mode: zero
@@ -18,6 +20,7 @@ nodeinfo:
  owner: wso2user
  group: wso2user
  # SVN repo information used for depsync setup
+ # this is used in gateway nodes when depsync enabled
  svn_url: http://192.168.57.233/svn/testrepo/apim2
  svn_username: user1
  svn_password: user1
@@ -25,6 +28,8 @@ nodeinfo:
 # java version information
 # if you want to have separate java versions for each deployment, maintain this
 # java: section in pattern.yaml file inside the required deployments.
+# if you have not given any java information in common.yaml(here) or in pattern.yaml,
+# the default values will be taken from modules/wso2base/manifests/params.pp file
 java: 
  java_home: jdk1.7.0_80
  java_package: jdk-7u80-linux-x64.gz
@@ -41,6 +46,7 @@ defaultportinfo:
  NHTTP: 8280
  NHTTPS: 8243
 
+# These are test automation related configuration parameters
 testconfig:
  enableEncryptPersistedTokens: false
  enableDisplayMultipleVersions: false
@@ -58,3 +64,4 @@ testconfig:
  enableBillingAndUsage: false
  enableJWTCache: false
  enableKeyMgtValidationInfoCache: false
+ removeOpenIDConnect: false

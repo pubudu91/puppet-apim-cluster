@@ -4,56 +4,56 @@ upstreams:
 # keymanager
     - 
       name: keymgrhttp
-      lb_mechanism: ip_hash
+      lb_mechanism:
       hosts:
         host:
           - 
            hostname: keymanager1
-           hostrole:
+           hostrole: active
            porttype: HTTPservlet
           - 
            hostname: keymanager2
-           hostrole:
+           hostrole: passive
            porttype: HTTPservlet
     - 
       name: keymgrhttps
-      lb_mechanism: ip_hash
+      lb_mechanism: 
       hosts:
         host:
           - 
            hostname: keymanager1
-           hostrole:
+           hostrole: active
            porttype: HTTPSservlet
           - 
            hostname: keymanager2
-           hostrole: 
+           hostrole: passive
            porttype: HTTPSservlet
 # store
     - 
       name: storehttp
-      lb_mechanism: ip_hash
+      lb_mechanism:
       hosts:
         host:
           - 
            hostname: store1
-           hostrole:
+           hostrole: active 
            porttype: HTTPservlet
           - 
            hostname: store2
-           hostrole:
+           hostrole: passive
            porttype: HTTPservlet
     - 
       name: storehttps
-      lb_mechanism: ip_hash
+      lb_mechanism:
       hosts:
         host:
           - 
            hostname: store1
-           hostrole:
+           hostrole: active
            porttype: HTTPSservlet
           - 
            hostname: store2
-           hostrole:
+           hostrole: passive
            porttype: HTTPSservlet
 # publisher
     - 

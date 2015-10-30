@@ -7,14 +7,3 @@ keymanager:
  sub_cluster_domain: false
  port_mapping: false
  stage: deploy
- TokenPersistenceProcessor: org.wso2.carbon.identity.oauth.tokenprocessor.EncryptionDecryptionPersistenceProcessor
- removeGrantTypeValidatorImplClass: false
- #removeOpenIDConnect: true
- supportedGrantTypes:
-  - 
-   type: iwa:ntlm
-   removeGrantTypeValidatorImplClass: false
-  - 
-   type: urn:ietf:params:oauth:grant-type:saml2-bearer
-  # GrantTypeHandlerImplClass: org.wso2.carbon.identity.oauth2.token.handlers.grant.saml.SAML2BearerGrantHandler
-
