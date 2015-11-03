@@ -3,7 +3,7 @@ gateway:
  depsync: true
  # offset: 0
  local_member_port: 4000
- clustering: false
+ clustering: true
  cloud: false
  cluster_domain: wso2.gateway.domain
  sub_cluster_domain: mgt
@@ -11,3 +11,10 @@ gateway:
  stage: deploy
  depsync_enabled: true
  membershipScheme: wka
+ members:
+    - 
+     name: gateway1
+     port: 4000
+    - 
+     name: gateway2
+     port:  4000

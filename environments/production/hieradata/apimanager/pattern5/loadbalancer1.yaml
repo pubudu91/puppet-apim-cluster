@@ -2,91 +2,91 @@
 upstreams:
 # gateway
     - 
-      name: gatewayhttp
-      lb_mechanism: ip_hash
+      name: gatewaymgthttp
+      lb_mechanism:
       hosts:
         host:
           - 
            hostname: gateway1
-           hostrole:
+           hostrole: active
            porttype: HTTPservlet
           - 
            hostname: gateway2
-           hostrole: 
+           hostrole: passive
            porttype: HTTPservlet
     - 
-      name: gatewayhttps
-      lb_mechanism: ip_hash
+      name: gatewaymgthttps
+      lb_mechanism:
       hosts:
         host:
           - 
            hostname: gateway1
-           hostrole:
+           hostrole: active
            porttype: HTTPSservlet
           - 
            hostname: gateway2
-           hostrole:
+           hostrole: passive
            porttype: HTTPSservlet
     - 
       name: gatewaynhttp
-      lb_mechanism: ip_hash
+      lb_mechanism:
       hosts:
         host:
           - 
            hostname: gateway1
-           hostrole:
+           hostrole: active
            porttype: NHTTP
           - 
            hostname: gateway2
-           hostrole:
+           hostrole: passive
            porttype: NHTTP
     - 
       name: gatewaynhttps
-      lb_mechanism: ip_hash
+      lb_mechanism:
       hosts:
         host:
           - 
            hostname: gateway1
-           hostrole:
+           hostrole: active
            porttype: NHTTPS
           - 
            hostname: gateway2
-           hostrole: 
+           hostrole: passive
            porttype: NHTTPS
 
 # store
     - 
       name: storehttp
-      lb_mechanism: ip_hash
+      lb_mechanism:
       hosts:
         host:
           - 
            hostname: store1
-           hostrole:
+           hostrole: active
            porttype: HTTPservlet
           - 
            hostname: store2
-           hostrole:
+           hostrole: passive
            porttype: HTTPservlet
     - 
       name: storehttps
-      lb_mechanism: ip_hash
+      lb_mechanism:
       hosts:
         host:
           - 
            hostname: store1
-           hostrole:
+           hostrole: active
            porttype: HTTPSservlet
           - 
            hostname: store2
-           hostrole:
+           hostrole: passive
            porttype: HTTPSservlet
 
 servers:
 # gateway
   - 
    port: HTTPS
-   name: gateway_domain
+   name: gatewaymgt_domain
    sslstatus: "on"
    sslcertificate: /etc/nginx/ssl/gateway.crt
    sslcertificatekey: /etc/nginx/ssl/gateway.key
@@ -94,29 +94,17 @@ servers:
      location:
         - 
          context: "/"
-         proxypass: gatewaynhttps
+         proxypass: gatewaymgthttps
          protocol: https
   - 
    port: HTTP
-   name: gateway_domain
+   name: gatewaymgt_domain
    locations:
     location:
         - 
          context: "/"
-         proxypass: gatewayhttp
+         proxypass: gatewaymgthttp
          protocol: http
-  - 
-   port: HTTPS
-   name: gatewaymgt_domain
-   sslstatus: "on"
-   sslcertificate: /etc/nginx/ssl/mgtgateway.crt
-   sslcertificatekey: /etc/nginx/ssl/mgtgateway.key
-   locations:
-     location:
-        - 
-         context: "/"
-         proxypass: gatewayhttps
-         protocol: https
   - 
    port: NHTTP
    name: gateway_domain
