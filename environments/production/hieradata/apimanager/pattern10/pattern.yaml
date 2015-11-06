@@ -1,0 +1,23 @@
+testconfig:
+ # to enable Encryption on access tokens, consumer keys and consumer secrets
+ # --- api-manager.xml 
+ enableEncryptPersistedTokens: true
+ # --- identity.xml
+ TokenPersistenceProcessor: org.wso2.carbon.identity.oauth.tokenprocessor.EncryptionDecryptionPersistenceProcessor
+ # 
+ enableDisplayMultipleVersions: false
+ enableDisplayAllAPIs: false
+ enableReuseAppName: true
+ enableIsEmailUserName: false
+ usernameWithEmailJavaScriptRegEx: false
+ enableEmailUserName: false
+ enableAuditLogFile: false
+ addClaimsRetrieverImplClass: false
+ addConsumerDialectURI: false
+ addSignatureAlgorithm: false
+ enableTokenGeneration: false
+ enableRemoveOAuthHeadersFromOutMessage: false
+ enableBillingAndUsage: false
+ enableJWTCache: false
+ enableKeyMgtValidationInfoCache: false
+ removeOpenIDConnect: false

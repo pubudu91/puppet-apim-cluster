@@ -1,0 +1,22 @@
+---
+hosts:
+  puppetmaster_domain: puppet,puppetmaster
+  dbserver_domain: qaa2mysql,dbserver
+  publisher_domain: pub.am.wso2.com,loadbalancer2
+  store_domain: store.am.wso2.com,loadbalancer2
+  keymanager_domain: keymanager.am.wso2.com,loadbalancer2
+  gateway_domain: gateway.am.wso2.com,loadbalancer1
+  gatewaymgt_domain: mgt.gateway.am.wso2.com,loadbalancer1
+
+nodes:
+  loadbalancer1: 192.168.57.149
+  gatewaymgr1: 192.168.57.131
+  gatewaywkr1: 192.168.57.130
+  loadbalancer2: 192.168.57.127
+  keymanager1: 192.168.57.145
+  keymanager2: 192.168.57.147
+  publisher1: 192.168.57.141
+  store1: 192.168.57.137 
+  store2: 192.168.57.136
+  puppetmaster: 192.168.57.14
+  dbserver: 192.168.57.140
