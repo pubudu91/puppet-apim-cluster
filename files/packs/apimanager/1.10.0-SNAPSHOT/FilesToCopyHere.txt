@@ -1,0 +1,5 @@
+Copy the API Manager 1.10.0-SNAPSHOT pack here
+
+e.g.: 
+/etc/puppet/files/packs/apimanager/1.10.0-SNAPSHOT 
+                                     `-- wso2am-1.10.0-SNAPSHOT.zip	

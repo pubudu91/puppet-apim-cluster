@@ -1,3 +1,0 @@
-Copy product pack file here
-
-wso2am-1.6.0.zip
