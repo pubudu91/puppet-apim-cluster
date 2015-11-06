@@ -18,6 +18,5 @@ nodes:
   publisher1: 192.168.57.228
   store1: 192.168.57.247
   store2: 192.168.57.248
-  publisher1: 192.168.57.236
   puppetmaster: 192.168.57.148
   dbserver: 192.168.57.233

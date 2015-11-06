@@ -3,33 +3,43 @@ upstreams:
 # gateway
     - 
       name: gatewayhttp
-      lb_mechanism: ip_hash
+      lb_mechanism:
       hosts:
         host:
-          - 
-           hostname: gateway1
-           hostrole:
-           porttype: HTTPservlet
           - 
            hostname: gateway2
            hostrole: 
            porttype: HTTPservlet
     - 
       name: gatewayhttps
-      lb_mechanism: ip_hash
+      lb_mechanism: 
+      hosts:
+        host:
+          - 
+           hostname: gateway2
+           hostrole:  
+           porttype: HTTPSservlet
+    - 
+      name: gatewaymgthttp
+      lb_mechanism:
+      hosts:
+        host:
+          - 
+           hostname: gateway1
+           hostrole:
+           porttype: HTTPservlet
+    - 
+      name: gatewaymgthttps
+      lb_mechanism:
       hosts:
         host:
           - 
            hostname: gateway1
            hostrole:
            porttype: HTTPSservlet
-          - 
-           hostname: gateway2
-           hostrole:  
-           porttype: HTTPSservlet
     - 
       name: gatewaynhttp
-      lb_mechanism: ip_hash
+      lb_mechanism:
       hosts:
         host:
           - 
@@ -38,7 +48,7 @@ upstreams:
            porttype: NHTTP
     - 
       name: gatewaynhttps
-      lb_mechanism: ip_hash
+      lb_mechanism:
       hosts:
         host:
           - 
@@ -125,7 +135,7 @@ servers:
      location:
         - 
          context: "/"
-         proxypass: gatewaynhttps
+         proxypass: gatewayhttps
          protocol: https
   - 
    port: HTTP
@@ -146,8 +156,17 @@ servers:
      location:
         - 
          context: "/"
-         proxypass: gatewayhttps
+         proxypass: gatewaymgthttps
          protocol: https
+  - 
+   port: HTTP
+   name: gatewaymgt_domain
+   locations:
+    location:
+        - 
+         context: "/"
+         proxypass: gatewaymgthttp
+         protocol: http
   - 
    port: NHTTP
    name: gateway_domain
