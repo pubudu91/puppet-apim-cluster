@@ -74,7 +74,7 @@ class apimanager::apistore (
     'conf/user-mgt.xml',
     'conf/tomcat/catalina-server.xml',
     'conf/log4j.properties',
-    'conf/identity.xml',
+#    'conf/identity.xml',  # in APIM 1.10.0-SNAPSHOT this is located in conf/identity/identity.xml
 #    'deployment/server/jaggeryapps/publisher/site/conf/site.json',
     'deployment/server/jaggeryapps/store/site/conf/site.json',
     ]

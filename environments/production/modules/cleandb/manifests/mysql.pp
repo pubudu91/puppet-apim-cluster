@@ -9,7 +9,7 @@ staging::deploy { "wso2am-${apim_version}.zip":
 }
 
 exec { "delete-db":
-  command 	=> "/usr/bin/mysql -u$user -p$password  -e \"DROP DATABASE IF EXISTS apimgtdb;DROP DATABASE IF EXISTS regdb;DROP DATABASE IF EXISTS userdb;\"",
+  command 	=> "/usr/bin/mysql -u$user -p$password  -e \"DROP DATABASE IF EXISTS apimgtdb;DROP DATABASE IF EXISTS regdb;DROP DATABASE IF EXISTS userdb;DROP DATABASE IF EXISTS statsdb;\"",
 }
 
 mysql::db { 'apimgtdb':
@@ -33,6 +33,12 @@ mysql::db { 'regdb':
     password 	=> $password,
     host     	=> $host,
     sql 	=> "/tmp/wso2am-${apim_version}/dbscripts/mysql.sql",
+ }
+
+mysql::db { 'statsdb':
+    user        => $user,
+    password    => $password,
+    host        => $host,
  }
 
 }

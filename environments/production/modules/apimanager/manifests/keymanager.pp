@@ -73,7 +73,7 @@ class apimanager::keymanager (
     'conf/registry.xml',
     'conf/user-mgt.xml',
     'conf/log4j.properties',
-    'conf/identity.xml',
+#    'conf/identity.xml',   # in APIM 1.10.0-SNAPSHOT this is located in conf/identity/identity.xml
 #    'conf/tomcat/catalina-server.xml',
 #    'deployment/server/jaggeryapps/publisher/site/conf/site.json',
 #    'deployment/server/jaggeryapps/store/site/conf/site.json',

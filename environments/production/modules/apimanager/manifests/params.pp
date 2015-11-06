@@ -40,6 +40,10 @@ class apimanager::params {
   $apim_db_user                 = $datasource[apim_db_user]
   $apim_db_password             = $datasource[apim_db_password]
   $apim_db_driver_name          = $datasource[apim_db_driver_name]
+  $stats_db_connection_url      = $datasource[stats_db_connection_url]
+  $stats_db_user                = $datasource[stats_db_user]
+  $stats_db_password            = $datasource[stats_db_password]
+  $stats_db_driver_name         = $datasource[stats_db_driver_name]
 
   #Adding instance common data
   $version                      = $common[version]

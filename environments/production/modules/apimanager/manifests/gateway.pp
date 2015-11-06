@@ -77,7 +77,7 @@ class apimanager::gateway (
     'deployment/server/synapse-configs/default/api/_AuthorizeAPI_.xml',
     'deployment/server/synapse-configs/default/api/_RevokeAPI_.xml',
     'conf/tomcat/catalina-server.xml',
-    'conf/identity.xml',
+#    'conf/identity.xml', # in APIM 1.10.0-SNAPSHOT this is located in conf/identity/identity.xml
 #    'deployment/server/jaggeryapps/publisher/site/conf/site.json',
 #    'deployment/server/jaggeryapps/store/site/conf/site.json',
     ]
