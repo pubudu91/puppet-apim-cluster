@@ -302,15 +302,12 @@ do
     -Dorg.terracotta.quartz.skipUpdateCheck=true \
     -Djava.security.egd=file:/dev/./urandom \
     -Dfile.encoding=UTF8 \
-    <%- if @amtype == 'gateway' -%>
-    -Dprofile=gateway-worker \
-    <%- end -%>
     -Djava.net.preferIPv4Stack=true \
     -Dcom.ibm.cacheLocalHost=true \
     -DworkerNode=false \
     org.wso2.carbon.bootstrap.Bootstrap $*
     status=$?
-   <%- else -%>
+  <%- else -%>
     $JAVACMD \
     -Xbootclasspath/a:"$CARBON_XBOOTCLASSPATH" \
     -Xms256m -Xmx1024m -XX:MaxPermSize=256m \
@@ -340,15 +337,6 @@ do
     -Dorg.terracotta.quartz.skipUpdateCheck=true \
     -Djava.security.egd=file:/dev/./urandom \
     -Dfile.encoding=UTF8 \
-    <%- if @amtype == 'gateway' -%>
-    -Dprofile=gateway-manager \
-    <%- elsif @amtype == 'keymanager' -%>
-    -Dprofile=api-key-manager \
-    <%- elsif @amtype == 'publisher' -%>
-    -Dprofile=api-publisher \
-    <%- elsif @amtype == 'apistore' -%>
-    -Dprofile=api-store \
-    <%- end -%>
     -Djava.net.preferIPv4Stack=true \
     -Dcom.ibm.cacheLocalHost=true \
     -DworkerNode=false \

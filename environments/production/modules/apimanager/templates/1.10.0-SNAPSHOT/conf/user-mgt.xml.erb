@@ -24,9 +24,10 @@
                      <Password>admin</Password>
                 </AdminUser>
             <EveryOneRoleName>everyone</EveryOneRoleName> <!-- By default users in this role sees the registry root -->
+            <Property name="isCascadeDeleteEnabled">true</Property>
             <%- if @amtype == 'keymanager' or @amtype == 'gateway' or @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
-	    <Property name="dataSource">jdbc/WSO2UM_DB</Property>
-	    <%- else -%>
+            <Property name="dataSource">jdbc/WSO2UM_DB</Property>
+            <%- else -%>
             <Property name="dataSource">jdbc/WSO2CarbonDB</Property>
             <%- end -%>
         </Configuration>
@@ -39,7 +40,7 @@
             <Property name="ConnectionPassword">admin</Property>
             <Property name="LDAPConnectionTimeout">5000</Property>
             <Property name="Disabled">false</Property>           
-            <Property name="passwordHashMethod">SHA</Property>
+            <Property name="PasswordHashMethod">SHA</Property>
             <Property name="UserNameListFilter">(objectClass=person)</Property>
 	    <Property name="UserEntryObjectClass">wso2Person</Property>
             <Property name="UserSearchBase">ou=Users,dc=wso2,dc=org</Property>
@@ -54,6 +55,8 @@
 	    <Property name="WriteGroups">true</Property>
 	    <Property name="EmptyRolesAllowed">true</Property>
             <Property name="GroupSearchBase">ou=Groups,dc=wso2,dc=org</Property>
+            <Property name="PasswordJavaRegEx">^[\S]{5,30}$</Property>
+            <Property name="PasswordJavaRegExViolationErrorMsg">Password length should be between 5 to 30 characters</Property>
             <Property name="GroupNameListFilter">(objectClass=groupOfNames)</Property>
             <Property name="GroupEntryObjectClass">groupOfNames</Property>
             <Property name="GroupNameSearchFilter">(&amp;(objectClass=groupOfNames)(cn=?))</Property>
@@ -74,6 +77,7 @@
             <Property name="SCIMEnabled">false</Property>
 	    <Property name="ConnectionPoolingEnabled">false</Property>
 	    <Property name="MultiAttributeSeparator">,</Property>
+	    <Property name="IsBulkImportSupported">true</Property>
         </UserStoreManager-->
 
 	<!-- Following is the configuration for internal JDBC user store. This user store manager is based on JDBC. In case if application needs to manage 		     passwords externally set property <Property name="PasswordsExternallyManaged">true</Property>. In case if user core cache domain is needed to 			identify uniquely set property <Property name="UserCoreCacheIdentifier">domain</Property>. Furthermore properties, IsEmailUserName and 	     			DomainCalculation are readonly properties. 
@@ -91,8 +95,9 @@
             <Property name="UserNameUniqueAcrossTenants">false</Property>
             <Property name="PasswordJavaRegEx">^[\S]{5,30}$</Property>
             <Property name="PasswordJavaScriptRegEx">^[\S]{5,30}$</Property>
-	    <Property name="UsernameJavaRegEx">^[^~!#$;%^*+={}\\|\\\\&lt;&gt;,\'\"]{3,30}$</Property>
+	    <Property name="UsernameJavaRegEx">[a-zA-Z0-9._-|//]{3,30}$</Property>
 	    <Property name="UsernameJavaScriptRegEx">^[\S]{3,30}$</Property>
+            <Property name="PasswordJavaRegExViolationErrorMsg">Password length should be between 5 to 30 characters</Property>
 	    <Property name="RolenameJavaRegEx">^[^~!#$;%^*+={}\\|\\\\&lt;&gt;,\'\"]{3,30}$</Property>
 	    <Property name="RolenameJavaScriptRegEx">^[\S]{3,30}$</Property>
             <Property name="UserRolesCacheEnabled">true</Property>
@@ -102,6 +107,7 @@
             <Property name="SCIMEnabled">false</Property>
             <Property name="CaseInsensitiveUsername">true</Property>
             <Property name="MultiAttributeSeparator">,</Property>
+            <Property name="IsBulkImportSupported">true</Property>
         </UserStoreManager>
 	
 	<!-- If product is using an external LDAP as the user store in READ ONLY mode, use following user manager.
@@ -116,7 +122,7 @@
             <Property name="ConnectionName">uid=admin,ou=system</Property>
             <Property name="ConnectionPassword">admin</Property>
             <Property name="LDAPConnectionTimeout">5000</Property>
-	    <Property name="passwordHashMethod">PLAIN_TEXT</Property>
+	    <Property name="PasswordHashMethod">PLAIN_TEXT</Property>
             <Property name="UserSearchBase">ou=system</Property>
             <Property name="UserNameListFilter">(objectClass=person)</Property>
 	    <Property name="UserNameSearchFilter">(&amp;(objectClass=person)(uid=?))</Property>
@@ -160,7 +166,7 @@
             <Property name="ConnectionName">CN=admin,CN=Users,DC=WSO2,DC=Com</Property>
             <Property name="ConnectionPassword">A1b2c3d4</Property>
             <Property name="LDAPConnectionTimeout">5000</Property>
-	    <Property name="passwordHashMethod">PLAIN_TEXT</Property>
+	    <Property name="PasswordHashMethod">PLAIN_TEXT</Property>
             <Property name="UserSearchBase">CN=Users,DC=WSO2,DC=Com</Property>
             <Property name="UserEntryObjectClass">user</Property>
             <Property name="UserNameAttribute">cn</Property>
@@ -171,6 +177,8 @@
             <Property name="UsernameJavaRegEx">[a-zA-Z0-9._-|//]{3,30}$</Property>
             <Property name="UsernameJavaScriptRegEx">^[\S]{3,30}$</Property>
             <Property name="PasswordJavaScriptRegEx">^[\S]{5,30}$</Property>
+            <Property name="PasswordJavaRegEx">^[\S]{5,30}$</Property>
+            <Property name="PasswordJavaRegExViolationErrorMsg">Password length should be between 5 to 30 characters</Property>
 	    <Property name="RolenameJavaScriptRegEx">^[\S]{3,30}$</Property>
             <Property name="RolenameJavaRegEx">[a-zA-Z0-9._-|//]{3,30}$</Property>
 	    <Property name="ReadGroups">true</Property>
@@ -186,6 +194,7 @@
             <Property name="SharedTenantNameAttribute">ou</Property>
             <Property name="SharedTenantObjectClass">organizationalUnit</Property>
             <Property name="MembershipAttribute">member</Property>
+            <Property name="MemberOfAttribute">memberOf</Property>
             <Property name="GroupNameListFilter">(objectcategory=group)</Property>
 	    <Property name="GroupNameSearchFilter">(&amp;(objectClass=group)(cn=?))</Property>
             <Property name="UserRolesCacheEnabled">true</Property>
@@ -196,6 +205,7 @@
             <Property name="SCIMEnabled">false</Property>
 	    <Property name="ConnectionPoolingEnabled">false</Property>
 	    <Property name="MultiAttributeSeparator">,</Property>
+	    <Property name="IsBulkImportSupported">true</Property>
         </UserStoreManager-->
 	
 	<!-- If product is using an external LDAP as the user store in read/write mode, use following user manager 
@@ -208,7 +218,7 @@
             <Property name="ConnectionName">uid=admin,ou=system</Property>
             <Property name="ConnectionPassword">secret</Property>
             <Property name="LDAPConnectionTimeout">5000</Property>
-            <Property name="passwordHashMethod">PLAIN_TEXT</Property>
+            <Property name="PasswordHashMethod">PLAIN_TEXT</Property>
             <Property name="UserNameListFilter">(objectClass=person)</Property>
 	    <Property name="UserEntryObjectClass">inetOrgPerson</Property>
             <Property name="UserSearchBase">ou=system</Property>
@@ -229,6 +239,8 @@
             <Property name="GroupNameAttribute">cn</Property>
             <Property name="SharedGroupNameAttribute">cn</Property>
             <Property name="SharedGroupSearchBase">ou=SharedGroups,dc=wso2,dc=org</Property>
+            <Property name="PasswordJavaRegEx">^[\S]{5,30}$</Property>
+            <Property name="PasswordJavaRegExViolationErrorMsg">Password length should be between 5 to 30 characters</Property>
             <Property name="SharedGroupEntryObjectClass">groupOfNames</Property>
             <Property name="SharedGroupNameListFilter">(objectClass=groupOfNames)</Property>
             <Property name="SharedGroupNameSearchFilter">(&amp;(objectClass=groupOfNames)(cn=?))</Property>
@@ -243,6 +255,7 @@
             <Property name="SCIMEnabled">false</Property>
 	    <Property name="ConnectionPoolingEnabled">false</Property>
 	    <Property name="MultiAttributeSeparator">,</Property>
+	    <Property name="IsBulkImportSupported">true</Property>
         </UserStoreManager-->
 
 	<!-- Following user manager is used by Identity Server (IS) as its default user manager. 
@@ -260,7 +273,7 @@
             <Property name="ConnectionName">uid=admin,ou=system</Property>
             <Property name="ConnectionPassword">admin</Property>
             <Property name="LDAPConnectionTimeout">5000</Property>
-            <Property name="passwordHashMethod">SHA</Property>
+            <Property name="PasswordHashMethod">SHA</Property>
             <Property name="UserNameListFilter">(objectClass=person)</Property>
             <Property name="UserEntryObjectClass">identityPerson</Property>
             <Property name="UserSearchBase">ou=Users,dc=wso2,dc=org</Property>
@@ -285,6 +298,7 @@
             <Property name="SharedGroupSearchBase">ou=SharedGroups,dc=wso2,dc=org</Property>
             <Property name="SharedGroupEntryObjectClass">groupOfNames</Property>
             <Property name="SharedGroupNameListFilter">(objectClass=groupOfNames)</Property>
+            <Property name="PasswordJavaRegExViolationErrorMsg">Password length should be between 5 to 30 characters</Property>
             <Property name="SharedGroupNameSearchFilter">(&amp;(objectClass=groupOfNames)(cn=?))</Property>
             <Property name="SharedTenantNameListFilter">(objectClass=organizationalUnit)</Property>
             <Property name="SharedTenantNameAttribute">ou</Property>
@@ -298,6 +312,7 @@
             <Property name="MaxUserNameListLength">100</Property>
 	    <Property name="ConnectionPoolingEnabled">false</Property>
 	    <Property name="MultiAttributeSeparator">,</Property>
+	    <Property name="IsBulkImportSupported">true</Property>
         </ISUserStoreManager-->
 
 	<!--	Following configuration is for the CassandraUserStoreManager. The CassandraUserStoreManager is capable of using a Cassandra
@@ -355,7 +370,7 @@ UserDNPattern - This property will be used when authenticating users. During aut
 RoleDNPattern - This property will be used when checking whether user has been assigned to a given role. Rather than searching the role in search base, by 
                 using this property direct search can be done.
 
-passwordHashMethod - This says how the password should be stored. Allowed values are as follows,
+PasswordHashMethod - This says how the password should be stored. Allowed values are as follows,
                      SHA - Uses SHA digest method
                      MD5 - Uses MD 5 digest method
                      PLAIN_TEXT - Plain text passwords

@@ -13,7 +13,7 @@
     <dbConfig name="wso2registry">
         <dataSource>jdbc/WSO2CarbonDB</dataSource>
     </dbConfig>
-
+    
     <%- if @amtype != 'keymanager' -%>
     <dbConfig name="govregistry">
         <dataSource>jdbc/WSO2REG_DB</dataSource>
@@ -237,7 +237,7 @@
         <targetPath>/_system/nodes</targetPath>
     </mount-->
 
-    <%- if @amtype != 'keymanager' -%>
+     <%- if @amtype != 'keymanager' -%>
     <%- if @amtype == 'publisher' -%>
     <remoteInstance url="https://publisher.apim-wso2.com">
     <%- end -%>
@@ -264,6 +264,7 @@
          <targetPath>/_system/config</targetPath>
      </mount>
      <%- end -%>
+
 
     <!-- This defines index configuration which is used in meta data search feature of the registry -->
     <indexingConfiguration>

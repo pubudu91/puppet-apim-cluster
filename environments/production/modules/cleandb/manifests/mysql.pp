@@ -21,6 +21,8 @@ mysql::db { 'apimgtdb':
     sql 	=> "/tmp/wso2am-${apim_version}/dbscripts/apimgt/mysql.sql",
  }
 
+notify {"API manager version ${apim_version} ": }
+
 mysql::db { 'userdb':
     user  	=> $user,
     password 	=> $password,

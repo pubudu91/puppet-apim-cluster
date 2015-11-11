@@ -50,12 +50,13 @@
         <!--
             Server URL of the Authentication service
         -->
-        <%- if @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
+        
+         <%- if @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
         <!--ServerURL>https://192.168.57.227:9443/services/</ServerURL-->
-	<ServerURL>https://<%= hosts['keymanager_domain'].split(",")[0]%>/services/</ServerURL>
+        <ServerURL>https://<%= hosts['keymanager_domain'].split(",")[0]%>/services/</ServerURL>
         <%- else -%>
         <ServerURL>https://${carbon.local.ip}:${mgt.transport.https.port}${carbon.context}/services/</ServerURL>
-	<%- end -%>
+        <%- end -%>
         <!--
             Admin username for the Authentication manager.
         -->
@@ -147,48 +148,49 @@
     -->
     <APIGateway>
 	<!-- The environments to which an API will be published -->
-	<Environments>
-		<!-- Environments can be of different types. Allowed values are 'hybrid', 'production' and 'sandbox'.
-		     An API deployed on a 'production' type gateway will only support production keys
-		     An API deployed on a 'sandbox' type gateway will only support sandbox keys
-		     An API deployed on a 'hybrid' type gateway will support both production and sandbox keys -->
+
+        <Environments>
+                <!-- Environments can be of different types. Allowed values are 'hybrid', 'production' and 'sandbox'.
+                     An API deployed on a 'production' type gateway will only support production keys
+                     An API deployed on a 'sandbox' type gateway will only support sandbox keys
+                     An API deployed on a 'hybrid' type gateway will support both production and sandbox keys -->
                 <Environment type="hybrid" api-console="true">
                         <Name>Production and Sandbox</Name>
                     <Description> Description of environment</Description>
-			<!--
-            			Server URL of the API gateway.
-        		-->
-                        <<%- if @amtype == 'keymanager' or @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
-			<!-- <ServerURL>https://192.168.57.232:9443/services/</ServerURL> -->
-			<ServerURL>https://<%= hosts['gatewaymgt_domain'].split(",")[0]%>/services/</ServerURL>
+                        <!--
+                                Server URL of the API gateway.
+                        -->
+                        <%- if @amtype == 'keymanager' or @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
+                        <!-- <ServerURL>https://192.168.57.232:9443/services/</ServerURL> -->
+                        <ServerURL>https://<%= hosts['gatewaymgt_domain'].split(",")[0]%>/services/</ServerURL>
                         <%- else -%>
                         <ServerURL>https://${carbon.local.ip}:${mgt.transport.https.port}${carbon.context}/services/</ServerURL>
-			<%- end -%>
-			<!--
-            			Admin username for the API gateway.
-        		-->
+                        <%- end -%>
+                        <!--
+                                Admin username for the API gateway.
+                        -->
                         <%- if @amtype == 'keymanager' or @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
-			<Username>admin</Username>
+                        <Username>admin</Username>
                         <%- else -%>
                         <Username>${admin.username}</Username>
-			<%- end -%>
-			<!--
-            			Admin password for the API gateway.
-        		-->
-			<%- if @amtype == 'keymanager' or @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
-			<Password>admin</Password>
-			<%- else -%>
+                        <%- end -%>
+                        <!--
+                                Admin password for the API gateway.
+                        -->
+                        <%- if @amtype == 'keymanager' or @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
+                        <Password>admin</Password>
+                        <%- else -%>
                         <Password>${admin.password}</Password>
-			<%- end -%>
-			<!--
-            			Endpoint URLs for the APIs hosted in this API gateway.
-        		-->
-			<%- if @amtype == 'keymanager' or @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
-			<!-- <GatewayEndpoint>http://192.168.57.231:8280,https://192.168.57.231:8243</GatewayEndpoint> -->
-			<GatewayEndpoint>http://<%= hosts['gateway_domain'].split(",")[0]%>,https://<%= hosts['gateway_domain'].split(",")[0]%></GatewayEndpoint>
-			<%- else -%>
+                        <%- end -%>
+                        <!--
+                                Endpoint URLs for the APIs hosted in this API gateway.
+                        -->
+                        <%- if @amtype == 'keymanager' or @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
+                        <!-- <GatewayEndpoint>http://192.168.57.231:8280,https://192.168.57.231:8243</GatewayEndpoint> -->
+                        <GatewayEndpoint>http://<%= hosts['gateway_domain'].split(",")[0]%>,https://<%= hosts['gateway_domain'].split(",")[0]%></GatewayEndpoint>
+                        <%- else -%>
                         <GatewayEndpoint>http://${carbon.local.ip}:${http.nio.port},https://${carbon.local.ip}:${https.nio.port}</GatewayEndpoint>
-			<%- end -%>
+                        <%- end -%>
                 </Environment>
         </Environments>
 
@@ -321,7 +323,7 @@
         <%- end -%>
         <ThriftClientPort>10397</ThriftClientPort>
         <ThriftClientConnectionTimeOut>10000</ThriftClientConnectionTimeOut>
-        <ThriftServerPort>10397</ThriftServerPort>
+        <ThriftServerPort>10397</ThriftServerPort>        
 
         <!-- 
         Scope used for marking Application Tokens. If a token is generated with this scope, they will be treated as Application Access Tokens
@@ -525,17 +527,6 @@
 
     </StartupAPIPublisher>
 
-
-
-    <!--
-	When an API is invoked, a list of handlers get engaged to its execution flow. This
-	property defines the position of the Extension Handler.
-	Supported values: top, bottom
-	Defaults to: bottom
-    -->
-    <!--ExtensionHandlerPosition>top|bottom</ExtensionHandlerPosition-->
-
-
     <!--Configuration to enable/disable sending CORS headers in the Gateway response
         and define the Access-Control-Allow-Origin header value.-->
     <CORSConfiguration>
@@ -558,4 +549,10 @@
  	You can enable this and set preferable Logger name. 
    -->
    <!--VelocityLogger>VELOCITY</VelocityLogger-->
+
+    <!-- For APIM implemented Statistic client for DAS REST API -->
+    <StatisticClientProvider>org.wso2.carbon.apimgt.usage.client.impl.APIUsageStatisticsRestClientImpl</StatisticClientProvider>
+    <!-- For APIM implemented Statistic client for RDBMS -->
+    <!--StatisticClientProvider>org.wso2.carbon.apimgt.usage.client.impl.APIUsageStatisticsRdbmsClientImpl</StatisticClientProvider-->
+
 </APIManager>

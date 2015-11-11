@@ -1,5 +1,3 @@
-<%- testconfig = scope.function_hiera(['testconfig']) -%>
-
 #
 #  Copyright (c) 2005-2015, WSO2 Inc. (http://wso2.com) All Rights Reserved.
 #
@@ -181,15 +179,3 @@ log4j.appender.ATOMIKOS.Append = true
 log4j.appender.ATOMIKOS.layout = org.apache.log4j.PatternLayout
 log4j.appender.ATOMIKOS.layout.ConversionPattern=%p %t %c - %m%n
 log4j.additivity.com.atomikos=false
-
-<%- if testconfig['enableAuditLogFile'] == true -%>
-
-# Appender config to send Atomikos transaction logs to new log file tm.out.
-log4j.appender.ATOMIKOS = org.apache.log4j.RollingFileAppender
-log4j.appender.ATOMIKOS.File = repository/logs/tm.out
-log4j.appender.ATOMIKOS.Append = true
-log4j.appender.ATOMIKOS.layout = org.apache.log4j.PatternLayout
-log4j.appender.ATOMIKOS.layout.ConversionPattern=%p %t %c - %m%n
-log4j.additivity.com.atomikos=false
-
-<%- end -%>
