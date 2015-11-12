@@ -11,11 +11,11 @@ e.g.:
 
 To use a given JDK version across the cluster you have to 
 do the following.
-1. Go to /etc/puppet/environments/production/modules/wso2base/manifests
-2. Open params.pp file to edit
+1. Go to /etc/puppet/environments/production/hieradata/apimanager
+2. Open common.yaml file to edit
 3. Under Java section give your required JDK version
-e.g.: 
-    # Java
-    $java_home  = "jdk1.7.0_79"
-    $package    = "jdk-7u79-linux-x64.gz"
-
+e.g.:
+ java:
+  java_home: jdk1.7.0_79
+  java_package: jdk-7u79-linux-x64.gz
+  java_dir: /opt
