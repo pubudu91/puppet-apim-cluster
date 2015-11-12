@@ -1,0 +1,9 @@
+---
+keymanager:
+ depsync: false
+ # offset: 0
+ clustering: false
+ cloud: false
+ sub_cluster_domain: false
+ port_mapping: false
+ stage: deploy

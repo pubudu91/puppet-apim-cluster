@@ -1,0 +1,97 @@
+---
+upstreams:
+
+# keymanager
+    - 
+      name: keymgrhttp
+      lb_mechanism: ip_hash
+      hosts:
+        host:
+          - 
+           hostname: keymanager1
+           hostrole:
+           porttype: HTTPservlet
+          - 
+           hostname: keymanager2
+           hostrole:
+           porttype: HTTPservlet
+    - 
+      name: keymgrhttps
+      lb_mechanism: ip_hash
+      hosts:
+        host:
+          - 
+           hostname: keymanager1
+           hostrole:
+           porttype: HTTPSservlet
+          - 
+           hostname: keymanager2
+           hostrole: 
+           porttype: HTTPSservlet
+# publisher
+    - 
+      name: publisherhttp
+      lb_mechanism: 
+      hosts:
+        host:
+          - 
+           hostname: publisher1
+           hostrole:
+           porttype: HTTPservlet
+    - 
+      name: publisherhttps
+      lb_mechanism: 
+      hosts:
+        host:
+          - 
+           hostname: publisher1
+           hostrole:
+           porttype: HTTPSservlet
+
+servers:
+
+# keymanager
+  - 
+   port: 443
+   name: keymanager.am.wso2.com
+   sslstatus: "on"
+   sslcertificate: /etc/nginx/ssl/keymanager.crt
+   sslcertificatekey: /etc/nginx/ssl/keymanager.key
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: keymgrhttps
+         protocol: https
+  - 
+   port: 80
+   name: keymanager.am.wso2.com
+   locations:
+    location:
+        - 
+         context: "/"
+         proxypass: keymgrhttp
+         protocol: http
+
+# publisher
+  - 
+   port: 443
+   name: pub.am.wso2.com
+   sslstatus: "on"
+   sslcertificate: /etc/nginx/ssl/publisher.crt
+   sslcertificatekey: /etc/nginx/ssl/publisher.key
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: publisherhttps
+         protocol: https
+  - 
+   port: 80
+   name: pub.am.wso2.com
+   locations:
+    location:
+        - 
+         context: "/"
+         proxypass: publisherhttp
+         protocol: http

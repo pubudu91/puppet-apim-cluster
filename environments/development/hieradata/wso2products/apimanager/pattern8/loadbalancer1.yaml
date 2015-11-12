@@ -1,0 +1,256 @@
+---
+upstreams:
+# gateway
+    - 
+      name: gatewayhttp
+      lb_mechanism:
+      hosts:
+        host:
+          - 
+           hostname: gateway2
+           hostrole: 
+           porttype: HTTPservlet
+    - 
+      name: gatewayhttps
+      lb_mechanism: 
+      hosts:
+        host:
+          - 
+           hostname: gateway2
+           hostrole:  
+           porttype: HTTPSservlet
+    - 
+      name: gatewaymgthttp
+      lb_mechanism:
+      hosts:
+        host:
+          - 
+           hostname: gateway1
+           hostrole:
+           porttype: HTTPservlet
+    - 
+      name: gatewaymgthttps
+      lb_mechanism:
+      hosts:
+        host:
+          - 
+           hostname: gateway1
+           hostrole:
+           porttype: HTTPSservlet
+    - 
+      name: gatewaynhttp
+      lb_mechanism:
+      hosts:
+        host:
+          - 
+           hostname: gateway2
+           hostrole: 
+           porttype: NHTTP
+    - 
+      name: gatewaynhttps
+      lb_mechanism:
+      hosts:
+        host:
+          - 
+           hostname: gateway2
+           hostrole: 
+           porttype: NHTTPS
+
+# keymanager
+    - 
+      name: keymgrhttp
+      lb_mechanism: ip_hash
+      hosts:
+        host:
+          - 
+           hostname: keymanager1
+           hostrole:
+           porttype: HTTPservlet
+          - 
+           hostname: keymanager2
+           hostrole:
+           porttype: HTTPservlet
+    - 
+      name: keymgrhttps
+      lb_mechanism: ip_hash
+      hosts:
+        host:
+          - 
+           hostname: keymanager1
+           hostrole:
+           porttype: HTTPSservlet
+          - 
+           hostname: keymanager2
+           hostrole:
+           porttype: HTTPSservlet
+# store
+    - 
+      name: storehttp
+      lb_mechanism: ip_hash
+      hosts:
+        host:
+          - 
+           hostname: pubstore1
+           hostrole:
+           porttype: HTTPservlet
+    - 
+      name: storehttps
+      lb_mechanism: ip_hash
+      hosts:
+        host:
+          - 
+           hostname: pubstore1
+           hostrole:
+           porttype: HTTPSservlet
+
+# publisher
+    - 
+      name: publisherhttp
+      lb_mechanism: ip_hash
+      hosts:
+        host:
+          - 
+           hostname: pubstore1
+           hostrole:
+           porttype: HTTPservlet
+    - 
+      name: publisherhttps
+      lb_mechanism: ip_hash
+      hosts:
+        host:
+          - 
+           hostname: pubstore1
+           hostrole:
+           porttype: HTTPSservlet
+
+servers:
+# gateway
+  - 
+   port: HTTPS
+   name: gateway_domain
+   sslstatus: "on"
+   sslcertificate: /etc/nginx/ssl/gateway.crt
+   sslcertificatekey: /etc/nginx/ssl/gateway.key
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: gatewayhttps
+         protocol: https
+  - 
+   port: HTTP
+   name: gateway_domain
+   locations:
+    location:
+        - 
+         context: "/"
+         proxypass: gatewayhttp
+         protocol: http
+  - 
+   port: HTTPS
+   name: gatewaymgt_domain
+   sslstatus: "on"
+   sslcertificate: /etc/nginx/ssl/mgtgateway.crt
+   sslcertificatekey: /etc/nginx/ssl/mgtgateway.key
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: gatewaymgthttps
+         protocol: https
+  - 
+   port: HTTP
+   name: gatewaymgt_domain
+   locations:
+    location:
+        - 
+         context: "/"
+         proxypass: gatewaymgthttp
+         protocol: http
+  - 
+   port: NHTTP
+   name: gateway_domain
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: gatewaynhttp
+         protocol: http
+  - 
+   port: NHTTPS
+   name: gateway_domain
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: gatewaynhttps
+         protocol: https
+
+# keymanager
+  - 
+   port: HTTPS
+   name: keymanager_domain
+   sslstatus: "on"
+   sslcertificate: /etc/nginx/ssl/keymanager.crt
+   sslcertificatekey: /etc/nginx/ssl/keymanager.key
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: keymgrhttps
+         protocol: https
+  - 
+   port: HTTP
+   name: keymanager_domain
+   locations:
+    location:
+        - 
+         context: "/"
+         proxypass: keymgrhttp
+         protocol: http
+
+# publisher
+  - 
+   port: HTTPS
+   name: publisher_domain
+   sslstatus: "on"
+   sslcertificate: /etc/nginx/ssl/publisher.crt
+   sslcertificatekey: /etc/nginx/ssl/publisher.key
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: publisherhttps
+         protocol: https
+  - 
+   port: HTTP
+   name: publisher_domain
+   locations:
+    location:
+        - 
+         context: "/"
+         proxypass: publisherhttp
+         protocol: http
+
+# store
+  - 
+   port: HTTPS
+   name: store_domain
+   sslstatus: "on"
+   sslcertificate: /etc/nginx/ssl/apistore.crt
+   sslcertificatekey: /etc/nginx/ssl/apistore.key
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: storehttps
+         protocol: https
+  - 
+   port: HTTP
+   name: store_domain
+   locations:
+    location:
+        - 
+         context: "/"
+         proxypass: storehttp
+         protocol: http

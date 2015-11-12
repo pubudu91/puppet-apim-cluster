@@ -1,0 +1,68 @@
+# This file contains common data for a given deployment.
+---
+# This will contain API Manager component/instance specific information
+nodeinfo: 
+ # Product version
+ #version: 1.9.1
+ version: 1.10.0-SNAPSHOT
+ # Cluster maintenance mode
+ # Allowed values
+ # 1. zero - i) Stop carbon server process
+ #           ii) Remove carbon home
+ #           iii) Remove the locally stored product pack zip file. 
+ # 2. new - i) Stop carbon server process
+ #          ii) Remove carbon home
+ # 3. refresh - i) Stop carbon server process and remove lock file
+ # Current config -> zero mode
+ # i.e., each deployment will be setup from a fresh product pack 
+ # downloaded from puppet master and configured using product templates
+ maintenance_mode: zero
+ # Used by the WSO2 base module
+ owner: wso2user
+ group: wso2user
+ # SVN repo information used for depsync setup
+ # this is used in gateway nodes when depsync enabled
+ svn_url: http://192.168.57.233/svn/testrepo/apim2
+ svn_username: user1
+ svn_password: user1
+
+# java version information
+# if you want to have separate java versions for each deployment, maintain this
+# java: section in pattern.yaml file inside the required deployments.
+# if you have not given any java information in common.yaml(here) or in pattern.yaml,
+# the default values will be taken from modules/wso2base/manifests/params.pp file
+java: 
+ java_home: jdk1.7.0_79
+ java_package: jdk-7u79-linux-x64.gz
+ java_dir: /opt
+
+# These are the default port information
+# Used by nginx templates to configure listen ports and other ports
+# using port offset of each product instance
+defaultportinfo:
+ HTTP: 80 
+ HTTPS: 443
+ HTTPservlet: 9763
+ HTTPSservlet: 9443 
+ NHTTP: 8280
+ NHTTPS: 8243
+
+# These are test automation related configuration parameters
+testconfig:
+ enableEncryptPersistedTokens: false
+ enableDisplayMultipleVersions: false
+ enableDisplayAllAPIs: false
+ enableReuseAppName: true
+ enableIsEmailUserName: false
+ usernameWithEmailJavaScriptRegEx: false
+ enableEmailUserName: false
+ enableAuditLogFile: false
+ addClaimsRetrieverImplClass: false
+ addConsumerDialectURI: false
+ addSignatureAlgorithm: false
+ enableTokenGeneration: false
+ enableRemoveOAuthHeadersFromOutMessage: false
+ enableBillingAndUsage: false
+ enableJWTCache: false
+ enableKeyMgtValidationInfoCache: false
+ removeOpenIDConnect: false

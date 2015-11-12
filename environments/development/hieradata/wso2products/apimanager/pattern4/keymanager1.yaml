@@ -1,0 +1,18 @@
+---
+keymanager:
+ depsync: false
+ # offset: 0
+ clustering: true
+ cloud: false
+ local_member_port: 4000
+ cluster_domain: wso2.keymanager.domain
+ sub_cluster_domain: mgt
+ port_mapping: false
+ stage: deploy
+ members:
+    - 
+     name: keymanager1
+     port: 4000
+    - 
+     name: keymanager2
+     port:  4000 

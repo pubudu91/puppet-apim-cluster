@@ -1,0 +1,25 @@
+---
+store:
+ depsync: false
+# offset: 0
+ local_member_port: 4000
+ clustering: true
+ membershipScheme: wka
+ cloud: true
+ cluster_domain: wso2.pub.store.domain
+ sub_cluster_domain: false
+ members:
+    - 
+     name: publisher1
+     port: 4000
+    - 
+     name: publisher2
+     port:  4000
+    - 
+     name: store1
+     port: 4000
+    - 
+     name: store2
+     port:  4000
+ port_mapping: false
+ stage: deploy

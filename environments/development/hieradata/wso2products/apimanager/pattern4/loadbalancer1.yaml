@@ -1,0 +1,192 @@
+---
+upstreams:
+# gateway
+    - 
+      name: mgtgatewayhttps
+      lb_mechanism: ip_hash
+      hosts:
+        host:
+          - 
+           hostname: gateway1
+           hostrole:
+           porttype: HTTPSservlet
+    -  
+      name: mgtgatewayhttp
+      lb_mechanism: ip_hash
+      hosts:
+        host:
+          - 
+           hostname: gateway1
+           hostrole:
+           porttype: HTTPservlet
+    - 
+      name: gatewayhttp
+      lb_mechanism:
+      hosts:
+        host:
+          - 
+           hostname: gateway2
+           hostrole:
+           porttype: HTTPservlet
+    - 
+      name: gatewayhttps
+      lb_mechanism:
+      hosts:
+        host:
+          - 
+           hostname: gateway2
+           hostrole:
+           porttype: HTTPSservlet
+    - 
+      name: gatewaynhttp
+      lb_mechanism:
+      hosts:
+        host:
+          - 
+           hostname: gateway2
+           hostrole: 
+           porttype: NHTTP
+    - 
+      name: gatewaynhttps
+      lb_mechanism:
+      hosts:
+        host:
+          - 
+           hostname: gateway2
+           hostrole: 
+           porttype: NHTTPS
+# store
+    - 
+      name: storehttp
+      lb_mechanism:
+      hosts:
+        host:
+          - 
+           hostname: store1
+           hostrole: active
+           porttype: HTTPservlet
+          - 
+           hostname: store2
+           hostrole: passive
+           porttype: HTTPservlet
+    - 
+      name: storehttps
+      lb_mechanism:
+      hosts:
+        host:
+          - 
+           hostname: store1
+           hostrole: active
+           porttype: HTTPSservlet
+          - 
+           hostname: store2
+           hostrole: passive
+           porttype: HTTPSservlet
+
+servers:
+# gateway
+  - 
+   port: HTTPS
+   name: gateway_domain
+   sslstatus: "on"
+   sslcertificate: /etc/nginx/ssl/gateway.crt
+   sslcertificatekey: /etc/nginx/ssl/gateway.key
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: gatewaynhttps
+         protocol: https
+  - 
+   port: HTTP
+   name: gatewaymgt_domain
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: mgtgatewayhttp
+         protocol: http
+  - 
+   port: HTTP
+   name: gateway_domain
+   locations:
+    location:
+        - 
+         context: "/"
+         proxypass: gatewayhttp
+         protocol: http
+  - 
+   port: HTTPS
+   name: gatewaymgt_domain
+   sslstatus: "on"
+   sslcertificate: /etc/nginx/ssl/mgtgateway.crt
+   sslcertificatekey: /etc/nginx/ssl/mgtgateway.key
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: mgtgatewayhttps
+         protocol: https
+  - 
+   port: NHTTP
+   name: gateway_domain
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: gatewaynhttp
+         protocol: http
+  - 
+   port: NHTTPS
+   name: gateway_domain
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: gatewaynhttps
+
+# store
+  - 
+   port: HTTPS
+   name: external_store_domain
+   sslstatus: "on"
+   sslcertificate: /etc/nginx/ssl/externalstore.crt
+   sslcertificatekey: /etc/nginx/ssl/externalstore.key
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: storehttps
+         protocol: https
+  - 
+   port: HTTP
+   name: external_store_domain
+   locations:
+    location:
+        - 
+         context: "/"
+         proxypass: storehttp
+         protocol: http
+
+# store - for test automation suite
+  - 
+   port: HTTPS
+   name: store_domain
+   sslstatus: "on"
+   sslcertificate: /etc/nginx/ssl/apistore.crt
+   sslcertificatekey: /etc/nginx/ssl/apistore.key
+   locations:
+     location:
+        - 
+         context: "/"
+         proxypass: storehttps
+         protocol: https
+  - 
+   port: HTTP
+   name: store_domain
+   locations:
+    location:
+        - 
+         context: "/"
+         proxypass: storehttp
+         protocol: http

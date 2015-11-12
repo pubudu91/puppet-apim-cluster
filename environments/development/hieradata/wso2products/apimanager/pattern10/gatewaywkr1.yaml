@@ -1,0 +1,19 @@
+---
+gateway:
+ depsync: true
+# offset: 0
+ local_member_port: 4000
+ clustering: true
+ membershipScheme: wka
+ cloud: true
+ sub_cluster_domain: worker
+ members:
+    - 
+     name: gatewaymgr1
+     port:  4000
+    - 
+     name: gatewaywkr2
+     port:  4000
+ port_mapping: false
+ stage: deploy
+ depsync_enabled: true

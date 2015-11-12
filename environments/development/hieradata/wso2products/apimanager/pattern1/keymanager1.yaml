@@ -1,0 +1,18 @@
+---
+keymanager:
+ depsync: false
+# offset: 0
+ local_member_port: 4000
+ clustering: true
+ membershipScheme: wka
+ cloud: false
+ sub_cluster_domain: false
+ members:
+    -
+     name: keymanager2
+     port:  4000
+    -
+     name: keymanager1
+     port: 4000
+ port_mapping: false
+ stage: deploy

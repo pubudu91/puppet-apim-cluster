@@ -1,0 +1,10 @@
+---
+gateway:
+ depsync: true
+# offset: 0
+ clustering: false
+ cloud: false
+ sub_cluster_domain: mgt
+ port_mapping: false
+ stage: deploy
+ depsync_enabled: true
