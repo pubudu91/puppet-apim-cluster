@@ -409,6 +409,24 @@
         <URL>https://${carbon.local.ip}:${mgt.transport.https.port}/store</URL>
         <%- end -%>
         <!--
+            Server URL of the API Store.
+        -->
+
+        <%- if @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
+        <ServerURL>https://<%= hosts['store_domain'].split(",")[0]%>/services/</ServerURL>
+        <%- else -%>
+        <ServerURL>https://${carbon.local.ip}:${mgt.transport.https.port}${carbon.context}/services/</ServerURL>
+        <%- end -%>
+        <!--
+            Admin username for API Store.
+        -->
+        <Username>admin</Username>
+
+        <!--
+            Admin password for API Store.
+        -->
+        <Password>admin</Password>
+        <!--
             This parameter specifies whether to display multiple versions of same
             API or only showing the latest version of an API.
 
