@@ -30,10 +30,14 @@ class wso2base::params {
                         #"10.33.14.69,publisher.api.example.com",
                     ]
 
-	# Java
+    # Java
     $java_home  = "jdk1.7.0_79"
     $package    = "jdk-7u79-linux-x64.gz"
     $java_dir   = '/opt'
+
+    # users
+    $owner = 'wso2user'
+    $group = 'wso2user'
 
     # maven
     $maven_package  ="apache-maven-3.0.5-bin.tar.gz"

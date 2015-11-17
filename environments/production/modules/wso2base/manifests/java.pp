@@ -3,11 +3,9 @@ class wso2base::java (
     $java_home 	= $wso2base::params::java_home,
     $package    = $wso2base::params::package,
     $java_dir   = $wso2base::params::java_dir,
+    $owner      = $wso2base::params::owner,
+    $group      = $wso2base::params::group,
     )  inherits wso2base::params {
-
-    $users = hiera("nodeinfo")
-    $owner = $users[owner]
-    $group = $users[group]
 
     file { "${java_dir}/${package}":
                 source => "puppet:///files/java/${package}",

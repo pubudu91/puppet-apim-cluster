@@ -16,8 +16,12 @@ class wso2base (
     ) inherits params {
 
     $java = hiera("java")
+    $users = hiera("nodeinfo")
 
-    class { users: }
+    class { users: 
+        owner => $users[owner],
+        group => $users[group],
+    }
     ->
     class { hosts : }
     ->
@@ -29,6 +33,8 @@ class wso2base (
         java_home  => $java[java_home],
         package    => $java[java_package],
         java_dir   => $java[java_dir],
+        owner      => $users[owner],
+        group      => $users[group],
     }
 #    ->
 #    class { maven :}
