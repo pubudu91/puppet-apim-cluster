@@ -5,18 +5,16 @@ class wso2base::java (
     $java_dir   = $wso2base::params::java_dir,
     )  inherits wso2base::params {
 
+    $users = hiera("nodeinfo")
+    $owner = $users[owner]
+    $group = $users[group]
+
     file { "${java_dir}/${package}":
                 source => "puppet:///files/java/${package}",
                 recurse => true,
         }
     -> 
     exec { 
-
-        #"downloading_java":
-        #path      => ["/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"],
-        #cwd       => $java_dir,
-        #unless    => "test -f ${java_dir}/${package}",
-        #command   => "wget -q ${package_repo}/${package}";
 
         "install_java":
         path      => ["/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"],
@@ -25,13 +23,10 @@ class wso2base::java (
         unless    => "test -d ${java_dir}/${java_home}",
         creates   => "${java_dir}/${java_home}/COPYRIGHT";
 
-        #creates   => "/opt/${java_home}/COPYRIGHT",
-        #require   => Exec["downloading_java"];
-
         "changing_permissions":
         path      => ["/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"],
         cwd	  => "${java_dir}",
-        command   => "chown -R root:root ${java_dir}/${java_home}; chmod -R 755 ${java_dir}/${java_home}",
+        command   => "chown -R ${owner}:${group} ${java_dir}/${java_home}; chmod -R 755 ${java_dir}/${java_home}",
         require   => Exec["install_java"];
     } 
 
