@@ -275,7 +275,7 @@ do
   <%- if @sub_cluster_domain == 'worker' -%>
     $JAVACMD \
     -Xbootclasspath/a:"$CARBON_XBOOTCLASSPATH" \
-    -Xms256m -Xmx1024m -XX:MaxPermSize=256m \
+    -Xms512m -Xmx2048m -XX:MaxPermSize=1024m \
     -XX:+HeapDumpOnOutOfMemoryError \
     -XX:HeapDumpPath="$CARBON_HOME/repository/logs/heap-dump.hprof" \
     $JAVA_OPTS \
@@ -304,13 +304,13 @@ do
     -Dfile.encoding=UTF8 \
     -Djava.net.preferIPv4Stack=true \
     -Dcom.ibm.cacheLocalHost=true \
-    -DworkerNode=false \
+    -DworkerNode=true \
     org.wso2.carbon.bootstrap.Bootstrap $*
     status=$?
   <%- else -%>
     $JAVACMD \
     -Xbootclasspath/a:"$CARBON_XBOOTCLASSPATH" \
-    -Xms256m -Xmx1024m -XX:MaxPermSize=256m \
+    -Xms512m -Xmx2048m -XX:MaxPermSize=1024m \
     -XX:+HeapDumpOnOutOfMemoryError \
     -XX:HeapDumpPath="$CARBON_HOME/repository/logs/heap-dump.hprof" \
     $JAVA_OPTS \
