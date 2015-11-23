@@ -1,3 +1,9 @@
+#
+# Load balancer configurations
+# Currently supported load balancers
+# 1. Nginx Community Edition
+# 2. Nginx Plus
+#
 node /loadbalancer/ {
 
         $loadbalancer = hiera("loadbalancer")
@@ -24,7 +30,7 @@ node /loadbalancer/ {
         }
         ->
         file { "/etc/nginx/conf.d/apimanger.conf":
-            #notify  => Service["nginx"],  # this sets up the relationship
+            notify  => Service["nginx"],  # this sets up the relationship
             owner   => root,
             group   => root,
             mode    => 775,
