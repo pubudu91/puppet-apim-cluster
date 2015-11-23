@@ -1,0 +1,5 @@
+Copy the Governance Registry 5.1.0 pack here
+
+e.g.: 
+/etc/puppet/files/packs/greg/5.1.0 
+                               `-- wso2greg-5.1.0.zip	
