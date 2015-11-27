@@ -1,0 +1,13 @@
+---
+hosts:
+  dbserver_domain: carbondb.mysql-wso2.com,dbserver
+  puppetmaster_domain: puppet,puppetmaster
+  publisher_domain: publisher.wso2.com,loadbalancer1
+  store_domain: store.wso2.com,loadbalancer1
+
+nodes:
+  loadbalancer1: 192.168.57.250
+  gregpublisher1: 192.168.57.228
+  gregstore1: 192.168.57.247
+  dbserver: 192.168.57.233
+  puppetmaster: 192.168.57.148

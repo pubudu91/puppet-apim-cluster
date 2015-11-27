@@ -1,0 +1,23 @@
+# This file contains all the datasources information
+---
+datasources:
+ # Following datasources information used by the product module
+ registry_db_connection_url : jdbc:mysql://carbondb.mysql-wso2.com:3306/governancedb
+ registry_db_user : root
+ registry_db_password : root
+ registry_db_driver_name : com.mysql.jdbc.Driver
+ userstore_db_connection_url : jdbc:mysql://carbondb.mysql-wso2.com:3306/WSO2_USER_DB
+ userstore_db_user : root
+ userstore_db_password : root
+ userstore_db_driver_name : com.mysql.jdbc.Driver
+ apim_db_connection_url : jdbc:mysql://carbondb.mysql-wso2.com:3306/apimgtdb?autoReconnect=true
+ apim_db_user : root
+ apim_db_password : root
+ apim_db_driver_name : com.mysql.jdbc.Driver
+ stats_db_connection_url: jdbc:mysql://carbondb.mysql-wso2.com:3306/statsdb?autoReconnect=true
+ stats_db_user: root
+ stats_db_password: root
+ stats_db_driver_name: com.mysql.jdbc.Driver
+ # Following credentials are used by the database cleanup module.
+ db_root_user : root
+ db_root_user_password : root
