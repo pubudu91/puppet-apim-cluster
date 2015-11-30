@@ -1,9 +1,9 @@
 ---
-store:
+publisher:
  depsync: false
 # offset: 0
- carbon_hostname: store.wso2.com
- carbon_mgt_hostname: store.wso2.com
+ carbon_hostname: publisher.wso2.com
+ carbon_mgt_hostname: publisher.wso2.com
  local_member_port: 4000
  clustering: true
  membershipScheme: wka
@@ -12,10 +12,10 @@ store:
  sub_cluster_domain: mgt
  members:
     -
-     name: gregpublisher1
+     name: store1
      port:  4000
     -
-     name: gregpublisher2
+     name: publisher1
      port: 4000
  port_mapping: false
  stage: deploy
