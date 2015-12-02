@@ -1,0 +1,24 @@
+---
+publisher:
+ depsync: false
+# offset: 0
+ carbon_hostname: publisher.wso2.com
+ carbon_mgt_hostname: publisher.wso2.com
+ local_member_port: 4000
+ clustering: true
+ membershipScheme: wka
+ cloud: false
+ cluster_domain: wso2.governance.domain
+ sub_cluster_domain: mgt
+ members:
+    -
+     name: store1
+     port:  4000
+    -
+     name: publisher2
+     port: 4000
+ port_mapping: false
+ stage: deploy
+ proxy_port_enabled: true
+ http_proxy_port: 80
+ https_proxy_port: 443
