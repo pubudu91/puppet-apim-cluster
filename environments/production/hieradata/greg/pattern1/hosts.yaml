@@ -6,8 +6,9 @@ hosts:
   store_domain: store.wso2.com,loadbalancer1
 
 nodes:
-  loadbalancer1: 192.168.57.250
-  gregpublisher1: 192.168.57.228
-  gregstore1: 192.168.57.247
-  dbserver: 192.168.57.233
-  puppetmaster: 192.168.57.148
+  loadbalancer1: 172.31.2.10
+  gregpublisher1: 172.31.2.9
+  gregpublisher2: 172.31.29.49
+  gregstore1: 172.31.2.8
+  dbserver: 172.31.2.7
+  puppetmaster: 52.35.1.121

@@ -1,0 +1,95 @@
+---
+upstreams:
+# publisher
+  -
+      name: publisherhttp
+      lb_mechanism: ip_hash
+      hosts:
+        host:
+          -
+           hostname: gregpublisher1
+           hostrole:
+           porttype: HTTPservlet
+          -
+           hostname: gregpublisher2
+           hostrole:
+           porttype: HTTPservlet
+  -
+      name: publisherhttps
+      lb_mechanism: ip_hash
+      hosts:
+        host:
+          -
+           hostname: gregpublisher1
+           hostrole:
+           porttype: HTTPSservlet
+          -
+           hostname: gregpublisher2
+           hostrole:
+           porttype: HTTPSservlet
+# store
+  -
+      name: storehttp
+      lb_mechanism: ip_hash
+      hosts:
+        host:
+          -
+           hostname: gregstore1
+           hostrole:
+           porttype: HTTPservlet
+  -
+      name: storehttps
+      lb_mechanism: ip_hash
+      hosts:
+        host:
+          -
+           hostname: gregstore1
+           hostrole:
+           porttype: HTTPSservlet
+
+servers:
+
+# publisher
+  -
+   port: HTTPS
+   name: publisher_domain
+   sslstatus: "on"
+   sslcertificate: /etc/nginx/ssl/gregpublisher.crt
+   sslcertificatekey: /etc/nginx/ssl/gregpublisher.key
+   locations:
+     location:
+        -
+         context: "/"
+         proxypass: publisherhttps
+         protocol: https
+  -
+   port: HTTP
+   name: publisher_domain
+   locations:
+    location:
+        -
+         context: "/"
+         proxypass: publisherhttp
+         protocol: http
+# store
+  -
+   port: HTTPS
+   name: store_domain
+   sslstatus: "on"
+   sslcertificate: /etc/nginx/ssl/gregstore.crt
+   sslcertificatekey: /etc/nginx/ssl/gregstore.key
+   locations:
+     location:
+        -
+         context: "/"
+         proxypass: storehttps
+         protocol: https
+  -
+   port: HTTP
+   name: store_domain
+   locations:
+    location:
+        -
+         context: "/"
+         proxypass: storehttp
+         protocol: http

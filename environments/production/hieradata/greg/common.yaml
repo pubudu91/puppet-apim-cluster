@@ -31,8 +31,8 @@ nodeinfo:
 # if you have not given any java information in common.yaml(here) or in pattern.yaml,
 # the default values will be taken from modules/wso2base/manifests/params.pp file
 java: 
- java_home: jdk1.7.0_80
- java_package: jdk-7u80-linux-x64.gz
+ java_home: jdk1.7.0_79
+ java_package: jdk-7u79-linux-x64.tar.gz
  java_dir: /opt
 
 # Loadbalancer information
