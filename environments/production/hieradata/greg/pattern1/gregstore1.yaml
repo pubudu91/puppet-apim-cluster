@@ -1,6 +1,6 @@
 ---
 store:
- depsync: false
+ depsync_enabled: false
 # offset: 0
  carbon_hostname: store.wso2.com
  carbon_mgt_hostname: store.wso2.com

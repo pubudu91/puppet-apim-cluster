@@ -1,6 +1,6 @@
 ---
 publisher:
- depsync: false
+ depsync_enabled: false
 # offset: 0
  carbon_hostname: publisher.wso2.com
  carbon_mgt_hostname: publisher.wso2.com
